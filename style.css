@@ -59,6 +59,7 @@ body {
 
 .form-register .botons {
   width: 100%;
+  border-radius: 7px;
   background: #1f53c5;
   border: none;
   padding: 12px;
