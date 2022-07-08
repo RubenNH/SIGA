@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="archivosPaQueFuncioneBootstrap/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/LOGO SIGA (1).png" alt="" width="50">
+            </a>
+            <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="menu.html">Inicio</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="CRUD.html">Mis asesorias</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link active" aria-current="page" href="#">Solicitar asesorias</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="#">Historial</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="#">Mi cuenta</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="Login.html">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card mt-5">
+                    <div class="card-header">REGISTRAR POKEMON</div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <form class="needs-validation" novalidate action="add-pokemon" method="post">
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="fw-bold" for="pokemon">Nombre</label>
+                                                <input name="name" id="pokemon" required
+                                                       class="form-control" value="${pokemon.name}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="id" value="{(pokemon.id}">
+                                            <div class="col">
+                                                <label class="fw-bold" for="health">Puntos de salud</label>
+                                                <input name="health" id="health" required
+                                                       class="form-control" type="number" value="${pokemon.health}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="fw-bold" for="type">Tipo</label>
+                                                <input name="type" id="type" required
+                                                       class="form-control" value="${pokemon.pokemonType}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label class="fw-bold" for="heigth">Estatura</label>
+                                                <input name="estatura" id="heigth" required
+                                                       class="form-control" type="number" value="${pokemon.height}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col">
+                                                <label class="fw-bold" for="power">Puntos de ataque</label>
+                                                <input name="damage" id="power" required
+                                                       class="form-control" type="number" value="${pokemon.power}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                            <div class="col">
+                                                <label class="fw-bold" for="weigth">Peso</label>
+                                                <input name="peso" id="weigth" required
+                                                       class="form-control" type="number" value="${pokemon.weight}"/>
+                                                <div class="invalid-feedback">
+                                                    Campo obligatio
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-3">
+                                        <div class="row">
+                                            <div class="col-12 text-end">
+                                                <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                                                <button type="submit" class="btn btn-warning btn-sm">Actualizar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="archivosPaQueFuncioneBootstrap/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+</html>
