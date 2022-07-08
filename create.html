@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="archivosPaQueFuncioneBootstrap/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/LOGO SIGA (1).png" alt="" width="50">
+            </a>
+            <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="menu.html">Inicio</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="selec.html">Solicitar asesorias</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="#">Historial</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="#">Mi cuenta</a></li>
+                    <li class="nav-item" style="margin: 20px;"><a class="nav-link" href="Login.html">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <jsp:include page="../../templates/navbar.jsp"/>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <c:if test="${param['result']}">
+                <p><c:out value="${param['message']}"></c:out></p>
+            </c:if>
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-6">POKEMONS</div>
+                        <div class="col-6 text-end">
+                            <a href="create-pokemon" class="btn btn-outline-success btn-sm">
+                                Registrar pokemon
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm table-hover">
+                        <thead>
+                        <th>#</th>
+                        <th>Pokemon</th>
+                        <th>Acciones</th>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="pokemon" items="${pokemons}" varStatus="status">
+                            <tr>
+                                <td>
+                                    <c:out value="${status.count}"></c:out>
+                                </td>
+                                <td>
+                                    <c:out value="${pokemon.name}"></c:out>
+                                </td>
+                                <td>
+                                    <a href="get-pokemon?id=${pokemon.id}" class="btn tbn-warning btn-sn">EDITAR</a>
+                                    <a href="delete-pokemon?id=${pokemon.id}" class="btn tbn-warning btn-sn">ELIMINAR</a>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="archivosPaQueFuncioneBootstrap/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
