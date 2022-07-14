@@ -8,15 +8,30 @@
   <title >Formulario Registro</title>
 </head>
 <body>
-  <section class="form-register">
-    <h4 id="pete">Registro de cuentas</h4>
-    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre">
-    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Ingrese su Apellido">
-    <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo">
-    <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña">
-    <a href="verifiodigo.html" ><input class="botons" type="submit" value="Registrar"></a>
+  <section class="form-registered">
+    <h4 id="pete">Registro de Estudiante</h4>
+    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required>
+    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Apellido" required>
+    <input class="controls" type="text" name="Matricula" id="Matricula" placeholder="Matricula" required>
+    <input class="controls" type="text" name="Carrera" id="Carrera" placeholder="Carrera" list="l1sa" required>
+    <datalist id="l1sa" name="Carrera">
+      <option>DATIC</option>
+      <option>NOC</option>
+      <option>NOC2</option>
+      <option>NOC3</option>
+    </datalist>
+    <input class="controls" type="number" min="1" max="6" step="1" name="Cuatrimestre" id="cuatrimestre" placeholder="Cuatrimestre" required>
+    <input class="controls" type="tel" name="telefono" id="tel" placeholder="Telefono" required>    
+    <input class="controls" type="text" name="Sexo"id="sexo" placeholder="Sexo" list="l1" required>
+    <datalist id="l1" name="Sexo">
+      <option>Hombre</option>
+      <option>Mujer</option>
+      <option>Otro</option>
+    </datalist>
+    <input class="controls" type="email" name="correo" id="correo" placeholder="Ingrese su Correo" required>
+    <input class="controls" type="password" name="correo" id="correo" placeholder="Ingrese su Contraseña" required>
+    <a href="verifiodigo.html" ><input class="botons" type="submit" value="Registrar" required></a>
     <p><a href="Login.html">¿Ya tengo Cuenta?</a></p>
   </section>
-
 </body>
 </html>
