@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="table.css">
+    <title>Solicitar</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="img/LOGO SIGA (1).png" alt="" width="50">
+            </a>
+            <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="menu.html">Mis asesorias</a></li>
+                    <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Solicitar asesorias</a></li>
+                    <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.html">Mi cuenta</a></li>
+                    <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="Login.html">Salir</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <jsp:include page="../../templates/navbar.jsp"/>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <div class="card mt-5">
+                <div class="card-header">REGISTRAR ASESORIA</div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <form class="needs-validation" novalidate action="add-pokemon" method="post">
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="fw-bold" for="pokemon">Materia</label>
+                                            <input name="name" id="pokemon" required
+                                                   class="form-control"/>
+                                            <div class="invalid-feedback">
+                                                Campo obligatio
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label class="fw-bold" for="health">Profesor</label>
+                                            <input name="health" id="health" required
+                                                   class="form-control" type="text"/>
+                                            <div class="invalid-feedback">
+                                                Campo obligatio
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col">
+                                            <label class="fw-bold" for="type">Tema</label>
+                                            <input name="type" id="type" required
+                                                   class="form-control"/>
+                                            <div class="invalid-feedback">
+                                                Campo obligatio
+                                            </div>
+                                        </div>
+                                        <div class="col">
+                                            <label class="fw-bold" for="heigth">Dudas</label>
+                                            <input name="estatura" id="heigth" required
+                                                   class="form-control" type="text"/>
+                                            <div class="invalid-feedback">
+                                                Campo obligatio
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-3">
+                                    <div class="row">
+                                        <div class="col-12 text-end">
+                                            <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                                            <button type="submit" class="btn btn-success btn-sm">Solicitar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function () {
+        'use strict'
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.querySelectorAll('.needs-validation')
+        // Loop over them and prevent submission
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+    <script src="js/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>    
+    </script>
+</body>
+</html>
