@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="PokemonApp:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>PokemonApp</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="PokemonApp-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="PokemonApp:war exploded" />
+    </root>
+  </artifact>
+</component>
