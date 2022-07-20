@@ -35,7 +35,7 @@ body {
   border-radius: 4px;
   margin-bottom: 16px;
   border: 1px solid #009475;
-  font-family: 'Karla', sans-serif;;
+  font-family: 'Karla', sans-serif;
   font-size: 18px;
   color: white;
 }
@@ -59,6 +59,7 @@ body {
 
 .form-register .botons {
   width: 100%;
+  border-radius: 7px;
   background: #1f53c5;
   border: none;
   padding: 12px;
@@ -69,4 +70,84 @@ body {
 
 #pete{
    text-align: center;
+}
+
+
+
+
+body{
+  margin: 0;
+  font-family: sans-serif;
+}
+
+header{
+  width: 100%;
+  background: #009475;
+}
+
+#btn-menu {
+  display: none;
+}
+
+header label {
+  display: none;
+  width: 30px;
+  height: 30px;
+  padding: 10px;
+  border-right: 1px solid #fff;
+}
+
+header label:hover{
+  cursor: pointer;
+  background: rgba(0,0,0,0.3);
+}
+
+.menu ul{
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: flex;
+}
+.menu li{
+  border-right: 1px solid #fff;
+}
+
+.menu li:hover{
+  background: rgba(0,0,0,0.3);
+}
+.menu li a{
+  display: block;
+  padding: 15px 20px;
+  color:#fff;
+  text-decoration: none;
+}
+
+@media (max-width:768px){
+  header label{
+    display: block;
+  }
+  .menu{
+    position:absolute;
+    background: #4E97A7;
+    width: 70%;
+    margin-left: -70%;
+    transition: all 0.5s;
+  }
+  .menu ul{
+    flex-direction: column;
+  }
+  .menu li{
+    border-top: 1px solid #fff;
+  }
+  #btn-menu:checked ~ .menu {
+    margin: 0;
+  }
+}
+
+*{
+  margin:0;
+  padding: 0;
+
+
 }
