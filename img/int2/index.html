@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="11-115684_smbolo-escuela-de-estadstica-en-color-vino-simbolo.png" alt="" width="50">
+            </a>
+            <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <h4>hola</h4>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <c:if test="${param['result']}">
+                    <p><c:out value="${param['message']}"></c:out></p>
+                </c:if>
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-6">Asesorias</div>
+                            <div class="col-6 text-end">
+                                <a href="SolicitarAsesorias.html" class="btn btn-outline-success btn-sm">
+                                    Solicitar asesorias
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-sm table-hover">
+                            <thead>
+                            <th>#</th>
+                            <th>Asesorias</th>
+                            <th>Acciones</th>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="pokemon" items="${pokemons}" varStatus="status">
+                                <tr>
+                                    <td>
+                                        <c:out value="${status.count}"></c:out>
+                                    </td>
+                                    <td>
+                                        <c:out value="${pokemon.name}"></c:out>
+                                    </td>
+                                    <td>
+                                        <a href="#" class="btn tbn-warning btn-sn">Cancelar</a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
