@@ -1,0 +1,365 @@
+DROP DATABASE IF EXISTS SIGA;
+CREATE DATABASE SIGA;
+
+use SIGA;
+
+CREATE TABLE  Carreras (
+  idCarrera numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idCarrera))
+;
+
+
+-- -----------------------------------------------------
+-- Table Cuatrimestre
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Cuatrimestre (
+  idCuatri numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idCuatri))
+;
+
+
+-- -----------------------------------------------------
+-- Table Estudiante
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Estudiante (
+  id_Matricula numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  correo VARCHAR(45) NULL,
+  telefono VARCHAR(45) NULL,
+  genero VARCHAR(45) NULL,
+  Carreras_idCarrera numeric NOT NULL,
+  Cuatri_idCuatri numeric NOT NULL,
+  PRIMARY KEY (id_Matricula, Carreras_idCarrera, Cuatri_idCuatri),
+  CONSTRAINT fk_Estudiante_Carreras
+    FOREIGN KEY (Carreras_idCarrera)
+    REFERENCES Carreras (idCarrera),
+  CONSTRAINT fk_Estudiante_Cuatri1
+    FOREIGN KEY (Cuatri_idCuatri)
+    REFERENCES Cuatrimestre (idCuatri)
+    );
+
+
+-- -----------------------------------------------------
+-- Table Materias
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Materias (
+  idMaterias numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idMaterias))
+;
+
+
+-- -----------------------------------------------------
+-- Table Profesores
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Profesores (
+  idProfesores numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  correo VARCHAR(45) NULL,
+  PRIMARY KEY (idProfesores))
+;
+
+
+-- -----------------------------------------------------
+-- Table As_Estados
+-- -----------------------------------------------------
+
+
+CREATE TABLE  As_Estados (
+  idAs_Estados numeric NOT NULL,
+  estado VARCHAR(45) NULL,
+  PRIMARY KEY (idAs_Estados))
+;
+
+
+-- -----------------------------------------------------
+-- Table Asesorias
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Asesorias (
+  idAsesorias numeric NOT NULL,
+  fecha DATE NULL,
+  Profesores_idProfesores numeric NOT NULL,
+  As_Estados_idAs_Estados numeric NOT NULL,
+  Estudiante_id_Matricula numeric NOT NULL,
+  Estudiante_Carreras_idCarrera numeric NOT NULL,
+  Estudiante_Cuatri_idCuatri numeric NOT NULL,
+  PRIMARY KEY (idAsesorias, Profesores_idProfesores, As_Estados_idAs_Estados, Estudiante_id_Matricula, Estudiante_Carreras_idCarrera, Estudiante_Cuatri_idCuatri),
+  CONSTRAINT fk_Asesorias_Profesores1
+    FOREIGN KEY (Profesores_idProfesores)
+    REFERENCES Profesores (idProfesores),
+  CONSTRAINT fk_Asesorias_As_Estados1
+    FOREIGN KEY (As_Estados_idAs_Estados)
+    REFERENCES As_Estados (idAs_Estados),
+  CONSTRAINT fk_Asesorias_Estudiante1
+    FOREIGN KEY (Estudiante_id_Matricula , Estudiante_Carreras_idCarrera , Estudiante_Cuatri_idCuatri)
+    REFERENCES Estudiante (id_Matricula , Carreras_idCarrera , Cuatri_idCuatri)
+);
+
+
+-- -----------------------------------------------------
+-- Table Profesores_has_Materias
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Profesores_has_Materias (
+  Profesores_idProfesores numeric NOT NULL,
+  Materias_idMaterias numeric NOT NULL,
+  PRIMARY KEY (Profesores_idProfesores, Materias_idMaterias),
+  CONSTRAINT fk_Profesores_has_Materias_Profesores1
+    FOREIGN KEY (Profesores_idProfesores)
+    REFERENCES Profesores (idProfesores),
+  CONSTRAINT fk_Profesores_has_Materias_Materias1
+    FOREIGN KEY (Materias_idMaterias)
+    REFERENCES Materias (idMaterias)
+);
+
+
+-- -----------------------------------------------------
+-- Table Cuatri_has_Carreras
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Cuatri_has_Carreras (
+  Cuatri_idCuatri numeric NOT NULL,
+  Carreras_idCarrera numeric NOT NULL,
+  PRIMARY KEY (Cuatri_idCuatri, Carreras_idCarrera),
+  CONSTRAINT fk_Cuatri_has_Carreras_Cuatri1
+    FOREIGN KEY (Cuatri_idCuatri)
+    REFERENCES Cuatrimestre (idCuatri),
+  CONSTRAINT fk_Cuatri_has_Carreras_Carreras1
+    FOREIGN KEY (Carreras_idCarrera)
+    REFERENCES Carreras (idCarrera)
+);
+
+
+-- -----------------------------------------------------
+-- Table Cuatri_has_Carreras_has_Materias
+-- -----------------------------------------------------
+
+
+CREATE TABLE  Cuatri_has_Carreras_has_Materias (
+  Cuatri_has_Carreras_Cuatri_idCuatri numeric NOT NULL,
+  Cuatri_has_Carreras_Carreras_idCarrera numeric NOT NULL,
+  Materias_idMaterias numeric NOT NULL,
+  PRIMARY KEY (Cuatri_has_Carreras_Cuatri_idCuatri, Cuatri_has_Carreras_Carreras_idCarrera, Materias_idMaterias),
+  CONSTRAINT fk_Cuatri_has_Carreras_has_Materias_Cuatri_has_Carreras1
+    FOREIGN KEY (Cuatri_has_Carreras_Cuatri_idCuatri , Cuatri_has_Carreras_Carreras_idCarrera)
+    REFERENCES Cuatri_has_Carreras (Cuatri_idCuatri , Carreras_idCarrera),
+  CONSTRAINT fk_Cuatri_has_Carreras_has_Materias_Materias1
+    FOREIGN KEY (Materias_idMaterias)
+    REFERENCES Materias (idMaterias)
+);
+
+
+
+
+CREATE TABLE  Control (
+  idControl numeric NOT NULL,
+  usuario VARCHAR(45) NULL,
+  fecha DATE NULL,
+  accion VARCHAR(45) NULL,
+  tabla VARCHAR(45) NULL,
+  PRIMARY KEY (idControl))
+;
+
+
+
+
+
+
+
+
+
+
+
+
+
+DROP DATABASE IF EXISTS SIGA;
+CREATE DATABASE SIGA;
+use SIGA;
+
+-- -----------------------------------------------------
+-- Table Cuatrimestre
+-- -----------------------------------------------------
+CREATE TABLE  Cuatrimestre (
+  idCuatri numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idCuatri))
+;
+
+-- -----------------------------------------------------
+-- Table Carreras
+-- -----------------------------------------------------
+CREATE TABLE  Carreras (
+  idCarrera numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idCarrera))
+;
+-- -----------------------------------------------------
+-- Table Profesores
+-- -----------------------------------------------------
+CREATE TABLE  Profesores (
+  idProfesores numeric NOT NULL,
+  PRIMARY KEY (idProfesores))
+;
+
+-- -----------------------------------------------------
+-- Table Admin
+-- -----------------------------------------------------
+CREATE TABLE  Administrador (
+  idAdmin numeric NOT NULL,
+  PRIMARY KEY (idAdmin))
+;
+
+-- -----------------------------------------------------
+-- Table Estudiante
+-- -----------------------------------------------------
+CREATE TABLE  Estudiante (
+  id_Matricula numeric NOT NULL,
+  telefono VARCHAR(45) NULL,
+  genero VARCHAR(45) NULL,
+  Carreras_idCarrera numeric NOT NULL,
+  Cuatri_idCuatri numeric NOT NULL,
+  PRIMARY KEY (id_Matricula, Carreras_idCarrera, Cuatri_idCuatri),
+  CONSTRAINT fk_Estudiante_Carreras
+    FOREIGN KEY (Carreras_idCarrera)
+    REFERENCES Carreras (idCarrera),
+  CONSTRAINT fk_Estudiante_Cuatri1
+    FOREIGN KEY (Cuatri_idCuatri)
+    REFERENCES Cuatrimestre (idCuatri)
+    );
+
+-- -----------------------------------------------------
+-- Table Usuarios
+-- -----------------------------------------------------
+CREATE TABLE Users(
+id_Users bigint primary key auto_increment,
+username varchar(50) not null unique,
+password varchar(50) not null,
+nombre VARCHAR(45) NULL,
+apellidos VARCHAR(45) NULL,
+Id_estudiates numeric,
+Id_profesores numeric,
+Id_Admin numeric,
+CONSTRAINT fk_Users_Estudiante
+    FOREIGN KEY (Id_estudiates)
+    REFERENCES Estudiante (id_Matricula),
+CONSTRAINT fk_Users_Profesores
+    FOREIGN KEY (Id_profesores)
+    REFERENCES Profesores (idProfesores),
+CONSTRAINT fk_Users_Administrador
+    FOREIGN KEY (Id_Admin)
+    REFERENCES Administrador (idAdmin)
+);  
+
+-- -----------------------------------------------------
+-- Table Materias
+-- -----------------------------------------------------
+CREATE TABLE  Materias (
+  idMaterias numeric NOT NULL,
+  nombre VARCHAR(45) NULL,
+  PRIMARY KEY (idMaterias))
+;
+
+-- -----------------------------------------------------
+-- Table As_Estados
+-- -----------------------------------------------------
+CREATE TABLE  As_Estados (
+  idAs_Estados numeric NOT NULL,
+  estado VARCHAR(45) NULL,
+  PRIMARY KEY (idAs_Estados))
+;
+
+-- -----------------------------------------------------
+-- Table Asesorias
+-- -----------------------------------------------------
+CREATE TABLE  Asesorias (
+  idAsesorias numeric NOT NULL,
+  tema VARCHAR(45) not NULL,
+  duda VARCHAR(45)  not NULL,
+  tiempo date null,
+  Profesores_idProfesores numeric,
+  As_Estados_idAs_Estados numeric,
+  Estudiante_id_Matricula numeric,
+  Estudiante_Carreras_idCarrera numeric,
+  Estudiante_Cuatri_idCuatri numeric,
+  PRIMARY KEY (idAsesorias, Profesores_idProfesores, As_Estados_idAs_Estados, Estudiante_id_Matricula, Estudiante_Carreras_idCarrera, Estudiante_Cuatri_idCuatri),
+  CONSTRAINT fk_Asesorias_Profesores1
+    FOREIGN KEY (Profesores_idProfesores)
+    REFERENCES Profesores (idProfesores),
+  CONSTRAINT fk_Asesorias_As_Estados1
+    FOREIGN KEY (As_Estados_idAs_Estados)
+    REFERENCES As_Estados (idAs_Estados),
+  CONSTRAINT fk_Asesorias_Estudiante1
+    FOREIGN KEY (Estudiante_id_Matricula , Estudiante_Carreras_idCarrera , Estudiante_Cuatri_idCuatri)
+    REFERENCES Estudiante (id_Matricula , Carreras_idCarrera , Cuatri_idCuatri)
+);
+
+-- -----------------------------------------------------
+-- Table Profesores_has_Materias
+-- -----------------------------------------------------
+CREATE TABLE  Profesores_has_Materias (
+  Profesores_idProfesores numeric NOT NULL,
+  Materias_idMaterias numeric NOT NULL,
+  PRIMARY KEY (Profesores_idProfesores, Materias_idMaterias),
+  CONSTRAINT fk_Profesores_has_Materias_Profesores1
+    FOREIGN KEY (Profesores_idProfesores)
+    REFERENCES Profesores (idProfesores),
+  CONSTRAINT fk_Profesores_has_Materias_Materias1
+    FOREIGN KEY (Materias_idMaterias)
+    REFERENCES Materias (idMaterias)
+);
+
+-- -----------------------------------------------------
+-- Table Cuatri_has_Carreras
+-- -----------------------------------------------------
+CREATE TABLE  Cuatri_has_Carreras (
+  Cuatri_idCuatri numeric NOT NULL,
+  Carreras_idCarrera numeric NOT NULL,
+  PRIMARY KEY (Cuatri_idCuatri, Carreras_idCarrera),
+  CONSTRAINT fk_Cuatri_has_Carreras_Cuatri1
+    FOREIGN KEY (Cuatri_idCuatri)
+    REFERENCES Cuatrimestre (idCuatri),
+  CONSTRAINT fk_Cuatri_has_Carreras_Carreras1
+    FOREIGN KEY (Carreras_idCarrera)
+    REFERENCES Carreras (idCarrera)
+);
+
+-- -----------------------------------------------------
+-- Table Cuatri_has_Carreras_has_Materias
+-- -----------------------------------------------------
+CREATE TABLE  Cuatri_has_Carreras_has_Materias (
+  Cuatri_has_Carreras_Cuatri_idCuatri numeric NOT NULL,
+  Cuatri_has_Carreras_Carreras_idCarrera numeric NOT NULL,
+  Materias_idMaterias numeric NOT NULL,
+  PRIMARY KEY (Cuatri_has_Carreras_Cuatri_idCuatri, Cuatri_has_Carreras_Carreras_idCarrera, Materias_idMaterias),
+  CONSTRAINT fk_Cuatri_has_Carreras_has_Materias_Cuatri_has_Carreras1
+    FOREIGN KEY (Cuatri_has_Carreras_Cuatri_idCuatri , Cuatri_has_Carreras_Carreras_idCarrera)
+    REFERENCES Cuatri_has_Carreras (Cuatri_idCuatri , Carreras_idCarrera),
+  CONSTRAINT fk_Cuatri_has_Carreras_has_Materias_Materias1
+    FOREIGN KEY (Materias_idMaterias)
+    REFERENCES Materias (idMaterias)
+);
+
+CREATE TABLE  Control (
+  idControl numeric NOT NULL,
+  usuario VARCHAR(45) NULL,
+  fecha DATE NULL,
+  accion VARCHAR(45) NULL,
+  tabla VARCHAR(45) NULL,
+  PRIMARY KEY (idControl))
+;
+
+select * from users;
