@@ -30,7 +30,7 @@
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="SolicitarAsesorias.html">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.html">Mi cuenta</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="Login.html">Salir</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="../../index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +66,7 @@
                                     <c:out value="${status.count}"></c:out>
                                 </td>
                                 <td>
-                                    <c:out value="${asesoria.name}"></c:out>
+                                    <c:out value="${asesoria.tema}"></c:out>
                                 </td>
                                 <td>
                                     <a href="get-aseso?id=${asesoria.id}" class="btn btn-warning

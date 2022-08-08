@@ -5,24 +5,18 @@ public class BeanUser {
     private String username;
     private String password;
     private int status;
-    private String nombre;
+    private String nombres;
     private String apellidos;
-    private long Id_estudiates;
-    private long Id_profesores;
-    private long Id_Admin;
     public BeanUser() {
     }
 
-    public BeanUser(long id, String username, String password, int status, String nombre, String apellidos, long id_estudiates, long id_profesores, long id_Admin) {
+    public BeanUser(long id, String username, String password, int status, String nombres, String apellidos) {
         this.id = id;
         this.username = username;
         this.password = password;
-        //this.status = status;
-        this.nombre = nombre;
+        this.status = status;
+        this.nombres = nombres;
         this.apellidos = apellidos;
-        this.Id_estudiates = id_estudiates;
-        this.Id_profesores = id_profesores;
-        this.Id_Admin = id_Admin;
     }
 
     public long getId() {
@@ -58,11 +52,11 @@ public class BeanUser {
     }
 
     public String getNombre() {
-        return nombre;
+        return nombres;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.nombres = nombre;
     }
 
     public String getApellidos() {
@@ -71,29 +65,5 @@ public class BeanUser {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
-    }
-
-    public long getId_estudiates() {
-        return Id_estudiates;
-    }
-
-    public void setId_estudiates(long id_estudiates) {
-        Id_estudiates = id_estudiates;
-    }
-
-    public long getId_profesores() {
-        return Id_profesores;
-    }
-
-    public void setId_profesores(long id_profesores) {
-        Id_profesores = id_profesores;
-    }
-
-    public long getId_Admin() {
-        return Id_Admin;
-    }
-
-    public void setId_Admin(long id_Admin) {
-        Id_Admin = id_Admin;
     }
 }

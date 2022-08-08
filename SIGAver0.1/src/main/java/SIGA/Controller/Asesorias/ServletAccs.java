@@ -17,7 +17,9 @@ import java.util.logging.Logger;
 
 @WebServlet(name = "ServletAcccs",
         urlPatterns = {
-                "/get-acceso",
+                "/get-acceso1",
+                "/get-acceso2",
+                "/get-acceso3",
                 "/add-aseso",
                 "/solicitar-aseso",
                 "/save-aseso",
@@ -38,11 +40,23 @@ public class ServletAccs extends HttpServlet {
         action = request.getServletPath();
         logger.log(Level.INFO, "Path-> " + action);
         switch (action) {
-            case "/get-acceso":
+            case "/get-acceso1":
                 List<BeanAseso> asesorias = ServiceAsesorias.getAll();
                 System.out.println(asesorias.size());
                 request.setAttribute("asesoria", asesorias);
                 urlRedirect = "/views/estudiantes/index.jsp";
+                break;
+            case "/get-acceso2":
+                List<BeanAseso> asesorias1 = ServiceAsesorias.getAll();
+                System.out.println(asesorias1.size());
+                request.setAttribute("asesoria", asesorias1);
+                urlRedirect = "/views/Docentes/index.jsp";
+                break;
+            case "/get-acceso3":
+                List<BeanAseso> asesorias2 = ServiceAsesorias.getAll();
+                System.out.println(asesorias2.size());
+                request.setAttribute("asesoria", asesorias2);
+                urlRedirect = "/views/Admin/index.jsp";
                 break;
             case "/solicitar-aseso":
                 urlRedirect = "/views/estudiantes/create.jsp";
@@ -51,7 +65,7 @@ public class ServletAccs extends HttpServlet {
                 String id = request.getParameter("id");
                 id = (id == null) ? "0" : id;
                 try {
-                    BeanAseso asesoria = ServiceAsesorias.getPokemon(Long.parseLong(id));
+                    BeanAseso asesoria = ServiceAsesorias.getAseso(Long.parseLong(id));
                     request.setAttribute("asesoria", asesoria);
                     urlRedirect = "/views/estudiantes/update.jsp";
                 } catch (Exception e) {
@@ -76,21 +90,15 @@ public class ServletAccs extends HttpServlet {
             case "/add-aseso":
                 String tema = request.getParameter("tema");
                 String duda = request.getParameter("duda");
-                String tiempo = request.getParameter("tiempo");
-                String Profe = request.getParameter("Profe");
-                String Estado = request.getParameter("Estado");
-                String Estud = request.getParameter("Estud");
-                String Carrera = request.getParameter("Carrera");
-                String Cuatri = request.getParameter("Cuatri");
+                String FkProfesores = request.getParameter("FkProfesores");
+                String FkEstados = request.getParameter("FkEstados");
+                String FkMatricula = request.getParameter("FkMatricula");
                 BeanAseso asesoria = new BeanAseso();
                 asesoria.setTema(tema);
                 asesoria.setDuda(duda);
-                asesoria.setTiempo(Integer.parseInt((tiempo)));
-                asesoria.setProfesores_idProfesores(Long.parseLong(Profe));
-                asesoria.setAs_Estados_idAs_Estados(Long.parseLong(Estado));
-                //asesoria.getEstudiante_id_Matricula(Long.parseLong(Estud));
-                asesoria.setEstudiante_Carreras_idCarrera(Long.parseLong(Carrera));
-                //asesoria.getEstudiante_Cuatri_idCuatri(Long.parseLong(Cuatri));
+                asesoria.setFkProfesores(Integer.parseInt(FkProfesores));
+                asesoria.setFkEstados(Integer.parseInt(FkEstados));
+                asesoria.setFkMatricula(Integer.parseInt(FkMatricula));
                 ResultAction result = ServiceAsesorias.save(asesoria);
                 urlRedirect = "/get-acceso?result=" +
                         result.isResult() + "&message=" +
@@ -100,22 +108,16 @@ public class ServletAccs extends HttpServlet {
             case "/save-aseso":
                 String tema2 = request.getParameter("tema");
                 String duda2 = request.getParameter("duda");
-                String tiempo2 = request.getParameter("tiempo");
-                String Profe2 = request.getParameter("Profe");
-                String Estado2 = request.getParameter("Estado");
-                String Estud2 = request.getParameter("Estud");
-                String Carrera2 = request.getParameter("Carrera");
-                String Cuatri2 = request.getParameter("Cuatri");
+                String FkProfesores2 = request.getParameter("FkProfesores");
+                String FkEstados2 = request.getParameter("FkEstados");
+                String FkMatricula2 = request.getParameter("FkMatricula");
                 BeanAseso asesoria2 = new BeanAseso();
                 asesoria2.setTema(tema2);
                 asesoria2.setDuda(duda2);
-                asesoria2.setTiempo(Integer.parseInt((tiempo2)));
-                asesoria2.setProfesores_idProfesores(Long.parseLong(Profe2));
-                asesoria2.setAs_Estados_idAs_Estados(Long.parseLong(Estado2));
-                //asesoria.getEstudiante_id_Matricula(Long.parseLong(Estud));
-                asesoria2.setEstudiante_Carreras_idCarrera(Long.parseLong(Carrera2));
-                //asesoria.getEstudiante_Cuatri_idCuatri(Long.parseLong(Cuatri));
-                ResultAction result2 = ServiceAsesorias.update(asesoria2);
+                asesoria2.setFkProfesores(Integer.parseInt(FkProfesores2));
+                asesoria2.setFkEstados(Integer.parseInt(FkEstados2));
+                asesoria2.setFkMatricula(Integer.parseInt(FkMatricula2));
+                ResultAction result2 = ServiceAsesorias.save(asesoria2);
                 urlRedirect = "/get-acceso?result=" +
                         result2.isResult() + "&message=" +
                         URLEncoder.encode(result2.getMessage(), StandardCharsets.UTF_8.name())

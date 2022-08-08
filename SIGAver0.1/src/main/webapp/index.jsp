@@ -24,11 +24,20 @@
             </form>
         </div>
     </div>
-    <a href="/hello-servlet">Hello Servlet</a>
+    <p><a href="views/Login/NewUser.jsp">¿No tienes Cuenta?</a></p>
+    <p><a href="#">¿Olvidaste tu contraseña?</a></p>
 </div>
-    <p><a href="NewUser.html">¿No tienes Cuenta?</a></p>
-    <p><a href="recuperarContra.html">¿Olvidaste tu contraseña?</a></p>
-    <p><a href="administracion.html">ADMINISTRACION</a></p>
 <jsp:include page="./Templates/footer.jsp"/>
+<script>
+    $(document).ready(() => {
+        $('.datatable').DataTable({
+            language: {
+                url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-MX.json',
+            },
+        });
+        document.getElementById("loaderDiv").style.display = "none";
+    })
+    feather.replace();
+</script>
 </body>
 </html>

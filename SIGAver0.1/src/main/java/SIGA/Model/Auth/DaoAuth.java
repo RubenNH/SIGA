@@ -1,5 +1,7 @@
 package SIGA.Model.Auth;
 
+import SIGA.Model.Asesorias.BeanAseso;
+import SIGA.Model.Asesorias.DaoAseso;
 import SIGA.Utils.MySQLConnection;
 import java.sql.*;
 import java.util.logging.Level;
@@ -23,7 +25,7 @@ public class DaoAuth {
             if (rs.next()){
                 BeanUser user = new BeanUser();
                 user.setUsername(rs.getString("username"));
-                //user.setStatus(rs.getInt("status"));
+                user.setStatus(rs.getInt("estatus"));
                 return user;
             }
             return null;
@@ -35,6 +37,29 @@ public class DaoAuth {
             closeConnections();
         }
     }
+
+    public boolean save(BeanUser user) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "INSERT INTO Users" +
+                    "(username, password, estatus, nombres, apellidos)" +
+                    " VALUES (?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, user.getUsername());
+            pstm.setString(2, user.getPassword());
+            pstm.setInt(3, user.getStatus());
+            pstm.setString(4, user.getNombre());
+            pstm.setString(5, user.getApellidos());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAseso.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
 
     public void closeConnections() {
         try {

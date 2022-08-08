@@ -28,7 +28,7 @@
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="/get-acceso">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.html">Mi cuenta</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="Login.html">Salir</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="../../index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>

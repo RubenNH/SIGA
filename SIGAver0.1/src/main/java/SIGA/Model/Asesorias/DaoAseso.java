@@ -24,15 +24,13 @@ public class DaoAseso {
             rs = pstm.executeQuery();
             while (rs.next()) {
                 Asesoria = new BeanAseso();
-                Asesoria.setIdAsesorias(rs.getLong("idAsesorias"));
+                Asesoria.setIdAsesorias(rs.getInt("idAsesorias"));
                 Asesoria.setTema(rs.getString("tema"));
                 Asesoria.setDuda(rs.getString("duda"));
                 Asesoria.setTiempo(rs.getInt("tiempo"));
-                Asesoria.setProfesores_idProfesores(rs.getLong("Profesores_idProfesores"));
-                Asesoria.setAs_Estados_idAs_Estados(rs.getLong("As_Estados_idAs_Estados"));
-                Asesoria.setEstudiante_id_Matricula(rs.getLong("Estudiante_id_Matricula"));
-                Asesoria.setEstudiante_Carreras_idCarrera(rs.getLong("Estudiante_Carreras_idCarrera"));
-                Asesoria.setEstudiante_Cuatri_idCuatri(rs.getLong("Estudiante_Cuatri_idCuatri"));
+                Asesoria.setFkProfesores(rs.getInt("FkProfesores"));
+                Asesoria.setFkEstados(rs.getInt("FkEstados"));
+                Asesoria.setFkMatricula(rs.getInt("FkMatricula"));
                 Asesorias.add(Asesoria);
             }
         } catch (SQLException e) {
@@ -47,18 +45,14 @@ public class DaoAseso {
         try {
             conn = new MySQLConnection().getConnection();
             String query = "INSERT INTO Asesorias" +
-                    "(tema, duda, tiempo, Profesores_idProfesores, As_Estados_idAs_Estados, Estudiante_id_Matricula, Estudiante_Carreras_idCarrera, Estudiante_Cuatri_idCuatri)" +
-                    " VALUES (?,?,?,?,?,?,?,?)";
+                    "(tema, duda, FkProfesores, FkEstados, FkMatricula)" +
+                    " VALUES (?,?,?,?,?)";
             pstm = conn.prepareStatement(query);
             pstm.setString(1, asesoria.getTema());
             pstm.setString(2, asesoria.getDuda());
-            pstm.setInt(3, asesoria.getTiempo());
-            pstm.setLong(4, asesoria.getProfesores_idProfesores());
-            pstm.setLong(5, asesoria.getAs_Estados_idAs_Estados());
-            pstm.setLong(6, asesoria.getEstudiante_id_Matricula());
-            pstm.setLong(7, asesoria.getEstudiante_Carreras_idCarrera());
-            pstm.setLong(8, asesoria.getEstudiante_Cuatri_idCuatri());
-
+            pstm.setInt(3, asesoria.getFkProfesores());
+            pstm.setInt(4, asesoria.getFkEstados());
+            pstm.setInt(5, asesoria.getFkMatricula());
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoAseso.class.getName())
@@ -78,15 +72,13 @@ public class DaoAseso {
             rs = pstm.executeQuery();
             if (rs.next()) {
                 BeanAseso Asesoria = new BeanAseso();
-                Asesoria.setIdAsesorias(rs.getLong("idAsesorias"));
+                Asesoria.setIdAsesorias(rs.getInt("idAsesorias"));
                 Asesoria.setTema(rs.getString("tema"));
                 Asesoria.setDuda(rs.getString("duda"));
                 Asesoria.setTiempo(rs.getInt("tiempo"));
-                Asesoria.setProfesores_idProfesores(rs.getLong("Profesores_idProfesores"));
-                Asesoria.setAs_Estados_idAs_Estados(rs.getLong("As_Estados_idAs_Estados"));
-                Asesoria.setEstudiante_id_Matricula(rs.getLong("Estudiante_id_Matricula"));
-                Asesoria.setEstudiante_Carreras_idCarrera(rs.getLong("Estudiante_Carreras_idCarrera"));
-                Asesoria.setEstudiante_Cuatri_idCuatri(rs.getLong("Estudiante_Cuatri_idCuatri"));
+                Asesoria.setFkProfesores(rs.getInt("FkProfesores"));
+                Asesoria.setFkEstados(rs.getInt("FkEstados"));
+                Asesoria.setFkMatricula(rs.getInt("FkMatricula"));
                 return Asesoria;
             }
         } catch (SQLException e) {
@@ -102,12 +94,12 @@ public class DaoAseso {
         try {
             conn = new MySQLConnection().getConnection();
             String query = "UPDATE Asesorias SET tema = ?, duda = ?, tiempo = ?," +
-                    "As_Estados_idAs_Estados = ? WHERE id = ?";
+                    "FkEstados = ? WHERE id = ?";
             pstm = conn.prepareStatement(query);
             pstm.setString(1, asesoria.getTema());
             pstm.setString(2, asesoria.getDuda());
             pstm.setInt(3, asesoria.getTiempo());
-            pstm.setLong(5, asesoria.getAs_Estados_idAs_Estados());
+            pstm.setLong(5, asesoria.getFkEstados());
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoAseso.class.getName())

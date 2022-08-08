@@ -25,7 +25,7 @@ public class ServiceAsesorias {
         return result;
     }
 
-    public BeanAseso getPokemon(Long id){
+    public BeanAseso getAseso(Long id){
         return daoAseso.findOne(id);
     }
 
