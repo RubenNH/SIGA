@@ -120,6 +120,8 @@ CREATE TABLE  Asesorias (
   tema VARCHAR(80) not NULL,
   duda VARCHAR(180)  not NULL,
   tiempo bigint null,
+  visibilidadP bigint default 1,
+  visibilidadE bigint default 1,
   FkProfesores bigint,
   FkEstados bigint,
   FkMatricula bigint,
@@ -131,6 +133,12 @@ CREATE TABLE  Asesorias (
     FOREIGN KEY (FkEstados)
     REFERENCES Estados (id_Estados)
 );
+
+-- visivilidad --
+-- 1- SI--
+-- 2- no--
+
+
 
 -- -----------------------------------------------------
 -- Table materias_imparte
