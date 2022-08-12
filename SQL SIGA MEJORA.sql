@@ -172,11 +172,12 @@ CREATE TABLE  carreras_cuatrimestres (
 
 CREATE TABLE  Control_estadistico (
   idControl numeric NOT NULL,
-  usuario VARCHAR(45) NULL,
-  fecha DATE NULL,
-  accion VARCHAR(45) NULL,
-  tabla VARCHAR(45) NULL,
+  Fk_asesorias bigint,
+  fecha sysdate,
   PRIMARY KEY (idControl))
+    CONSTRAINT fk_control_estadistico_asesorias
+    FOREIGN KEY (Fk_asesorias)
+    REFERENCES Asesorias (idAsesorias)
 ;
 
 
@@ -273,3 +274,9 @@ select * from Asesorias;
 select * from Profesores;
 select * from Estudiante;
 select * from As_Estados;
+
+create or replace trigger Asesorias
+FOR EACH ROW
+BEGIN
+INSERT INTO CONTROL VALUES(USER, SYSDATE);
+END;
