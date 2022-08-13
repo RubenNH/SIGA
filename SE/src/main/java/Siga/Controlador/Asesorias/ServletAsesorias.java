@@ -1,0 +1,112 @@
+package Siga.Controlador.Asesorias;
+
+import Siga.Modelos.Asesorias.DaoAsesorias;
+import Siga.Modelos.Asesorias.BeanAsesorias;
+import Siga.Servicios.Asesorias.ServiceAsesorias;
+import Siga.Utils.ResultAction;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+@WebServlet(name = "ServletAsesorias",
+        urlPatterns = {
+                "/get-estudiante",
+                "/get-docente",
+                "/get-admin",
+                "/get-asesoria",
+                "/save-asesoria",
+        })
+
+public class ServletAsesorias extends HttpServlet {
+    Logger logger = Logger.getLogger("ServletAccs");
+    String action;
+    String urlRedirect = "/index.jsp";
+    ServiceAsesorias ServiceAsesorias = new ServiceAsesorias();
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        action = request.getServletPath();
+        logger.log(Level.INFO, "Path-> " + action);
+        switch (action) {
+            case "/get-estudiante":
+                try {
+                    String id = request.getParameter("id");
+                    id = (id == null) ? "0" : id;
+                    List<BeanAsesorias> asesorias = ServiceAsesorias.getAsesorias(Long.valueOf(id));
+                    System.out.println(asesorias.size());
+                    request.setAttribute("asesorias", asesorias);
+                    urlRedirect = "/indexEstudiantes.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-docente":
+                List<BeanAsesorias> asesorias = ServiceAsesorias.getAll();
+                System.out.println(asesorias.size());
+                request.setAttribute("asesoria", asesorias);
+                urlRedirect = "/views/Docentes/index.jsp";
+                break;
+            case "/get-admin":
+                List<BeanAsesorias> asesorias2 = ServiceAsesorias.getAll();
+                System.out.println(asesorias2.size());
+                request.setAttribute("asesoria", asesorias2);
+                urlRedirect = "/views/Admin/index.jsp";
+                break;
+            case "/get-asesoria":
+                String id = request.getParameter("id");
+                id = (id == null) ? "0" : id;
+                try {
+                    BeanAsesorias asesoria = ServiceAsesorias.getAsesoria(Long.valueOf((id)));
+                    request.setAttribute("asesoria", asesoria);
+                    urlRedirect = "/updateAsesorias.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/get-pokemons";
+                }
+                break;
+            default:
+                request.setAttribute("asesorias", ServiceAsesorias.getAll());
+                urlRedirect = "/index.jsp";
+                break;
+        }
+        request.getRequestDispatcher(urlRedirect).forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html");
+        action = request.getServletPath();
+        switch (action) {
+            case "/save-asesoria":
+                String tema = request.getParameter("tema");
+                String duda = request.getParameter("duda");
+                String idAsesoria = request.getParameter("id");
+                BeanAsesorias asesoria = new BeanAsesorias();
+                asesoria.setTema(tema);
+                asesoria.setDuda(duda);
+                asesoria.setIdAsesorias(Integer.parseInt(((idAsesoria))));
+                ResultAction resultado = ServiceAsesorias.update(asesoria);
+                urlRedirect = "/get-estudiante?result=" +
+                        resultado.isResult() + "&message=" +
+                        URLEncoder.encode(resultado.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + resultado.getStatus();
+                break;
+            default:
+                urlRedirect = "/index.jsp";
+                break;
+        }
+        response.sendRedirect(request.getContextPath() + urlRedirect);
+    }
+}
