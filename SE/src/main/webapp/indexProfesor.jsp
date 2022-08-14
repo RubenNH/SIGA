@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 12/08/2022
-  Time: 07:19 PM
+  Date: 14/08/2022
+  Time: 12:56 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -11,7 +11,7 @@
 <%@page pageEncoding="UTF-8" %>
 <html>
 <head>
-    <title>SIGA</title>
+    <title>Bienvenido</title>
     <jsp:include page="/Templates/head.jsp"/>
 </head>
 <body>
@@ -26,8 +26,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Asesorias pendientes</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Historial</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
             </ul>
@@ -52,7 +52,7 @@
                     <th>Tema</th>
                     <th>Duda</th>
                     <th>Materia</th>
-                    <th>Profesor</th>
+                    <th>Alumno</th>
                     <th>Acciones</th>
                     </thead>
                     <tbody>
@@ -81,18 +81,3 @@
         </div>
     </div>
 </div>
-
-<jsp:include page="/Templates/footer.jsp"/>
-<script>
-    $(document).ready(() => {
-        $('.datatable').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-MX.json',
-            },
-        });
-        document.getElementById("loaderDiv").style.display = "none";
-    })
-    feather.replace();
-</script>
-</body>
-</html>

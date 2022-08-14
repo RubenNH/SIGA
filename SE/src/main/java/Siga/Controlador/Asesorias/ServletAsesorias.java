@@ -55,13 +55,13 @@ public class ServletAsesorias extends HttpServlet {
                 List<BeanAsesorias> asesorias = ServiceAsesorias.getAll();
                 System.out.println(asesorias.size());
                 request.setAttribute("asesoria", asesorias);
-                urlRedirect = "/views/Docentes/index.jsp";
+                urlRedirect = "/indexProfesor.jsp";
                 break;
             case "/get-admin":
                 List<BeanAsesorias> asesorias2 = ServiceAsesorias.getAll();
                 System.out.println(asesorias2.size());
                 request.setAttribute("asesoria", asesorias2);
-                urlRedirect = "/views/Admin/index.jsp";
+                urlRedirect = "/admin.jsp";
                 break;
             case "/get-asesoria":
                 String id = request.getParameter("id");
@@ -71,7 +71,7 @@ public class ServletAsesorias extends HttpServlet {
                     request.setAttribute("asesoria", asesoria);
                     urlRedirect = "/updateAsesorias.jsp";
                 } catch (Exception e) {
-                    urlRedirect = "/get-pokemons";
+                    urlRedirect = "/index.jsp";
                 }
                 break;
             default:
