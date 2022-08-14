@@ -28,4 +28,18 @@ public class ServiceAsesorias {
         }
         return resultado;
     }
+
+    public ResultAction save(BeanAsesorias Addasesorias){
+        ResultAction result = new ResultAction();
+        if (daoAseso.save(Addasesorias)){
+            result.setResult(true);
+            result.setMessage("Pokemon registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage("Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
 }

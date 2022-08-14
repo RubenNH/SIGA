@@ -1,23 +1,18 @@
-package Siga.Servicios.Acceso;
+package Siga.Servicios.estudiantes;
 
-//import Siga.Modelos.Asesorias.BeanAseso;
 import Siga.Modelos.Acceso.BeanUser;
 import Siga.Modelos.Acceso.DaoUser;
-import Siga.Modelos.Asesorias.BeanAsesorias;
+import Siga.Modelos.Estudiante.BeanEstudiante;
+import Siga.Modelos.Estudiante.DaoEstudiante;
 import Siga.Utils.ResultAction;
 
-public class ServiceUSer {
-    DaoUser auth = new DaoUser();
+public class ServiceEstudiante {
 
-    public BeanUser login(String username, String password) {
-        return auth.validate(username, password);
-    }
+    DaoEstudiante daoEstudiante = new DaoEstudiante();
 
-    public BeanUser getId(String usename){ return auth.findOne(usename);}
-
-    public ResultAction saveUser(BeanUser AddUser){
+    public ResultAction saveEstudiante(BeanEstudiante AddEstudiante){
         ResultAction result = new ResultAction();
-        if (auth.saveUser(AddUser)){
+        if (daoEstudiante.saveEstudiante(AddEstudiante)){
             result.setResult(true);
             result.setMessage("Pokemon registrado correctamente");
             result.setStatus(200);

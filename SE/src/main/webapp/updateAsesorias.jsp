@@ -51,7 +51,7 @@
                                             <div class="invalid-feedback">
                                                 Campo obligatorio
                                             </div>
-                                            <input type="text" name="id" value="${asesoria.idAsesorias}"/>
+                                            <input type="hidden" name="id" value="${asesoria.idAsesorias}"/>
                                         </div>
                                     </div>
                                 </div>

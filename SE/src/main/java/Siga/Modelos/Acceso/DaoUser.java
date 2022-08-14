@@ -2,6 +2,8 @@ package Siga.Modelos.Acceso;
 
 //import Siga.Modelos.Asesorias.BeanAseso;
 //import Siga.Modelos.Asesorias.DaoAseso;
+import Siga.Modelos.Asesorias.BeanAsesorias;
+import Siga.Modelos.Asesorias.DaoAsesorias;
 import Siga.Utils.MySQLConnection;
 import java.sql.*;
 import java.util.logging.Level;
@@ -37,6 +39,51 @@ public class DaoUser {
             closeConnections();
         }
     }
+
+    public boolean saveUser(BeanUser AddUsar) {
+        BeanUser save = null;
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "INSERT INTO users" +
+                    "(username, password, estatus, nombres, apellidos)" +
+                    " VALUES (?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddUsar.getUsername());
+            pstm.setString(2, AddUsar.getPassword());
+            pstm.setInt(3, AddUsar.getStatus());
+            pstm.setString(4, AddUsar.getNombre());
+            pstm.setString(5, AddUsar.getApellidos());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public BeanUser findOne(String username) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT * FROM users WHERE username = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                BeanUser find = new BeanUser();
+                find.setId(rs.getInt("id_Users"));
+                return find;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error findOne", e);
+        } finally {
+            closeConnections();
+        }
+        return null;
+    }
+
     public void closeConnections() {
         try {
             if (conn != null) {

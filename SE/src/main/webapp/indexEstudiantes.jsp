@@ -61,7 +61,8 @@
                             <td><c:out value="${status.count}"></c:out></td>
                             <td><c:out value="${asesoria.tema}"></c:out></td>
                             <td><c:out value="${asesoria.duda}"/></td>
-                            <td><c:out value="${asesoria.fkMaterias}"/></td>
+                            <td><c:out value="${asesoria.materias}"/></td>
+                            <td><c:out value="${asesoria.profesores}"/></td>
                             <td>
                                 <a href="get-asesoria?id=${asesoria.idAsesorias}" class="btn btn-warning
                                 btn-sm"><i data-feather="edit">Modificar</i></a>

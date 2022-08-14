@@ -6,15 +6,18 @@ public class BeanAsesorias {
     private String tema;
     private String duda;
     private int tiempo;
-    private String FkProfesores;
+    private int FkProfesores;
     private int Estados;
-    private String FkMaterias;
+    private int FkMaterias;
     private String FkMatricula;
+    private String Materias;
+    private String Matricula;
+    private String Profesores;
 
     public BeanAsesorias() {
     }
 
-    public BeanAsesorias(int idAsesorias, String tema, String duda, int tiempo, String FkProfesores, int Estados, String FkMatricula, String FkMaterias) {
+    public BeanAsesorias(int idAsesorias, String tema, String duda, int tiempo, int FkProfesores, int Estados, String FkMatricula, int FkMaterias, String Materias, String Matricula, String Profesores) {
         this.idAsesorias = idAsesorias;
         this.tema = tema;
         this.duda = duda;
@@ -23,6 +26,9 @@ public class BeanAsesorias {
         this.Estados = Estados;
         this.FkMatricula = FkMatricula;
         this.FkMaterias = FkMaterias;
+        this.Profesores = Profesores;
+        this.Matricula = Matricula;
+        this.Materias = Materias;
     }
 
     public int getIdAsesorias() {
@@ -57,12 +63,12 @@ public class BeanAsesorias {
         this.tiempo = tiempo;
     }
 
-    public String getFkProfesores() {
-        return FkProfesores;
+    public String getProfesores() {
+        return Profesores;
     }
 
-    public void setFkProfesores(String fkProfesores) {
-        FkProfesores = fkProfesores;
+    public void setProfesores(String Profesores) {
+        this.Profesores = Profesores;
     }
 
     public int getEstados() {
@@ -73,19 +79,31 @@ public class BeanAsesorias {
         Estados = estados;
     }
 
-    public String getFkMatricula() {
-        return FkMatricula;
+    public String getMatricula() {
+        return Matricula;
     }
 
-    public void setFkMatricula(String fkMatricula) {
-        FkMatricula = fkMatricula;
+    public void setMatricula(String Matricula) {
+        this.Matricula = Matricula;
     }
 
-    public String getFkMaterias() {
-        return FkMaterias;
+    public String getMaterias() {
+        return Materias;
     }
 
-    public void setFkMaterias(String fkMaterias) {
-        FkMaterias = fkMaterias;
+    public void setMaterias(String Materias) {
+        this.Materias = Materias;
     }
+
+    public int getFkProfesores() {return FkProfesores;}
+
+    public void setFkProfesores(int fkProfesores) {FkProfesores = fkProfesores;}
+
+    public int getFkMaterias() {return FkMaterias;}
+
+    public void setFkMaterias(int fkMaterias) {FkMaterias = fkMaterias;}
+
+    public String getFkMatricula() {return FkMatricula;}
+
+    public void setFkMatricula(String fkMatricula) {FkMatricula = fkMatricula;}
 };

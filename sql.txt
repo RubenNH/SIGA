@@ -44,7 +44,7 @@ CREATE TABLE Users(
 id_Users bigint primary key auto_increment,
 username varchar(50) not null unique,
 password varchar(50) not null,
-estatus bigint not null,
+estatus bigint,
 nombres VARCHAR(45) not NULL,
 apellidos VARCHAR(45) not NULL
 );  
@@ -82,8 +82,8 @@ CREATE TABLE  Administrador (
 -- Table Estudiante
 -- -----------------------------------------------------
 CREATE TABLE  Estudiante (
-  id_Matricula bigint NOT NULL,
-  telefono VARCHAR(15) NULL,
+  id_Matricula VARCHAR(15) NOT NULL,
+  telefono bigint NULL,
   genero bigint NULL,
   Fk_Usuario bigint NOT NULL,
   Fk_Carrera bigint NOT NULL,
@@ -148,7 +148,7 @@ CREATE TABLE  Asesorias (
   visibilidadE bigint default 1,
   Estados bigint default 1,
   FkProfesores bigint,
-  FkMatricula bigint,
+  FkMatricula varchar(15),
   FkMateria bigint,
   PRIMARY KEY (idAsesorias, FkProfesores, FkMatricula),
   CONSTRAINT fk_Asesorias_Profesores
@@ -274,9 +274,14 @@ select * from Asesorias;
 select * from Profesores;
 select * from Estudiante;
 create or replace view ConsAseE as SELECT * FROM Asesorias inner join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join users on users.id_Users = Profesores.Fk_User inner join materias on Asesorias.FkMateria = materias.idMaterias;
-select * from ConsAseE where fkmatricula = 20193142;
+select * from ConsAseE;
 create or replace view ConsAseP as SELECT * FROM Asesorias inner join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula JOIN users on users.id_Users = Estudiante.Fk_Usuario inner join materias on Asesorias.FkMateria = materias.idMaterias;
 select * from ConsAseP;
+
+
+
+
+
 
 
 

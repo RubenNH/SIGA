@@ -14,107 +14,42 @@
     <jsp:include page="/Templates/head.jsp"/>
 </head>
 <body>
-<div class="container">
-    <div class="row">
-        <div class="col-12">
-            <div class="card mt-5">
-                <div class="card-header">SOLICITAR ASESORIA</div>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-12">
-                            <form class="needs-validation" novalidate action="add-pokemon" method="post"
-                                  enctype="multipart/form-data">
-                                <div class="form-group mb-3">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="fw-bold" for="pokemon">Nombre</label>
-                                            <input name="name" id="pokemon" required
-                                                   class="form-control"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <label class="fw-bold" for="health">Puntos de salud</label>
-                                            <input name="health" id="health" required
-                                                   class="form-control" type="number"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="fw-bold" for="type">Tipo</label>
-                                            <input name="type" id="type" required
-                                                   class="form-control"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <label class="fw-bold" for="heigth">Estatura</label>
-                                            <input name="estatura" id="heigth" required
-                                                   class="form-control" type="number"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="row">
-                                        <div class="col">
-                                            <label class="fw-bold" for="power">Puntos de ataque</label>
-                                            <input name="damage" id="power" required
-                                                   class="form-control" type="number"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                        <div class="col">
-                                            <label class="fw-bold" for="weigth">Peso</label>
-                                            <input name="peso" id="weigth" required
-                                                   class="form-control" type="number"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatio
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <label for="pokemonImg">Imagen del pokemon</label>
-                                            <input type="file" name="pokemonFile"
-                                                   class="form-control form-control-sm"
-                                                   onchange="handleFileChange()"
-                                                   id="pokemonImg" required accept="image/*"/>
-                                            <div class="invalid-feedback">
-                                                Campo obligatorio
-                                            </div>
-                                            <div id="preview" class="mt-3"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <div class="row">
-                                        <div class="col-12 text-end">
-                                            <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
-                                            <button type="submit" class="btn btn-success btn-sm">Guardar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+            <img src="Templates/img/LOGO.png" alt="" width="60">
+        </a>
+        <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-estudiante">Mis asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page"href="#">Solicitar asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
+            </ul>
         </div>
     </div>
-</div>
+</nav>
+<form class="needs-validation" novalidate action="add-asesoria" method="post">
+    <div class="container">
+        <p>
+            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#Materias" aria-expanded="false" aria-controls="Materias">
+                Selecciona la materia que deseas
+            </button>
+        </p>
+        <c:forEach var="asesoria" items="${asesorias}" varStatus="status">
+        <div class="collapse" id="Materias">
+            <div class="card card-body">
+                <td><c:out value="${asesoria.materias}"/></td>
+            </div>
+        </div>
+        </c:forEach>
+    </div>
+</form>
+
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
     (function () {

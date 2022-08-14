@@ -23,6 +23,7 @@ import java.util.logging.Logger;
                 "/get-admin",
                 "/get-asesoria",
                 "/save-asesoria",
+                "/add-asesoria",
         })
 
 public class ServletAsesorias extends HttpServlet {
@@ -42,7 +43,7 @@ public class ServletAsesorias extends HttpServlet {
                 try {
                     String id = request.getParameter("id");
                     id = (id == null) ? "0" : id;
-                    List<BeanAsesorias> asesorias = ServiceAsesorias.getAsesorias(Long.valueOf(id));
+                    List<BeanAsesorias> asesorias = ServiceAsesorias.getAll();
                     System.out.println(asesorias.size());
                     request.setAttribute("asesorias", asesorias);
                     urlRedirect = "/indexEstudiantes.jsp";
@@ -102,6 +103,33 @@ public class ServletAsesorias extends HttpServlet {
                         resultado.isResult() + "&message=" +
                         URLEncoder.encode(resultado.getMessage(), StandardCharsets.UTF_8.name())
                         + "&status=" + resultado.getStatus();
+                break;
+            case "/add-asesoria":
+                try {
+                    String temaAdd = request.getParameter("tema");
+                    String dudaAdd = request.getParameter("duda");
+                    String MateriaAdd = request.getParameter("FkMateria");
+                    String ProfesorAdd = request.getParameter("FkProfesor");
+                    String MatriculaAdd = request.getParameter("FkMatricuka");
+                    BeanAsesorias AddAsesoria = new BeanAsesorias();
+                    AddAsesoria.setTema(temaAdd);
+                    AddAsesoria.setDuda(dudaAdd);
+                    AddAsesoria.setFkMaterias(Integer.parseInt(MateriaAdd));
+                    AddAsesoria.setFkProfesores(Integer.parseInt(ProfesorAdd));
+                    AddAsesoria.setFkMatricula(MatriculaAdd);
+                    ResultAction result = ServiceAsesorias.save(AddAsesoria);
+                    urlRedirect = "/get-estudiante?result=" +
+                            result.isResult() + "&message=" +
+                            URLEncoder.encode(result.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + result.getStatus();
+                } catch (Exception e) {
+                    Logger.getLogger(ServletAsesorias.class.getName()).log(Level.SEVERE,
+                            "Error AddAsesoria method" + e.getMessage());
+                    urlRedirect = "/get-estudiante?result=false&message=" +
+                            URLEncoder.encode("Error al registrar",
+                                    StandardCharsets.UTF_8.name())
+                            + "&status=400";
+                }
                 break;
             default:
                 urlRedirect = "/index.jsp";

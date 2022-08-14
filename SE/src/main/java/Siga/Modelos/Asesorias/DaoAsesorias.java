@@ -28,9 +28,9 @@ public class DaoAsesorias {
                 Asesoria.setTema(rs.getString("tema"));
                 Asesoria.setDuda(rs.getString("duda"));
                 Asesoria.setTiempo(rs.getInt("tiempo"));
-                Asesoria.setFkProfesores(rs.getString("nombres"));
+                Asesoria.setProfesores(rs.getString("nombres"));
                 Asesoria.setEstados(rs.getInt("Estados"));
-                Asesoria.setFkMaterias(rs.getString("nombre"));
+                Asesoria.setMaterias(rs.getString("nombre"));
                 Asesoria.setFkMatricula(rs.getString("FkMatricula"));
                 Asesorias.add(Asesoria);
             }
@@ -56,10 +56,10 @@ public class DaoAsesorias {
                 asesoria.setTema(rs.getString("tema"));
                 asesoria.setDuda(rs.getString("duda"));
                 asesoria.setTiempo(rs.getInt("tiempo"));
-                asesoria.setFkProfesores(rs.getString("nombres"));
+                asesoria.setProfesores(rs.getString("nombres"));
                 asesoria.setEstados(rs.getInt("Estados"));
-                asesoria.setFkMaterias(rs.getString("nombre"));
-                asesoria.setFkMatricula(rs.getString("FkMatricula"));
+                asesoria.setMaterias(rs.getString("nombre"));
+                asesoria.setMatricula(rs.getString("FkMatricula"));
                 return asesoria;
             }
         } catch (SQLException e) {
@@ -86,10 +86,10 @@ public class DaoAsesorias {
                 Asesoria.setTema(rs.getString("tema"));
                 Asesoria.setDuda(rs.getString("duda"));
                 Asesoria.setTiempo(rs.getInt("tiempo"));
-                Asesoria.setFkProfesores(rs.getString("nombres"));
+                Asesoria.setProfesores(rs.getString("nombres"));
                 Asesoria.setEstados(rs.getInt("Estados"));
-                Asesoria.setFkMaterias(rs.getString("nombre"));
-                Asesoria.setFkMatricula(rs.getString("FkMatricula"));
+                Asesoria.setMaterias(rs.getString("nombre"));
+                Asesoria.setMatricula(rs.getString("FkMatricula"));
                 Asesorias.add(Asesoria);
             }
         } catch (SQLException e) {
@@ -108,7 +108,7 @@ public class DaoAsesorias {
             pstm = conn.prepareStatement(query);
             pstm.setString(1, asesoria.getTema());
             pstm.setString(2, asesoria.getDuda());
-            pstm.setInt(3, (int) asesoria.getIdAsesorias());
+            pstm.setInt(3, asesoria.getIdAsesorias());
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoAsesorias.class.getName())
@@ -118,6 +118,29 @@ public class DaoAsesorias {
             closeConnections();
         }
     }
+
+    public boolean save(BeanAsesorias AddAsesoria) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "INSERT INTO Asesorias" +
+                    "(tema, duda, FkProfesor, FkMatricula, FkMAteria)" +
+                    " VALUES (?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddAsesoria.getTema());
+            pstm.setString(2, AddAsesoria.getDuda());
+            pstm.setInt(3, AddAsesoria.getFkProfesores());
+            pstm.setString(4, AddAsesoria.getFkMatricula());
+            pstm.setInt(5, AddAsesoria.getFkMaterias());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
     public void closeConnections() {
         try {
             if (conn != null) {
