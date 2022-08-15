@@ -12,6 +12,14 @@
 <html>
 <head>
   <title>Bienvenido</title>
+  <script type="text/javascript">
+    function preventBack() {
+      window.history.forward();
+    }
+    setTimeout("preventBack()", 0);
+
+    window.onunload = function() { null };
+  </script>
   <jsp:include page="/Templates/head.jsp"/>
 </head>
 <body>
@@ -27,9 +35,9 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Inicio pendientes</a></li>
-        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Historial</a></li>
-        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Usuarios</a></li>
-        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
+        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historialPrincipal.jsp">Historial</a></li>
+        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="usuarios.jsp">Usuarios</a></li>
+        <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
       </ul>
     </div>
   </div>
@@ -62,8 +70,6 @@
     </div>
   </div>
 </div>
-
-
 <jsp:include page="Templates/footer.jsp"/>
 </body>
 </html>

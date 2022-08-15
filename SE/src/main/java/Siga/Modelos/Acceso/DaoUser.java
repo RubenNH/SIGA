@@ -84,6 +84,29 @@ public class DaoUser {
         return null;
     }
 
+    public boolean saveEstudiante(BeanUser AddEstudiante) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "INSERT INTO Estudiante" +
+                    "(id_Matricula, telefono, genero, Fk_Usuario, Fk_Carrera, Fk_Cuatri)" +
+                    " VALUES (?,?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddEstudiante.getId_Matricula());
+            pstm.setInt(2, AddEstudiante.getTelefono());
+            pstm.setInt(3, AddEstudiante.getGenero());
+            pstm.setInt(4, AddEstudiante.getFk_Usuario());
+            pstm.setInt(5, AddEstudiante.getFk_Carrera());
+            pstm.setInt(6, AddEstudiante.getFk_Cuatri());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
     public void closeConnections() {
         try {
             if (conn != null) {

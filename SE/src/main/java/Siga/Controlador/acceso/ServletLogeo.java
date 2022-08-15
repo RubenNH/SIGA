@@ -32,6 +32,7 @@ public class ServletLogeo extends HttpServlet {
     String urlRedirect = "/get-log";
     HttpSession session;
     ServiceUSer authService = new ServiceUSer();
+    ServletAsesorias servicio = new ServletAsesorias();
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
@@ -95,6 +96,37 @@ public class ServletLogeo extends HttpServlet {
                             + "&status=400";
                 }
                 break;
+            case "/add-estudiante":
+                try {
+                    BeanUser pan =  new BeanUser();
+                    int pancito = pan.getId();
+                    String matriculaAdd = req.getParameter("id_Matricula");
+                    String telefonoAdd = req.getParameter("telefono");
+                    String generoAdd = req.getParameter("genero");
+                    String Fk_UsuarioAdd = String.valueOf(pancito);
+                    String Fk_CarreraAdd = req.getParameter("Fk_Carrera");
+                    String Fk_CuatriAdd = req.getParameter("Fk_Cuatri");
+                    BeanUser AddEstudainte = new BeanUser();
+                    AddEstudainte.setId_Matricula(matriculaAdd);
+                    AddEstudainte.setTelefono(Integer.parseInt(telefonoAdd));
+                    AddEstudainte.setGenero(Integer.parseInt(generoAdd));
+                    AddEstudainte.setFk_Usuario(Integer.parseInt(Fk_UsuarioAdd));
+                    AddEstudainte.setFk_Carrera(Integer.parseInt(Fk_CarreraAdd));
+                    AddEstudainte.setFk_Cuatri(Integer.parseInt(Fk_CuatriAdd));
+                    ResultAction result = authService.saveEstudiante(AddEstudainte);
+                    urlRedirect = "/index.jsp?result=" +
+                            result.isResult() + "&message=" +
+                            URLEncoder.encode(result.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + result.getStatus();
+                } catch (Exception e) {
+                    Logger.getLogger(ServletAsesorias.class.getName()).log(Level.SEVERE,
+                            "Error AddAsesoria method" + e.getMessage());
+                    urlRedirect = "/get-estudiante?result=false&message=" +
+                            URLEncoder.encode("Error al registrar",
+                                    StandardCharsets.UTF_8.name())
+                            + "&status=400";
+                }
+                break;
             default:
                 session = req.getSession();
                 session.invalidate();
@@ -104,5 +136,29 @@ public class ServletLogeo extends HttpServlet {
         resp.sendRedirect(req.getContextPath() + urlRedirect);
     }
 
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        action = request.getServletPath();
+        switch (action) {
+            case "/get-UserE":
+                String id = request.getParameter("id");
+                id = (id == null) ? "0" : id;
+                try {
+                    BeanUser estudiante = authService.getEstudiante(Long.valueOf((id)));
+                    request.setAttribute("asesoria", estudiante);
+                    urlRedirect = "/updateAsesorias.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            default:
+                urlRedirect = "/index.jsp";
+                break;
+        }
+        request.getRequestDispatcher(urlRedirect).forward(request, response);
+    }
 
 }

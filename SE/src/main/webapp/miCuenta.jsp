@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 12/08/2022
-  Time: 08:44 PM
+  Date: 14/08/2022
+  Time: 06:53 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -41,13 +41,13 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <form class="needs-validation" novalidate action="save-asesoria" method="post">
+                            <form class="needs-validation" novalidate action="saveUser" method="post">
                                 <div class="form-group mb-3">
                                     <div class="row">
                                         <div class="col">
                                             <label class="fw-bold" for="tema">Tema</label>
                                             <input name="tema" id="tema" required
-                                                   class="form-control" value="${asesoria.tema}"/>
+                                                   class="form-control" value="${estudiante.tema}"/>
                                             <div class="invalid-feedback">
                                                 Campo obligatorio
                                             </div>
@@ -83,25 +83,6 @@
         </div>
     </div>
 </div>
-<script>
-    // Example starter JavaScript for disabling form submissions if there are invalid fields
-    (function () {
-        'use strict'
-        // Fetch all the forms we want to apply custom Bootstrap validation styles to
-        var forms = document.querySelectorAll('.needs-validation')
-        // Loop over them and prevent submission
-        Array.prototype.slice.call(forms)
-            .forEach(function (form) {
-                form.addEventListener('submit', function (event) {
-                    if (!form.checkValidity()) {
-                        event.preventDefault()
-                        event.stopPropagation()
-                    }
-                    form.classList.add('was-validated')
-                }, false)
-            })
-    })()
-</script>
 <jsp:include page="/Templates/footer.jsp"/>
 </body>
 </html>

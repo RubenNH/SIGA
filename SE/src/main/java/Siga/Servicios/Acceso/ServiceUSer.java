@@ -15,6 +15,8 @@ public class ServiceUSer {
 
     public BeanUser getId(String usename){ return auth.findOne(usename);}
 
+    //public BeanEstudiante getEstudiante(Long id){ return auth.findOneEst(id);}
+
     public ResultAction saveUser(BeanUser AddUser){
         ResultAction result = new ResultAction();
         if (auth.saveUser(AddUser)){
@@ -28,4 +30,19 @@ public class ServiceUSer {
         }
         return result;
     }
+
+    public ResultAction saveEstudiante(BeanUser AddEstudiante){
+        ResultAction result = new ResultAction();
+        if (auth.saveEstudiante(AddEstudiante)){
+            result.setResult(true);
+            result.setMessage("Pokemon registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage("Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
+    
 }
