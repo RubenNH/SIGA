@@ -1,6 +1,5 @@
 package Siga.Servicios.Acceso;
 
-//import Siga.Modelos.Asesorias.BeanAseso;
 import Siga.Modelos.Acceso.BeanUser;
 import Siga.Modelos.Acceso.DaoUser;
 import Siga.Modelos.Asesorias.BeanAsesorias;
@@ -15,7 +14,7 @@ public class ServiceUSer {
 
     public BeanUser getId(String usename){ return auth.findOne(usename);}
 
-    //public BeanEstudiante getEstudiante(Long id){ return auth.findOneEst(id);}
+    public BeanUser getEstudiante(Long id){ return auth.findOneEst(id);}
 
     public ResultAction saveUser(BeanUser AddUser){
         ResultAction result = new ResultAction();

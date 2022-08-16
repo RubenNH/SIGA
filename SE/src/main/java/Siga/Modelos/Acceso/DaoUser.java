@@ -107,6 +107,31 @@ public class DaoUser {
         }
     }
 
+    public BeanUser findOneEst(Long id) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT * FROM ConsAseE WHERE idAsesorias = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                BeanUser estudiante = new BeanUser();
+                estudiante.setId(rs.getInt("id_Users"));
+                estudiante.setUsername(rs.getString("username"));
+                estudiante.setNombre(rs.getString("nombres"));
+                estudiante.setApellidos(rs.getString("password"));
+                estudiante.setPassword(rs.getString("nombres"));
+                return estudiante;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error findOne", e);
+        } finally {
+            closeConnections();
+        }
+        return null;
+    }
+
     public void closeConnections() {
         try {
             if (conn != null) {

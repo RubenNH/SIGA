@@ -28,8 +28,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Asesorias pendientes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="cuentaDocente.jsp">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
