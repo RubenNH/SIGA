@@ -12,8 +12,6 @@ public class ServiceUSer {
         return auth.validate(username, password);
     }
 
-    public BeanUser getId(String usename){ return auth.findOne(usename);}
-
     public BeanUser getEstudiante(Long id){ return auth.findOneEst(id);}
 
     public ResultAction saveUser(BeanUser AddUser){

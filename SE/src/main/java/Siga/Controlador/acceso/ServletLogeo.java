@@ -78,7 +78,6 @@ public class ServletLogeo extends HttpServlet {
                     AddUsar.setNombre(NomreAdd);
                     AddUsar.setApellidos(ApellidoAdd);
                     ResultAction result = authService.saveUser(AddUsar);
-                    authService.getId(AddUsar.getUsername());
                     session = req.getSession();
                     session.setAttribute("user", AddUsar);
                     if(AddUsar.getStatus() == 1){
@@ -144,12 +143,12 @@ public class ServletLogeo extends HttpServlet {
         action = request.getServletPath();
         switch (action) {
             case "/get-UserE":
-                String id = request.getParameter("id");
-                id = (id == null) ? "0" : id;
+                BeanUser user = new BeanUser();
+                int id = user.getId();
                 try {
-                    BeanUser estudiante = authService.getEstudiante(Long.valueOf((id)));
-                    request.setAttribute("asesoria", estudiante);
-                    urlRedirect = "/updateAsesorias.jsp";
+                    BeanUser estudiante = authService.getEstudiante((long) id);
+                    request.setAttribute("usuario", estudiante);
+                    urlRedirect = "/miCuenta.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }
