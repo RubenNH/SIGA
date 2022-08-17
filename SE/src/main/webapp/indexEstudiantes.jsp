@@ -18,7 +18,7 @@
 <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
-            <img src="Templates/img/LOGO.png" alt="" width="60">
+            <img src="Templates/img/LOGO.png" alt="" width="70">
         </a>
         <h6 style="margin: 20px; color: aliceblue; font-family: 'Karla', sans-serif; ">SIGA</h6>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -83,16 +83,5 @@
 </div>
 
 <jsp:include page="/Templates/footer.jsp"/>
-<script>
-    $(document).ready(() => {
-        $('.datatable').DataTable({
-            language: {
-                url: 'https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-MX.json',
-            },
-        });
-        document.getElementById("loaderDiv").style.display = "none";
-    })
-    feather.replace();
-</script>
 </body>
 </html>

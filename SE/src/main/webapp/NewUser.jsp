@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="Templates/css/style.css">
 </head>
 <body>
-<form class="form-registered needs-validation" novalidate action="add-user" method="post">
+<form class="form-register needs-validation" novalidate action="add-user" method="post">
     <h4 id="pete">Registrarse</h4>
     <input class="controls" type="username" name="username" id="username" placeholder="Ingrese su Correo" required>
     <div class="invalid-feedback">

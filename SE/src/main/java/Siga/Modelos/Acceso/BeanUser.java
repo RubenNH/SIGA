@@ -5,6 +5,7 @@ public class BeanUser {
     private String username;
     private String password;
     private int status;
+    private int permiso;
     private String nombres;
     private String apellidos;
     private String id_Matricula;
@@ -13,13 +14,15 @@ public class BeanUser {
     private int Fk_Usuario;
     private int Fk_Carrera;
     private int Fk_Cuatri;
+    private String Profesores;
     public BeanUser() {
     }
 
-    public BeanUser(int id, String username, String password, int status, String nombres, String apellidos, String id_Matricula, int telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
+    public BeanUser(int id, String username, String password, int status, int permiso, String nombres, String apellidos, String id_Matricula, int telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
         this.id = id;
         this.username = username;
         this.password = password;
+        this.permiso = permiso;
         this.status = status;
         this.nombres = nombres;
         this.apellidos = apellidos;
@@ -37,6 +40,22 @@ public class BeanUser {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public int getPermiso() {
+        return permiso;
+    }
+
+    public void setPermiso(int permiso) {
+        this.permiso = permiso;
+    }
+
+    public String getProfesores() {
+        return Profesores;
+    }
+
+    public void setProfesores(String profesores) {
+        Profesores = profesores;
     }
 
     public String getUsername() {

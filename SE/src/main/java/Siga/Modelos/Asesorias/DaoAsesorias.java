@@ -43,6 +43,36 @@ public class DaoAsesorias {
         return Asesorias;
     }
 
+    public List<BeanAsesorias> admindAll() {
+        List<BeanAsesorias> Asesorias = new LinkedList<>();
+        BeanAsesorias Asesoria = null;
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT * FROM ConsAseE;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Asesoria = new BeanAsesorias();
+                Asesoria.setIdAsesorias(rs.getInt("idAsesorias"));
+                Asesoria.setTema(rs.getString("tema"));
+                Asesoria.setDuda(rs.getString("duda"));
+                Asesoria.setTiempo(rs.getInt("tiempo"));
+                Asesoria.setProfesores(rs.getString("nombres"));
+                Asesoria.setEstados(rs.getInt("Estados"));
+                Asesoria.setMaterias(rs.getString("nombre"));
+                Asesoria.setFkMatricula(rs.getString("FkMatricula"));
+                Asesorias.add(Asesoria);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return Asesorias;
+    }
+
+
     public BeanAsesorias findOne(Long id) {
         try {
             conn = new MySQLConnection().getConnection();
@@ -76,7 +106,7 @@ public class DaoAsesorias {
         BeanAsesorias Asesoria = null;
         try {
             conn = new MySQLConnection().getConnection();
-            String query = "SELECT * FROM ConsAseP where id_Users = ?;";
+            String query = "SELECT * FROM ConsAseE where Fk_Usuario = ?;";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
@@ -140,6 +170,9 @@ public class DaoAsesorias {
             closeConnections();
         }
     }
+
+
+
 
     public void closeConnections() {
         try {

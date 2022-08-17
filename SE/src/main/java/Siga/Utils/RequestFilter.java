@@ -20,8 +20,10 @@ public class RequestFilter implements Filter{
         whitelist.add("/");
         whitelist.add("/register-user");
         whitelist.add("/public-home");
+        whitelist.add("/login");
         whitelist.add("/signin");
-        whitelist.add("INIT");
+        whitelist.add("/recover-password");
+        whitelist.add("/send-email");
     }
 
     @Override

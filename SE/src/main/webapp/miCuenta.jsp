@@ -41,17 +41,17 @@
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
-                            <form class="needs-validation" novalidate action="update-cambios" method="post">
+                            <form class="needs-validation" novalidate action="saveUser" method="post">
                                 <div class="form-group mb-3">
                                     <div class="row">
                                         <div class="col">
-                                            <label class="fw-bold" for="nombres">Tema</label>
-                                            <input name="nombres" id="nombres" required
-                                                   class="form-control" value="${usuario.nombres}"/>
+                                            <label class="fw-bold" for="tema">Tema</label>
+                                            <input name="tema" id="tema" required
+                                                   class="form-control" value="${estudiante.tema}"/>
                                             <div class="invalid-feedback">
                                                 Campo obligatorio
                                             </div>
-                                            <input type="hidden" name="id" value="${usuario.idAsesorias}"/>
+                                            <input type="hidden" name="id" value="${asesoria.idAsesorias}"/>
                                         </div>
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                                         <div class="col">
                                             <label class="fw-bold" for="duda">Duda</label>
                                             <input name="duda" id="duda" required
-                                                   class="form-control" value="${usuario.duda}"/>
+                                                   class="form-control" value="${asesoria.duda}"/>
                                             <div class="invalid-feedback">
                                                 Campo obligatorio
                                             </div>

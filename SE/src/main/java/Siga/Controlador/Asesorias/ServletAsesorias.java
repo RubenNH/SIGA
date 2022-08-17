@@ -1,7 +1,9 @@
 package Siga.Controlador.Asesorias;
 
+import Siga.Modelos.Acceso.BeanUser;
 import Siga.Modelos.Asesorias.DaoAsesorias;
 import Siga.Modelos.Asesorias.BeanAsesorias;
+import Siga.Servicios.Acceso.ServiceUSer;
 import Siga.Servicios.Asesorias.ServiceAsesorias;
 import Siga.Utils.ResultAction;
 import javax.servlet.ServletException;
@@ -24,7 +26,6 @@ import java.util.logging.Logger;
                 "/get-asesoria",
                 "/save-asesoria",
                 "/add-asesoria",
-                "/cancelar-asesoria",
         })
 
 public class ServletAsesorias extends HttpServlet {
@@ -32,6 +33,8 @@ public class ServletAsesorias extends HttpServlet {
     String action;
     String urlRedirect = "/index.jsp";
     ServiceAsesorias ServiceAsesorias = new ServiceAsesorias();
+    ServiceUSer authService = new ServiceUSer();
+
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -42,9 +45,9 @@ public class ServletAsesorias extends HttpServlet {
         switch (action) {
             case "/get-estudiante":
                 try {
-                    String id = request.getParameter("id");
-                    id = (id == null) ? "0" : id;
-                    List<BeanAsesorias> asesorias = ServiceAsesorias.getAll();
+                    BeanUser net = new BeanUser();
+                    int id = net.getId();
+                    List<BeanAsesorias> asesorias = ServiceAsesorias.getAsesorias((long) id);
                     System.out.println(asesorias.size());
                     request.setAttribute("asesorias", asesorias);
                     urlRedirect = "/indexEstudiantes.jsp";
@@ -59,7 +62,7 @@ public class ServletAsesorias extends HttpServlet {
                 urlRedirect = "/indexProfesor.jsp";
                 break;
             case "/get-admin":
-                List<BeanAsesorias> asesorias2 = ServiceAsesorias.getAll();
+                List<BeanAsesorias> asesorias2 = ServiceAsesorias.getAllAD();
                 System.out.println(asesorias2.size());
                 request.setAttribute("asesoria", asesorias2);
                 urlRedirect = "/admin.jsp";
@@ -138,4 +141,6 @@ public class ServletAsesorias extends HttpServlet {
         }
         response.sendRedirect(request.getContextPath() + urlRedirect);
     }
+
+
 }

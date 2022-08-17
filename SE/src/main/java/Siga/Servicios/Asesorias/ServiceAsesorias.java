@@ -10,6 +10,10 @@ public class ServiceAsesorias {
     public List<BeanAsesorias> getAll(){
         return daoAseso.findAll();
     }
+    public List<BeanAsesorias> getAllAD(){
+        return daoAseso.admindAll();
+    }
+
 
     public BeanAsesorias getAsesoria(Long id){ return daoAseso.findOne(id);}
 

@@ -48,7 +48,7 @@
       <div class="card text-center bg-success" style="color: whitesmoke">
         <div class="card-body">
           <h5 class="card-title">Asesorias solicitadas</h5>
-          <img src="">
+          <img src="Templates/img/PngItem_3676893.png" width="100">
           <p class="card-text">Hombres</p>
           <p class="card-text">Mujeres</p>
           <p class="card-text">Total</p>
@@ -60,7 +60,7 @@
       <div class="card text-center bg-primary" style="color: whitesmoke">
         <div class="card-body " >
           <h5 class="card-title">Asesorias Impartidas</h5>
-          <img src="">
+          <img src="Templates/img/kissclipart-black-and-white-bulls-eye-clipart-bullseye-clip-ar-fb22a100a2ed1d84.png" width="100">
           <p class="card-text">Hombres</p>
           <p class="card-text">Mujeres</p>
           <p class="card-text">Total</p>

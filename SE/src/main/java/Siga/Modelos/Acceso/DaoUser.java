@@ -29,8 +29,9 @@ public class DaoUser {
                 user.setId(rs.getInt("id_Users"));
                 user.setUsername(rs.getString("username"));
                 user.setStatus(rs.getInt("estatus"));
-                user.setNombre(rs.getString("estatus"));
-                user.setApellidos(rs.getString("estatus"));
+                user.setStatus(rs.getInt("permiso"));
+                user.setNombre(rs.getString("nombres"));
+                user.setApellidos(rs.getString("apellidos"));
                 return user;
             }
             return null;
@@ -41,10 +42,30 @@ public class DaoUser {
         } finally {
             closeConnections();
         }
+
+
     }
 
+
+    public boolean verifyUser(String username) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT id_Users FROM users WHERE " +
+                    "username = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next())
+                return true;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName())
+                    .log(Level.SEVERE, "Error verifyUser" + e);
+        } finally {
+            closeConnections();
+        }
+        return false;
+    }
     public boolean saveUser(BeanUser AddUsar) {
-        BeanUser save = null;
         try {
             conn = new MySQLConnection().getConnection();
             String query = "INSERT INTO users" +
@@ -56,12 +77,6 @@ public class DaoUser {
             pstm.setInt(3, AddUsar.getStatus());
             pstm.setString(4, AddUsar.getNombre());
             pstm.setString(5, AddUsar.getApellidos());
-            if (rs.next()){
-                BeanUser user = new BeanUser();
-                user.setId(rs.getInt("id_Users"));
-                user.setUsername(rs.getString("username"));
-                user.setStatus(rs.getInt("estatus"));
-            }
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoUser.class.getName())
@@ -71,7 +86,6 @@ public class DaoUser {
             closeConnections();
         }
     }
-
 
     public boolean saveEstudiante(BeanUser AddEstudiante) {
         try {
@@ -96,23 +110,22 @@ public class DaoUser {
         }
     }
 
-    public BeanUser findOneEst(Long id) {
+
+    public BeanUser findDocente(Long id) {
         try {
             conn = new MySQLConnection().getConnection();
-            String query = "SELECT * FROM Alumnos WHERE id_Users = ?";
+            String query = "SELECT * FROM Docente WHERE id_Users = ?";
             pstm = conn.prepareStatement(query);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
             if (rs.next()) {
-                BeanUser estudiante = new BeanUser();
-                estudiante.setId_Matricula(rs.getString("id_Matricula"));
-                estudiante.setTelefono(rs.getInt("telefono"));
-                estudiante.setGenero(rs.getInt("genero"));
-                estudiante.setUsername(rs.getString("username"));
-                estudiante.setPassword(rs.getString("password"));
-                estudiante.setNombre(rs.getString("nombres"));
-                estudiante.setApellidos(rs.getString("apellidos"));
-                return estudiante;
+                BeanUser docente = new BeanUser();
+                docente.setId(rs.getInt("id_Users"));
+                docente.setUsername(rs.getString("tema"));
+                docente.setPassword(rs.getString("duda"));
+                docente.setNombre(rs.getString("tiempo"));
+                docente.setApellidos(rs.getString("nombres"));
+                return docente;
             }
         } catch (SQLException e) {
             Logger.getLogger(DaoAsesorias.class.getName())
@@ -122,6 +135,25 @@ public class DaoUser {
         }
         return null;
     }
+
+    public boolean updateDocenye(BeanAsesorias asesoria) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "UPDATE Docente SET tema = ?, duda = ? WHERE idAsesorias = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, asesoria.getTema());
+            pstm.setString(2, asesoria.getDuda());
+            pstm.setInt(3, asesoria.getIdAsesorias());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error update", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
 
     public void closeConnections() {
         try {
