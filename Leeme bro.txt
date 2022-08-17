@@ -1,0 +1,2 @@
+Utiliza tomcat 9 y jdk 17 para su buen funcionamiento
+ademas recuerda colocar los artefactos al tomcat y encender primero la base de datos
