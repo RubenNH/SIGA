@@ -8,7 +8,20 @@
 }
 
 body {
-  background-image: url('Fondo.jpg');
+  background-image: url('../img/Fondo.jpg');
+}
+
+.form-registered {
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  font-family: 'Karla', sans-serif;;
+  color: white;
+  box-shadow: 7px 13px 37px #000;
 }
 
 .form-register {
@@ -16,7 +29,8 @@ body {
   background: #24303c;
   padding: 30px;
   margin: auto;
-  margin-top: 100px;
+  margin-top: 30px;
+  margin-bottom: 30px;
   border-radius: 4px;
   font-family: 'Karla', sans-serif;;
   color: white;
@@ -28,6 +42,11 @@ body {
   margin-bottom: 20px;
 }
 
+.form-registered h4 {
+  font-size: 22px;
+  margin-bottom: 20px;
+}
+
 .controls {
   width: 100%;
   background: #002E60;
@@ -35,11 +54,37 @@ body {
   border-radius: 4px;
   margin-bottom: 16px;
   border: 1px solid #009475;
-  font-family: 'Karla', sans-serif;;
+  font-family: 'Karla', sans-serif;
   font-size: 18px;
   color: white;
 }
+.form-registered p {
+  height: 40px;
+  text-align: center;
+  font-size: 18px;
+  line-height: 40px;
+}
 
+.form-registered a {
+  color: white;
+  text-decoration: none;
+}
+
+.form-registered a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+.form-registered .botons {
+  width: 100%;
+  border-radius: 7px;
+  background: #1f53c5;
+  border: none;
+  padding: 12px;
+  color: white;
+  margin: 16px 0;
+  font-size: 16px;
+}
 .form-register p {
   height: 40px;
   text-align: center;
@@ -59,6 +104,7 @@ body {
 
 .form-register .botons {
   width: 100%;
+  border-radius: 7px;
   background: #1f53c5;
   border: none;
   padding: 12px;
