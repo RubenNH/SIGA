@@ -29,7 +29,7 @@
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.jsp">Mi cuenta</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
@@ -66,7 +66,7 @@
                             <td>
                                 <a href="get-asesoria?id=${asesoria.idAsesorias}" class="btn btn-warning
                                 btn-sm"><i data-feather="edit">Modificar</i></a>
-                                <form action="delete-pokemon" method="post">
+                                <form action="delete" method="post">
                                     <input type="hidden" value="${asesoria.idAsesorias}" name="id"/>
                                     <button type="submit" class="btn btn-danger btn-sm">
                                         <i data-feather="trash-2">Cancelar</i>

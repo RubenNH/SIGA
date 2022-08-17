@@ -28,7 +28,7 @@
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="get-estudiante">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Salir</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
@@ -70,7 +70,7 @@
                                 <div class="form-group mb-3">
                                     <div class="row">
                                         <div class="col-12 text-end">
-                                            <button type="button" class="btn btn-danger btn-sm">Cancelar</button>
+                                            <a href="get-estudiante" class="btn btn-outline-danger">Cancelar proceso</a>
                                             <button type="submit" class="btn btn-warning btn-sm">Actualizar</button>
                                         </div>
                                     </div>

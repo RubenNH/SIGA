@@ -24,6 +24,7 @@ import java.util.logging.Logger;
                 "/get-asesoria",
                 "/save-asesoria",
                 "/add-asesoria",
+                "/cancelar-asesoria",
         })
 
 public class ServletAsesorias extends HttpServlet {

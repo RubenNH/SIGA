@@ -39,6 +39,11 @@
             <artifactId>javax.mail</artifactId>
             <version>1.4.5</version>
         </dependency>
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.4.5</version>
+        </dependency>
     </dependencies>
 
 

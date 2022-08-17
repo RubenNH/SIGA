@@ -26,8 +26,11 @@ public class DaoUser {
             rs = pstm.executeQuery();
             if (rs.next()){
                 BeanUser user = new BeanUser();
+                user.setId(rs.getInt("id_Users"));
                 user.setUsername(rs.getString("username"));
                 user.setStatus(rs.getInt("estatus"));
+                user.setNombre(rs.getString("estatus"));
+                user.setApellidos(rs.getString("estatus"));
                 return user;
             }
             return null;
@@ -38,6 +41,25 @@ public class DaoUser {
         } finally {
             closeConnections();
         }
+    }
+
+    public boolean verifyUser(String username) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT id_Users FROM users WHERE " +
+                    "username = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next())
+                return true;
+        } catch (SQLException e) {
+            Logger.getLogger(DaoUser.class.getName())
+                    .log(Level.SEVERE, "Error verifyUser" + e);
+        } finally {
+            closeConnections();
+        }
+        return false;
     }
 
     public boolean saveUser(BeanUser AddUsar) {
@@ -53,6 +75,12 @@ public class DaoUser {
             pstm.setInt(3, AddUsar.getStatus());
             pstm.setString(4, AddUsar.getNombre());
             pstm.setString(5, AddUsar.getApellidos());
+            if (rs.next()){
+                BeanUser user = new BeanUser();
+                user.setId(rs.getInt("id_Users"));
+                user.setUsername(rs.getString("username"));
+                user.setStatus(rs.getInt("estatus"));
+            }
             return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(DaoUser.class.getName())
@@ -63,26 +91,6 @@ public class DaoUser {
         }
     }
 
-    public BeanUser findOne(String username) {
-        try {
-            conn = new MySQLConnection().getConnection();
-            String query = "SELECT * FROM users WHERE username = ?";
-            pstm = conn.prepareStatement(query);
-            pstm.setString(1, username);
-            rs = pstm.executeQuery();
-            if (rs.next()) {
-                BeanUser find = new BeanUser();
-                find.setId(rs.getInt("id_Users"));
-                return find;
-            }
-        } catch (SQLException e) {
-            Logger.getLogger(DaoAsesorias.class.getName())
-                    .log(Level.SEVERE, "Error findOne", e);
-        } finally {
-            closeConnections();
-        }
-        return null;
-    }
 
     public boolean saveEstudiante(BeanUser AddEstudiante) {
         try {
@@ -105,6 +113,33 @@ public class DaoUser {
         } finally {
             closeConnections();
         }
+    }
+
+    public BeanUser findOneEst(Long id) {
+        try {
+            conn = new MySQLConnection().getConnection();
+            String query = "SELECT * FROM Alumnos WHERE id_Users = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setLong(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                BeanUser estudiante = new BeanUser();
+                estudiante.setId_Matricula(rs.getString("id_Matricula"));
+                estudiante.setTelefono(rs.getInt("telefono"));
+                estudiante.setGenero(rs.getInt("genero"));
+                estudiante.setUsername(rs.getString("username"));
+                estudiante.setPassword(rs.getString("password"));
+                estudiante.setNombre(rs.getString("nombres"));
+                estudiante.setApellidos(rs.getString("apellidos"));
+                return estudiante;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(DaoAsesorias.class.getName())
+                    .log(Level.SEVERE, "Error findOne", e);
+        } finally {
+            closeConnections();
+        }
+        return null;
     }
 
     public void closeConnections() {

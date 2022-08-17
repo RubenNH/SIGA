@@ -25,6 +25,7 @@ import java.util.logging.Logger;
                 "/login",
                 "/logout",
                 "/add-user",
+                "/send-email",
         })
 
 public class ServletLogeo extends HttpServlet {
@@ -64,6 +65,20 @@ public class ServletLogeo extends HttpServlet {
                             StandardCharsets.UTF_8.name());
                 }
                 break;
+            case "/send-email":
+                String email = req.getParameter("username");
+                if (email != null) {
+                    authService.sendEmail(email);
+                    urlRedirect = "/index.jsp?message=" + URLEncoder.encode(
+                            "Si existe una cuenta con este usuario," +
+                                    " se ha enviado un correo electrónico.",
+                            StandardCharsets.UTF_8.name());
+                } else {
+                    urlRedirect = "/index.jsp?message=" + URLEncoder.encode(
+                            "Error al enviar el correo de recuperación",
+                            StandardCharsets.UTF_8.name());
+                }
+                break;
             case "/add-user":
                 try {
                     String usernameAdd = req.getParameter("username");
@@ -78,7 +93,6 @@ public class ServletLogeo extends HttpServlet {
                     AddUsar.setNombre(NomreAdd);
                     AddUsar.setApellidos(ApellidoAdd);
                     ResultAction result = authService.saveUser(AddUsar);
-                    authService.getId(AddUsar.getUsername());
                     session = req.getSession();
                     session.setAttribute("user", AddUsar);
                     if(AddUsar.getStatus() == 1){
@@ -144,12 +158,12 @@ public class ServletLogeo extends HttpServlet {
         action = request.getServletPath();
         switch (action) {
             case "/get-UserE":
-                String id = request.getParameter("id");
-                id = (id == null) ? "0" : id;
+                BeanUser user = new BeanUser();
+                int id = user.getId();
                 try {
-                    BeanUser estudiante = authService.getEstudiante(Long.valueOf((id)));
-                    request.setAttribute("asesoria", estudiante);
-                    urlRedirect = "/updateAsesorias.jsp";
+                    BeanUser estudiante = authService.getEstudiante((long) id);
+                    request.setAttribute("usuario", estudiante);
+                    urlRedirect = "/miCuenta.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }
