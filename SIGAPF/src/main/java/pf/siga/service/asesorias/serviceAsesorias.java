@@ -18,14 +18,47 @@ public class serviceAsesorias {
     }
 
     public List<Asesorias> getAllD(String username){
-        return daoAsesorias.findAllD(username);
+        return daoAsesorias.findAllD(username);}
+
+    public resultAction termAse(Asesorias add){
+        resultAction result = new resultAction();
+        if (daoAsesorias.pase(add)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
     }
 
-    public Asesorias paseLi(int estado, int tiempo, int id) {
-        return daoAsesorias.pase(estado, tiempo, id);
+    public resultAction rechazo(Asesorias rechazar){
+        resultAction result = new resultAction();
+        if (daoAsesorias.recha(rechazar)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
     }
 
-    public Asesorias rechazo(int id) {
-        return daoAsesorias.recha(id);
+    public resultAction delP(int id){
+        resultAction result = new resultAction();
+        if (daoAsesorias.delP(id)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
     }
 }

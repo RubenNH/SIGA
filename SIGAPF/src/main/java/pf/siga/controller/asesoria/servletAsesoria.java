@@ -24,6 +24,8 @@ import java.util.logging.Logger;
                 "/pas-list",
                 "/add-estado",
                 "/rechazar",
+                "/get-rechazo",
+                "/deleteP",
         })
 
 public class servletAsesoria extends HttpServlet {
@@ -43,16 +45,30 @@ public class servletAsesoria extends HttpServlet {
         action = req.getServletPath();
         switch (action) {
             case "/add-estado":
-                int time = Integer.parseInt(req.getParameter("time"));
-                int estado = Integer.parseInt(req.getParameter("estado"));
-                String id = req.getParameter("idAsesorias");
-                ServiceA.paseLi(time, estado, Integer.parseInt(id));
-                urlRedirect = "/locate-docente";
+                String id = req.getParameter("id");
+                String time = req.getParameter("time");
+                String estado = req.getParameter("estado");
+                Asesorias add = new Asesorias();
+                add.setIdAsesorias(Integer.parseInt(id));
+                add.setTiempo(Integer.parseInt(time));
+                add.setFkEstados(Integer.parseInt(estado));
+                resultAction reressult = ServiceA.termAse(add);
+                urlRedirect = "/locate-docente?result=" +
+                        reressult.isResult() + "&message=" +
+                        URLEncoder.encode(reressult.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + reressult.getStatus();
                 break;
             case "/rechazar":
-                int idRec = Integer.parseInt(req.getParameter("id"));
-                ServiceA.rechazo(idRec);
-                urlRedirect = "/locate-docente";
+                String idRa = req.getParameter("id");
+                String razon = req.getParameter("razon");
+                Asesorias rech = new Asesorias();
+                rech.setIdAsesorias(Integer.parseInt(idRa));
+                rech.setRazon(razon);
+                resultAction ressult = ServiceA.rechazo(rech);
+                urlRedirect = "/locate-docente?result=" +
+                        ressult.isResult() + "&message=" +
+                        URLEncoder.encode(ressult.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + ressult.getStatus();
                 break;
             default:
                 urlRedirect = "/";
@@ -77,13 +93,24 @@ public class servletAsesoria extends HttpServlet {
                     urlRedirect = "/index.jsp";
                 }
                 break;
-            case "/pas-list":
+            case "/get-rechazo":
+                String id = request.getParameter("id");
                 try {
-                usersBean iser = authService.localizateE();
-                String username = iser.getUsername();
-                List<Asesorias> asesorias = ServiceA.getAllD(username);
-                request.setAttribute("asesoris", asesorias);
-                urlRedirect = "/docente/paseLista.jsp";
+                    request.setAttribute("id", id);
+                    urlRedirect = "/docente/rechazar.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/deleteP":
+                String id1 = request.getParameter("id");
+                try {
+                    request.setAttribute("id", id1);
+                    resultAction ressultt = ServiceA.delP(Integer.parseInt(id1));
+                    urlRedirect = "/historial-docente?result=" +
+                            ressultt.isResult() + "&message=" +
+                            URLEncoder.encode(ressultt.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + ressultt.getStatus();
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }

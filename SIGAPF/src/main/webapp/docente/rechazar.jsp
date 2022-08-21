@@ -43,39 +43,30 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ASESORIAS PENDIENTES</div>
+                    <div class="col-6">RECHAZAR</div>
                 </div>
             </div>
             <div class="card-body">
                 <table class="table table-sm table-hover datatable">
                     <thead>
-                    <th>#</th>
-                    <th>Materia</th>
-                    <th>Alumno</th>
-                    <th>Acciones</th>
+                    <th>Razon</th>
+                    <th>Listo</th>
                     </thead>
                     <tbody>
-                    <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
-                        <tr>
-                            <td><c:out value="${status.count}"></c:out></td>
-                            <td><c:out value="${asesoria.materias}"/></td>
-                            <td><c:out value="${asesoria.alumno}"/></td>
-                            <td>
-                                <a href="pas-list" class="bg-info btn-sm">
-                                    <i data-feather="trash-2">Pasar Lista</i>
-                                </a>
-                            </td>
-                            <td>
-                                <form action="add-estado" method="post">
-                                    <input type="hidden" value="${asesoria.idAsesorias}" name="id"/>
-                                    <select></select>
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i data-feather="trash-2">Rechazar</i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                    <form action="rechazar" method="post">
+                        <td>
+                            <input type="text" class="form-control" name="razon" id="razon" placeholder="Razon de rechazo" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <input type="text" value="${id}" name="id"/>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i data-feather="trash-2">Rechazar</i>
+                            </button>
+                        </td>
+                    </form>
                     </tbody>
                 </table>
             </div>

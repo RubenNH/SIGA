@@ -27,8 +27,8 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Asesorias pendientes</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historial-docente">Historial</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-docente">Asesorias pendientes</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Historial</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
@@ -55,8 +55,6 @@
                     <th>Alumno</th>
                     <th>Tiempo de asesoria</th>
                     <th>Estado</th>
-                    <th>Registrar</th>
-                    <th>Rechazar</th>
                     </thead>
                     <tbody>
                     <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
@@ -65,39 +63,14 @@
                             <td><c:out value="${asesoria.duda}"/></td>
                             <td><c:out value="${asesoria.materias}"/></td>
                             <td><c:out value="${asesoria.alumno}"/></td>
-                                <form action="add-estado" method="post">
-                                    <input type="hidden" value="${asesoria.idAsesorias}" name="id"/>
-                            <td>
-                                <select class="form-select form-select-sm" name="time" id="time">
-                                    <option value="0">Ninguno</option>
-                                    <option value="15">15 Min.</option>
-                                    <option value="30">30 Min.</option>
-                                    <option value="45">45 Min.</option>
-                                    <option value="60">1 Hora</option>
-                                </select>
-                            </td>
-                            <td>
-                                <select class="form-select form-select-sm" name="estado" id="estado">
-                                    <option value="1" disabled>Pendiente</option>
-                                    <option value="2">Impartida</option>
-                                    <option value="3">Falta</option>
-                                    <option value="6">Retardo</option>
-                                </select>
-                            </td>
-                            <td>
-                                <button type="submit" class="btn btn-outline-success btn-sm">
-                                    <i data-feather="trash-2">Listo</i>
-                                </button>
-                            </td>
-                            </form>
-                            <td>
-                                <a href="get-rechazo?id=${asesoria.idAsesorias}" name="id" class="btn btn-warning
-                                    btn-sm"><i data-feather="trash-2">Rechazar</i></a>
-                            </td>
+                            <td><c:out value="${asesoria.tiempo}"/></td>
+                            <td><c:out value="${asesoria.estados}"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
+                <a href="deleteP?id=${asesoria.fkProfesores}" class="btn btn-warning
+                btn-sm"><i data-feather="trash-2">Borrar historial</i></a>
             </div>
         </div>
     </div>

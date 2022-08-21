@@ -4,6 +4,8 @@ public class Asesorias {
     private int IdAsesorias;
     private String Tema;
     private String Duda;
+    private String Razon;
+
     private int Tiempo;
     private int FkProfesores;
     private int FkEstados;
@@ -18,10 +20,11 @@ public class Asesorias {
     public Asesorias() {
     }
 
-    public Asesorias(int idAsesorias, String tema, String duda, int tiempo, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
+    public Asesorias(int idAsesorias, String tema, String duda, String razon, int tiempo, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
         IdAsesorias = idAsesorias;
         Tema = tema;
         Duda = duda;
+        Razon = razon;
         Tiempo = tiempo;
         FkProfesores = fkProfesores;
         FkEstados = fkEstados;
@@ -136,5 +139,13 @@ public class Asesorias {
 
     public void setAlumno(String alumno) {
         Alumno = alumno;
+    }
+
+    public String getRazon() {
+        return Razon;
+    }
+
+    public void setRazon(String razon) {
+        Razon = razon;
     }
 }

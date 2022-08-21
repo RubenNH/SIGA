@@ -23,6 +23,7 @@ import java.util.logging.Logger;
                 "/login",
                 "/locate-estudiante",
                 "/locate-docente",
+                "/historial-docente",
         })
 
 public class sevletUsers extends HttpServlet {
@@ -99,6 +100,17 @@ public class sevletUsers extends HttpServlet {
                     List<Asesorias> asesorias = ServiceA.getAllD(username);
                     request.setAttribute("asesoris", asesorias);
                     urlRedirect = "/docente/index.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/historial-docente":
+                try {
+                    usersBean iser = authService.localizateE();
+                    String username = iser.getUsername();
+                    List<Asesorias> asesorias = ServiceA.getAllD(username);
+                    request.setAttribute("asesoris", asesorias);
+                    urlRedirect = "/docente/historial.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }

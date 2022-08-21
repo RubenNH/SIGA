@@ -47,6 +47,36 @@ public class asesoriasDao {
         return Asesorias;
     }
 
+    public Asesorias find(int id) {
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM asesoriastotales where idAsesorias = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setInt(1, id);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                Asesorias Asesoria = new Asesorias();
+                Asesoria.setIdAsesorias(rs.getInt("idAsesorias"));
+                Asesoria.setTema(rs.getString("tema"));
+                Asesoria.setDuda(rs.getString("duda"));
+                Asesoria.setTiempo(rs.getInt("tiempo"));
+                Asesoria.setProfesor(rs.getString("docente"));
+                Asesoria.setFkEstados(rs.getInt("idEstados"));
+                Asesoria.setEstados(rs.getString("estado"));
+                Asesoria.setMaterias(rs.getString("nombre"));
+                Asesoria.setAlumno(rs.getString("alumno"));
+                Asesoria.setFkMatricula(rs.getString("FkMatricula"));
+                return Asesoria;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return null;
+    }
+
     public List<Asesorias> findAllE(String username) {
         List<Asesorias> Asesorias = new LinkedList<>();
         Asesorias Asesoria = null;
@@ -98,6 +128,7 @@ public class asesoriasDao {
                 Asesoria.setDuda(rs.getString("duda"));
                 Asesoria.setTiempo(rs.getInt("tiempo"));
                 Asesoria.setProfesor(rs.getString("docente"));
+                Asesoria.setFkProfesores(rs.getInt("FkProfesores"));
                 Asesoria.setFkEstados(rs.getInt("idEstados"));
                 Asesoria.setEstados(rs.getString("estado"));
                 Asesoria.setMaterias(rs.getString("nombre"));
@@ -114,38 +145,54 @@ public class asesoriasDao {
         return Asesorias;
     }
 
-    public Asesorias pase(int estado, int time, int id) {
+    public boolean pase(Asesorias add) {
         try {
             conn = new conectionSQL().getConnection();
             String query = "update Asesorias set FkEstados = ?, tiempo = ?" +
                     " where idAsesorias = ?;"; //AND status = 1
             pstm = conn.prepareStatement(query);
-            pstm.setInt(1,estado);
-            pstm.setInt(2,time);
-            pstm.setInt(3,id);
-            rs = pstm.executeQuery();
-            return null;
+            pstm.setInt(1,add.getFkEstados());
+            pstm.setInt(2,add.getTiempo());
+            pstm.setInt(3,add.getIdAsesorias());
+            return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(usersDao.class.getName())
-                    .log(Level.SEVERE, "Error validate method" + e);
+                    .log(Level.SEVERE, " Error validate method" + e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public Boolean recha(Asesorias rechazar) {
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "update Asesorias set FkEstados = 5," +
+                    "razonCan = ? where idAsesorias = ?;"; //AND status = 1
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1,rechazar.getRazon());
+            pstm.setInt(2,rechazar.getIdAsesorias());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(usersDao.class.getName())
+                    .log(Level.SEVERE, " Error validate method" + e);
             return null;
         } finally {
             closeConnections();
         }
     }
 
-    public Asesorias recha(int id) {
+    public Boolean delP(int id) {
         try {
             conn = new conectionSQL().getConnection();
-            String query = "update Asesorias set visibilidadP = 2" +
-                    " where idAsesorias = ?;"; //AND status = 1
+            String query = "update Asesorias set visibilidadP = 2 " +
+                    "where  FkProfesores = ? and not(FkEstados = 1)"; //AND status = 1
             pstm = conn.prepareStatement(query);
-            pstm.setInt(1,id);
-            rs = pstm.executeQuery();
-            return null;
+            pstm.setInt(1, id);
+            return pstm.executeUpdate() == 1;
         } catch (SQLException e) {
             Logger.getLogger(usersDao.class.getName())
-                    .log(Level.SEVERE, "Error validate method" + e);
+                    .log(Level.SEVERE, " Error validate method" + e);
             return null;
         } finally {
             closeConnections();
