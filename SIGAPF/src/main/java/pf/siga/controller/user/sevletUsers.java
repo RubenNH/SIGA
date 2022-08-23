@@ -127,22 +127,22 @@ public class sevletUsers extends HttpServlet {
                     String TlAdd = req.getParameter("telefono");
                     String GenAdd = req.getParameter("genero");
                     String XarAdd = req.getParameter("carrera");
-                    String CuaAdd = req.getParameter("cuatrimestre");
+                    String CuaAdd = req.getParameter("cuatri");
                     int EstatusAdd = 2;
                     usersBean AddUsar = new usersBean();
                     AddUsar.setUsername(usernameAdd);
                     AddUsar.setPassword(passwordAdd);
-                    resultAction result = authService.saveU(AddUsar);
+                    AddUsar.setStatus(EstatusAdd);
+                    authService.saveU(AddUsar);
                     usersBean asesorias = authService.localizateU(usernameAdd);
                     asesorias.setNombres(NomreAdd);
                     asesorias.setApellidos(ApellidoAdd);
-                    asesorias.setStatus(EstatusAdd);
                     asesorias.setId_Matricula(MatAdd);
                     asesorias.setTelefono(Integer.parseInt(TlAdd));
                     asesorias.setGenero(Integer.parseInt(GenAdd));
                     asesorias.setFk_Carrera(Integer.parseInt(XarAdd));
                     asesorias.setFk_Cuatri(Integer.parseInt(CuaAdd));
-                    result = authService.saveE(asesorias);
+                    resultAction result = authService.saveE(asesorias);
                     urlRedirect = "/index.jsp?result=" +
                             result.isResult() + "&message=" +
                             URLEncoder.encode(result.getMessage(), StandardCharsets.UTF_8.name())
