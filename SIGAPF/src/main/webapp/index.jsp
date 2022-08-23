@@ -24,7 +24,7 @@
             </form>
         </div>
     </div>
-    <p><a href="NewUser.jsp">¿No tienes Cuenta?</a></p>
+    <p><a href="new.jsp">¿No tienes Cuenta?</a></p>
     <p><a href="recuperarContraseña.jsp">¿Olvidaste tu contraseña?</a></p>
 </div>
 <jsp:include page="Templates/footer.jsp"/>

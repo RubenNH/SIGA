@@ -5,6 +5,8 @@ import pf.siga.model.users.usersBean;
 import pf.siga.model.users.usersDao;
 import pf.siga.service.asesorias.serviceAsesorias;
 import pf.siga.service.users.serviceUser;
+import pf.siga.utils.resultAction;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +26,11 @@ import java.util.logging.Logger;
                 "/locate-estudiante",
                 "/locate-docente",
                 "/historial-docente",
+                "/cuenta-docente",
+                "/control-profesor",
+                "/send-email",
+                "/add-doc",
+                "/add-est",
         })
 
 public class sevletUsers extends HttpServlet {
@@ -59,12 +66,94 @@ public class sevletUsers extends HttpServlet {
                         urlRedirect = "/locate-docente";
                     }
                     if(user.getStatus() == 3){
-                        urlRedirect = "/get-admin";
+                        urlRedirect = "/cuenta-docente";
                     }
                 } else {
                     urlRedirect = "/?message=" + URLEncoder.encode(
                             "Usuario y/o contraseña incorrectos",
                             StandardCharsets.UTF_8.name());
+                }
+                break;
+            case "/send-email":
+                String email = req.getParameter("username");
+                if (email != null) {
+                    authService.sendEmail(email);
+                    urlRedirect = "/index.jsp?message=" + URLEncoder.encode(
+                            "Si existe una cuenta con este usuario," +
+                                    " se ha enviado un correo electrónico.",
+                            StandardCharsets.UTF_8.name());
+                } else {
+                    urlRedirect = "/index.jsp?message=" + URLEncoder.encode(
+                            "Error al enviar el correo de recuperación",
+                            StandardCharsets.UTF_8.name());
+                }
+                break;
+            case "/add-doc":
+                try {
+                    String usernameAdd = req.getParameter("username");
+                    String passwordAdd = req.getParameter("password");
+                    String NomreAdd = req.getParameter("nombres");
+                    String ApellidoAdd = req.getParameter("apellidos");
+                    int EstatusAdd = 1;
+                    usersBean AddUsar = new usersBean();
+                    AddUsar.setUsername(usernameAdd);
+                    AddUsar.setPassword(passwordAdd);
+                    AddUsar.setStatus(EstatusAdd);
+                    authService.saveU(AddUsar);
+                    usersBean asesorias = authService.localizateU(usernameAdd);
+                    asesorias.setNombres(NomreAdd);
+                    asesorias.setApellidos(ApellidoAdd);
+                    resultAction result = authService.saveD(asesorias);
+                    urlRedirect = "/index.jsp?result=" +
+                            result.isResult() + "&message=" +
+                            URLEncoder.encode(result.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + result.getStatus();
+                } catch (Exception e) {
+                    Logger.getLogger(sevletUsers.class.getName()).log(Level.SEVERE,
+                            "Error AddAsesoria method" + e.getMessage());
+                    urlRedirect = "/index.jsp?result=false&message=" +
+                            URLEncoder.encode("Error al registrar",
+                                    StandardCharsets.UTF_8.name())
+                            + "&status=400";
+                }
+                break;
+            case "/add-est":
+                try {
+                    String usernameAdd = req.getParameter("username");
+                    String passwordAdd = req.getParameter("password");
+                    String NomreAdd = req.getParameter("nombres");
+                    String ApellidoAdd = req.getParameter("apellidos");
+                    String MatAdd = req.getParameter("matricula");
+                    String TlAdd = req.getParameter("telefono");
+                    String GenAdd = req.getParameter("genero");
+                    String XarAdd = req.getParameter("carrera");
+                    String CuaAdd = req.getParameter("cuatrimestre");
+                    int EstatusAdd = 2;
+                    usersBean AddUsar = new usersBean();
+                    AddUsar.setUsername(usernameAdd);
+                    AddUsar.setPassword(passwordAdd);
+                    resultAction result = authService.saveU(AddUsar);
+                    usersBean asesorias = authService.localizateU(usernameAdd);
+                    asesorias.setNombres(NomreAdd);
+                    asesorias.setApellidos(ApellidoAdd);
+                    asesorias.setStatus(EstatusAdd);
+                    asesorias.setId_Matricula(MatAdd);
+                    asesorias.setTelefono(Integer.parseInt(TlAdd));
+                    asesorias.setGenero(Integer.parseInt(GenAdd));
+                    asesorias.setFk_Carrera(Integer.parseInt(XarAdd));
+                    asesorias.setFk_Cuatri(Integer.parseInt(CuaAdd));
+                    result = authService.saveE(asesorias);
+                    urlRedirect = "/index.jsp?result=" +
+                            result.isResult() + "&message=" +
+                            URLEncoder.encode(result.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + result.getStatus();
+                } catch (Exception e) {
+                    Logger.getLogger(sevletUsers.class.getName()).log(Level.SEVERE,
+                            "Error AddAsesoria method" + e.getMessage());
+                    urlRedirect = "/index.jsp?result=false&message=" +
+                            URLEncoder.encode("Error al registrar",
+                                    StandardCharsets.UTF_8.name())
+                            + "&status=400";
                 }
                 break;
             default:
@@ -108,9 +197,29 @@ public class sevletUsers extends HttpServlet {
                 try {
                     usersBean iser = authService.localizateE();
                     String username = iser.getUsername();
-                    List<Asesorias> asesorias = ServiceA.getAllD(username);
+                    List<Asesorias> asesorias = ServiceA.getHisD(username);
                     request.setAttribute("asesoris", asesorias);
                     urlRedirect = "/docente/historial.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/control-profesor":
+                try {
+                    usersBean iser = authService.localizateE();
+                    String username = iser.getUsername();
+                    Asesorias asesorias = ServiceA.getCu(username);
+                    request.setAttribute("asesoris", asesorias);
+                    urlRedirect = "/docente/cuenta.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/cuenta-docente":
+                try {
+                    usersBean asesorias = authService.AdminControl();
+                    request.getSession().setAttribute("asesorias", asesorias);
+                    urlRedirect = "/admin/index.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }

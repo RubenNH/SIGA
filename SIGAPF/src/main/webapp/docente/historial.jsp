@@ -29,7 +29,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-docente">Asesorias pendientes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="cuenta-docente">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -65,11 +65,12 @@
                             <td><c:out value="${asesoria.alumno}"/></td>
                             <td><c:out value="${asesoria.tiempo}"/></td>
                             <td><c:out value="${asesoria.estados}"/></td>
+                            <td><c:out value="${asesoria.fkProfesores}"/></td>
                         </tr>
                     </c:forEach>
                     </tbody>
                 </table>
-                <a href="deleteP?id=${asesoria.fkProfesores}" class="btn btn-warning
+                <a href="deleteP" class="btn btn-warning
                 btn-sm"><i data-feather="trash-2">Borrar historial</i></a>
             </div>
         </div>

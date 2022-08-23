@@ -5,6 +5,14 @@ public class usersBean {
     private String Username;
     private String Password;
     private int Status;
+    private int LogT;
+    private int LogM;
+    private int LogH;
+    private int LogO;
+    private int ImpT;
+    private int ImpM;
+    private int ImpH;
+    private int ImpO;
     private int Permiso;
     private String Nombres;
     private String Apellidos;
@@ -18,11 +26,19 @@ public class usersBean {
     public usersBean() {
     }
 
-    public usersBean(int id, String username, String password, int status, int permiso, String nombres, String apellidos, String id_Matricula, int telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
+    public usersBean(int id, String username, String password, int status, int logT, int logM, int logH, int logO, int impT, int impM, int impH, int impO, int permiso, String nombres, String apellidos, String id_Matricula, int telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
         Id = id;
         Username = username;
         Password = password;
         Status = status;
+        LogT = logT;
+        LogM = logM;
+        LogH = logH;
+        LogO = logO;
+        ImpT = impT;
+        ImpM = impM;
+        ImpH = impH;
+        ImpO = impO;
         Permiso = permiso;
         Nombres = nombres;
         Apellidos = apellidos;
@@ -136,5 +152,69 @@ public class usersBean {
 
     public void setFk_Cuatri(int fk_Cuatri) {
         Fk_Cuatri = fk_Cuatri;
+    }
+
+    public int getLogM() {
+        return LogM;
+    }
+
+    public void setLogM(int logM) {
+        LogM = logM;
+    }
+
+    public int getLogH() {
+        return LogH;
+    }
+
+    public void setLogH(int logH) {
+        LogH = logH;
+    }
+
+    public int getLogO() {
+        return LogO;
+    }
+
+    public void setLogO(int logO) {
+        LogO = logO;
+    }
+
+    public int getImpM() {
+        return ImpM;
+    }
+
+    public void setImpM(int impM) {
+        ImpM = impM;
+    }
+
+    public int getImpH() {
+        return ImpH;
+    }
+
+    public void setImpH(int impH) {
+        ImpH = impH;
+    }
+
+    public int getImpO() {
+        return ImpO;
+    }
+
+    public void setImpO(int impO) {
+        ImpO = impO;
+    }
+
+    public int getLogT() {
+        return LogT;
+    }
+
+    public void setLogT(int logT) {
+        LogT = logT;
+    }
+
+    public int getImpT() {
+        return ImpT;
+    }
+
+    public void setImpT(int impT) {
+        ImpT = impT;
     }
 }

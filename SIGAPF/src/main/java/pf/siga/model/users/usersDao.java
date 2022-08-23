@@ -47,6 +47,26 @@ public class usersDao {
         }
     }
 
+    public usersBean locateU(String username) {
+        usersBean user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM Users where username = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new usersBean();
+                user.setId(rs.getInt("id_Users"));}
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
+    }
+
     public usersBean locateE() {
         usersBean user = null;
         try {
@@ -64,6 +84,176 @@ public class usersDao {
             closeConnections();
         }
         return user;
+    }
+
+    public usersBean locateD() {
+        usersBean user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM borrarHistD ;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new usersBean();
+                user.setUsername(rs.getString("FkUser"));
+                user.setId(rs.getInt("idProfesores"));}
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
+    }
+
+
+    public usersBean controlA() {
+        usersBean user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM conteo ;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new usersBean();
+                user.setLogT(rs.getInt("count(*)"));
+                query = "SELECT * FROM conteoH;";
+                pstm = conn.prepareStatement(query);
+                rs = pstm.executeQuery();
+                if (rs.next()){
+                    user.setLogH(rs.getInt("count(*)"));
+                    query = "SELECT * FROM conteoM;";
+                    pstm = conn.prepareStatement(query);
+                    rs = pstm.executeQuery();
+                    if (rs.next()){
+                        user.setLogM(rs.getInt("count(*)"));
+                        query = "SELECT * FROM conteoO;";
+                        pstm = conn.prepareStatement(query);
+                        rs = pstm.executeQuery();
+                        if (rs.next()){
+                            user.setLogO(rs.getInt("count(*)"));
+                            query = "SELECT * FROM asesConteo;";
+                            pstm = conn.prepareStatement(query);
+                            rs = pstm.executeQuery();
+                            if (rs.next()){
+                                user.setImpT(rs.getInt("count(*)"));
+                                query = "SELECT * FROM asesConteoH;";
+                                pstm = conn.prepareStatement(query);
+                                rs = pstm.executeQuery();
+                                if (rs.next()){
+                                    user.setImpH(rs.getInt("count(*)"));
+                                    query = "SELECT * FROM asesConteoM;";
+                                    pstm = conn.prepareStatement(query);
+                                    rs = pstm.executeQuery();
+                                    if (rs.next()){
+                                        user.setImpM(rs.getInt("count(*)"));
+                                        query = "SELECT * FROM asesConteoO;";
+                                        pstm = conn.prepareStatement(query);
+                                        rs = pstm.executeQuery();
+                                        if (rs.next()){
+                                            user.setImpO(rs.getInt("count(*)"));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
+    }
+
+    public boolean verifyUser(String username) {
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT id_Users FROM users WHERE " +
+                    "username = ?";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next())
+                return true;
+        } catch (SQLException e) {
+            Logger.getLogger(usersDao.class.getName())
+                    .log(Level.SEVERE, "Error verifyUser" + e);
+        } finally {
+            closeConnections();
+        }
+        return false;
+    }
+
+    public boolean saveUser(usersBean AddD) {
+        usersBean save = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "INSERT INTO users" +
+                    "(username, password, estatus)" +
+                    " VALUES (?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddD.getUsername());
+            pstm.setString(2, AddD.getPassword());
+            pstm.setInt(3, AddD.getStatus());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(usersBean.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public boolean saveDoc(usersBean AddD) {
+        usersBean save = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "INSERT INTO Profesores" +
+                    "(docente, apeDocente, Fk_User)" +
+                    " VALUES (?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddD.getNombres());
+            pstm.setString(2, AddD.getApellidos());
+            pstm.setInt(3, AddD.getId());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(usersBean.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
+    }
+
+    public boolean saveEst(usersBean AddD) {
+        usersBean save = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "INSERT INTO Estudiante" +
+                    "(alumno, apeAlumno, Fk_Usuario, id_Matricula, telefono, genero, Fk_Carrera, Fk_Cuatri)" +
+                    " VALUES (?,?,?,?,?,?,?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, AddD.getNombres());
+            pstm.setString(2, AddD.getApellidos());
+            pstm.setInt(3, AddD.getId());
+            pstm.setString(4, AddD.getId_Matricula());
+            pstm.setInt(5, AddD.getTelefono());
+            pstm.setInt(6, AddD.getGenero());
+            pstm.setInt(7, AddD.getFk_Carrera());
+            pstm.setInt(8, AddD.getFk_Cuatri());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(usersBean.class.getName())
+                    .log(Level.SEVERE, "Error save", e);
+            return false;
+        } finally {
+            closeConnections();
+        }
     }
 
     public void closeConnections() {

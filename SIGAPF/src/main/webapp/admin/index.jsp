@@ -1,4 +1,4 @@
-<%--
+<%@ page import="pf.siga.model.users.usersBean" %><%--
   Created by IntelliJ IDEA.
   User: Usuario
   Date: 18/08/2022
@@ -27,8 +27,8 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historial.jsp">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Usuarios</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-all">Historial</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="nDocente.jsp">Nuevos Docentes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -37,25 +37,28 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-6">
-            <div class="card text-center bg-success" style="color: whitesmoke">
-                <div class="card-body">
+            <div class="card text-center" style="color: whitesmoke">
+                <div class="card-body bg-success">
                     <h5 class="card-title">SESIONES</h5>
-                    <img src="">
-                    <p class="card-text">Hombres: </p>
-                    <p class="card-text">Mujeres: </p>
-                    <p class="card-text">Total: </p>
+                    <img src="Templates/img/5340287_man_people_person_user_users_icon.png" width="80">
+                    <% usersBean msg = (usersBean) session.getAttribute("asesorias"); %>
+                    <p class="card-text">Hombres: <c:out value="${asesorias.logH}"></c:out></p>
+                    <p class="card-text">Mujeres: <c:out value="${asesorias.logM}"></c:out></p>
+                    <p class="card-text">Otros: <c:out value="${asesorias.logO}"></c:out></p>
                 </div>
+                    <p class="card-footer border-success text-success">Total: <c:out value="${asesorias.logT}"></c:out></p>
             </div>
         </div>
         <div class="col-sm-6">
-            <div class="card text-center bg-primary" style="color: whitesmoke">
-                <div class="card-body " >
-                    <h5 class="card-title">ATENDIDOS</h5>
-                    <img src="">
-                    <p class="card-text">Hombres: </p>
-                    <p class="card-text">Mujeres: </p>
-                    <p class="card-text">Total: </p>
+            <div class="card text-center " style="color: whitesmoke">
+                <div class="card-body bg-primary" >
+                    <h5 class="card-title ">ATENDIDOS</h5>
+                    <img src="Templates/img/kissclipart-black-and-white-bulls-eye-clipart-bullseye-clip-ar-fb22a100a2ed1d84.png" width="80">
+                    <p class="card-text">Hombres:<c:out value="${asesorias.impH}"></c:out></p>
+                    <p class="card-text">Mujeres: <c:out value="${asesorias.impM}"></c:out></p>
+                    <p class="card-text">Otros: <c:out value="${asesorias.impO}"></c:out></p>
                 </div>
+                    <p class=" card-footer border-primary text-primary">Total: <c:out value="${asesorias.impT}"></c:out></p>
             </div>
         </div>
     </div>

@@ -2,10 +2,12 @@ package pf.siga.model.asesorias;
 
 public class Asesorias {
     private int IdAsesorias;
+    private int IdUsers;
+    private String Username;
+    private String Pass;
     private String Tema;
     private String Duda;
     private String Razon;
-
     private int Tiempo;
     private int FkProfesores;
     private int FkEstados;
@@ -20,8 +22,11 @@ public class Asesorias {
     public Asesorias() {
     }
 
-    public Asesorias(int idAsesorias, String tema, String duda, String razon, int tiempo, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
+    public Asesorias(int idAsesorias, int idUsers, String username, String pass, String tema, String duda, String razon, int tiempo, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
         IdAsesorias = idAsesorias;
+        IdUsers = idUsers;
+        Username = username;
+        Pass = pass;
         Tema = tema;
         Duda = duda;
         Razon = razon;
@@ -147,5 +152,29 @@ public class Asesorias {
 
     public void setRazon(String razon) {
         Razon = razon;
+    }
+
+    public int getIdUsers() {
+        return IdUsers;
+    }
+
+    public void setIdUsers(int idUsers) {
+        IdUsers = idUsers;
+    }
+
+    public String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String username) {
+        Username = username;
+    }
+
+    public String getPass() {
+        return Pass;
+    }
+
+    public void setPass(String pass) {
+        Pass = pass;
     }
 }

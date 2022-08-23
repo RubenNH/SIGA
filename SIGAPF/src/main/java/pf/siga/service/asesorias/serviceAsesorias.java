@@ -17,8 +17,9 @@ public class serviceAsesorias {
         return daoAsesorias.findAllE(username);
     }
 
-    public List<Asesorias> getAllD(String username){
-        return daoAsesorias.findAllD(username);}
+    public List<Asesorias> getAllD(String username){return daoAsesorias.findAllD(username);}
+    public List<Asesorias> getHisD(String username){return daoAsesorias.histoD(username);}
+    public Asesorias getCu(String username){return daoAsesorias.findD(username);}
 
     public resultAction termAse(Asesorias add){
         resultAction result = new resultAction();

@@ -27,9 +27,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Asesorias pendientes</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-docente">Asesorias pendientes</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historial-docente">Historial</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="cuenta-docente">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>

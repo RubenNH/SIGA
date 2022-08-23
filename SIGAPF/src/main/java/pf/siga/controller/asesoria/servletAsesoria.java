@@ -103,10 +103,12 @@ public class servletAsesoria extends HttpServlet {
                 }
                 break;
             case "/deleteP":
-                String id1 = request.getParameter("id");
+                usersBean iser = authService.localizateD();
+                int id1 = iser.getId();
+                System.out.println(9);
+                System.out.println(id1);
                 try {
-                    request.setAttribute("id", id1);
-                    resultAction ressultt = ServiceA.delP(Integer.parseInt(id1));
+                    resultAction ressultt = ServiceA.delP(id1);
                     urlRedirect = "/historial-docente?result=" +
                             ressultt.isResult() + "&message=" +
                             URLEncoder.encode(ressultt.getMessage(), StandardCharsets.UTF_8.name())
