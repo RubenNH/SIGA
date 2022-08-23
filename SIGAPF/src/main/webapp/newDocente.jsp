@@ -35,15 +35,6 @@
   <div class="invalid-feedback">
     Campo obligatorio
   </div>
-  <div class="input-group mb-3">
-    <select class="controls" name="estatus" id="estatus" placeholder="Tipo de usuario">
-      <option value="1">Estudiante</option>
-      <option value="2">Profesor</option>
-    </select>
-  </div>
-  <div class="invalid-feedback">
-    Campo obligatorio
-  </div>
   <input class="botons" type="submit" value="Registrar" required>
   <p><a href="index.jsp">¿Ya tengo Cuenta?</a></p>
 </form>

@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 18/08/2022
-  Time: 05:50 PM
+  Date: 19/08/2022
+  Time: 01:09 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -29,7 +29,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="docente/miCuenta.jsp">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.jsp">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -49,33 +49,18 @@
             <div class="card-body">
                 <table class="table table-sm table-hover datatable">
                     <thead>
-                    <th>#</th>
-                    <th>Tema</th>
-                    <th>Duda</th>
-                    <th>Materia</th>
-                    <th>Profesor</th>
-                    <th>Acciones</th>
+                    <th>Cuenta</th>
+                    <th>Contraseña</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
                     </thead>
                     <tbody>
-                    <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
-                        <tr>
-                            <td><c:out value="${status.count}"></c:out></td>
-                            <td><c:out value="${asesoria.tema}"></c:out></td>
-                            <td><c:out value="${asesoria.duda}"/></td>
-                            <td><c:out value="${asesoria.materias}"/></td>
-                            <td><c:out value="${asesoria.profesor}"/></td>
-                            <td>
-                                <a href="get-asesoria?id=${asesoria.idAsesorias}" class="btn btn-warning
-                                btn-sm"><i data-feather="edit">Modificar</i></a>
-                                <form action="delete" method="post">
-                                    <input type="hidden" value="${asesoria.idAsesorias}" name="id"/>
-                                    <button type="submit" class="btn btn-danger btn-sm">
-                                        <i data-feather="trash-2">Cancelar</i>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <td><c:out value="${asesoria.username}"></c:out></td>
+                        <td><c:out value="${asesoria.pass}"/></td>
+                        <td><c:out value="${asesoria.profesor}"/></td>
+                        <td><c:out value="${asesoria.alumno}"/></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

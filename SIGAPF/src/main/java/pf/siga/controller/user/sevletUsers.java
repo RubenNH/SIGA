@@ -31,6 +31,7 @@ import java.util.logging.Logger;
                 "/send-email",
                 "/add-doc",
                 "/add-est",
+                "/cuenta-est",
         })
 
 public class sevletUsers extends HttpServlet {
@@ -218,6 +219,17 @@ public class sevletUsers extends HttpServlet {
             case "/cuenta-docente":
                 try {
                     usersBean asesorias = authService.AdminControl();
+                    request.getSession().setAttribute("asesorias", asesorias);
+                    urlRedirect = "/admin/index.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/cuenta-est":
+                try {
+                    usersBean iser = authService.localizateE();
+                    String username = iser.getUsername();
+                    List<Asesorias> asesorias = ServiceA.getAllE(username);
                     request.getSession().setAttribute("asesorias", asesorias);
                     urlRedirect = "/admin/index.jsp";
                 } catch (Exception e) {

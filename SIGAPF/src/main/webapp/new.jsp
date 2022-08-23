@@ -21,7 +21,7 @@
         <div class="form-register">
           <h4 id="pete">Porfavor ingrese el tipo de usuario que deseas registrar</h4>
           <div class="d-grid gap-2">
-            <a href="log/" class="btn btn-primary btn-sm"><i data-feather="edit">Estudiante</i></a> <br>
+            <a href="newEstudiante.jsp" class="btn btn-primary btn-sm"><i data-feather="edit">Estudiante</i></a> <br>
             <a href="newDocente.jsp" class="btn btn-primary btn-sm"><i data-feather="edit">Docente</i></a> <br><br>
             <a href="index.jsp">volver al inicio</a>
           </div>
