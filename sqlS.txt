@@ -42,8 +42,6 @@ CREATE TABLE  Materias (
 ;
 
 
-
-
 -- -----------------------------------------------------
 -- Table Usuarios
 -- -----------------------------------------------------
@@ -624,3 +622,5 @@ select * from asesConteoO;
 
 create or replace view TodasMaterias as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join carreras on datosM.Fk_Carrera = carreras.idCarrera join cuatrimestre on datosM.Fk_Cuatri = cuatrimestre.idCuatri;
 select * from TodasMaterias;
+
+create or replace view NewDoc as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join carreras on datosM.Fk_Carrera = carreras.idCarrera join cuatrimestre on datosM.Fk_Cuatri = cuatrimestre.idCuatri;

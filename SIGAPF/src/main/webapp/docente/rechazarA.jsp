@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 18/08/2022
-  Time: 05:50 PM
+  Date: 19/08/2022
+  Time: 01:09 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,15 +28,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-estudiante">Mis asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page">Solicitar asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-cuentaEst">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<form class="form-registered needs-validation" novalidate action="add-doc" method="post">
-
 <div class="row">
     <div class="col-12">
         <c:if test="${param['result']}">
@@ -45,37 +43,36 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ASESORIAS</div>
+                    <div class="col-6">RECHAZAR</div>
                 </div>
             </div>
             <div class="card-body">
-                    <input class="form-text" type="text" name="tema" id="tema" placeholder="Ingrese su tema" required>
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
-                    <input class="form-text" type="text" name="duda" id="duda" placeholder="duda" required>
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
-                    <label class="fw-bold" for="matricula"l>Ingrese su Matricula</label>
-                    <input class="controls" type="text" name="matricula" id="matricula" placeholder="20248tn047" required>
-                    <div class="invalid-feedback">
-                        Campo obligatorio
-                    </div>
-                    <label class="fw-bold" for="profe"l>Ingrese su profe</label>
-                    <input class="controls" type="text" name="profe" id="profe" placeholder="profe" required>
-
-                    <label class="fw-bold" for="genero"l>Ingrese su Genero</label>
-                    <select class="controls" type="text" name="genero" id="genero" placeholder="Genero" required>
-                        <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
-                        <option value="${asesoria.materias}">${asesoria.materias}</option>
-                        </c:forEach>
-                    </select>
+                <table class="table table-sm table-hover datatable">
+                    <thead>
+                    <th>Razon</th>
+                    <th>Listo</th>
+                    </thead>
+                    <tbody>
+                    <form action="cancel" method="post">
+                        <td>
+                            <input type="text" class="form-control" name="razon" id="razon" placeholder="Razon de rechazo" required>
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                            <input type="hidden" value="${id}" name="id"/>
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i data-feather="trash-2">Cancelar</i>
+                            </button>
+                        </td>
+                    </form>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 </div>
-</form>
 
 <jsp:include page="/Templates/footer.jsp"/>
 </body>

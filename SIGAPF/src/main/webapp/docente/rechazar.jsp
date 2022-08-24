@@ -29,6 +29,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-docente">Asesorias pendientes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historial-docente">Historial</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="cuenta-docente">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -58,7 +59,7 @@
                             <div class="valid-feedback">
                                 Looks good!
                             </div>
-                            <input type="text" value="${id}" name="id"/>
+                            <input type="hidden" value="${id}" name="id"/>
                         </td>
                         <td>
                             <button type="submit" class="btn btn-danger btn-sm">

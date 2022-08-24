@@ -9,6 +9,7 @@ public class Asesorias {
     private String Duda;
     private String Razon;
     private int Tiempo;
+    private int Permiso;
     private int FkProfesores;
     private int FkEstados;
     private String Estados;
@@ -22,7 +23,7 @@ public class Asesorias {
     public Asesorias() {
     }
 
-    public Asesorias(int idAsesorias, int idUsers, String username, String pass, String tema, String duda, String razon, int tiempo, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
+    public Asesorias(int idAsesorias, int idUsers, String username, String pass, String tema, String duda, String razon, int tiempo, int permiso, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
         IdAsesorias = idAsesorias;
         IdUsers = idUsers;
         Username = username;
@@ -31,6 +32,7 @@ public class Asesorias {
         Duda = duda;
         Razon = razon;
         Tiempo = tiempo;
+        Permiso = permiso;
         FkProfesores = fkProfesores;
         FkEstados = fkEstados;
         Estados = estados;
@@ -176,5 +178,13 @@ public class Asesorias {
 
     public void setPass(String pass) {
         Pass = pass;
+    }
+
+    public int getPermiso() {
+        return Permiso;
+    }
+
+    public void setPermiso(int permiso) {
+        Permiso = permiso;
     }
 }

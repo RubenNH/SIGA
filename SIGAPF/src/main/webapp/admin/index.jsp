@@ -28,7 +28,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Inicio</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-all">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="nDocente.jsp">Nuevos Docentes</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="new-docentes">Nuevos Docentes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>

@@ -25,9 +25,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="cuenta-docente">Inicio</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-admin">Inicio</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="#">Profesores nuevos</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="new-docentes">Nuevos Docentes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -71,6 +71,8 @@
                     </c:forEach>
                     </tbody>
                 </table>
+                <a href="deleteA" class="btn btn-warning
+                btn-sm"><i data-feather="trash-2">Borrar historial</i></a>
             </div>
         </div>
     </div>

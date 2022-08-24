@@ -64,7 +64,10 @@ public class sevletUsers extends HttpServlet {
                             urlRedirect = "/index.jsp";
                         }
                     }
-                    if(user.getStatus() == 2){
+                    if(user.getStatus() == 2 && user.getPermiso() == 1){
+                        urlRedirect = "/SinAutorizacion.jsp";
+                    }
+                    if(user.getStatus() == 2 && user.getPermiso() == 2){
                         urlRedirect = "/locate-docente";
                     }
                     if(user.getStatus() == 3){

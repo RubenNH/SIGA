@@ -25,7 +25,12 @@ import java.util.logging.Logger;
                 "/add-estado",
                 "/rechazar",
                 "/get-rechazo",
+                "/get-cancel",
                 "/deleteP",
+                "/deleteA",
+                "/dar-permiso",
+                "/cancel",
+                "/new-docentes",
         })
 
 public class servletAsesoria extends HttpServlet {
@@ -58,6 +63,18 @@ public class servletAsesoria extends HttpServlet {
                         URLEncoder.encode(reressult.getMessage(), StandardCharsets.UTF_8.name())
                         + "&status=" + reressult.getStatus();
                 break;
+            case "/dar-permiso":
+                String idPp = req.getParameter("id");
+                String permiso = req.getParameter("permiso");
+                Asesorias perm = new Asesorias();
+                perm.setIdUsers(Integer.parseInt(idPp));
+                perm.setPermiso(Integer.parseInt(permiso));
+                resultAction reessult = ServiceA.darPermiso(perm);
+                urlRedirect = "/new-docentes?result=" +
+                        reessult.isResult() + "&message=" +
+                        URLEncoder.encode(reessult.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + reessult.getStatus();
+                break;
             case "/rechazar":
                 String idRa = req.getParameter("id");
                 String razon = req.getParameter("razon");
@@ -69,6 +86,18 @@ public class servletAsesoria extends HttpServlet {
                         ressult.isResult() + "&message=" +
                         URLEncoder.encode(ressult.getMessage(), StandardCharsets.UTF_8.name())
                         + "&status=" + ressult.getStatus();
+                break;
+            case "/cancel":
+                String idCa = req.getParameter("id");
+                String razonE = req.getParameter("razon");
+                Asesorias can = new Asesorias();
+                can.setIdAsesorias(Integer.parseInt(idCa));
+                can.setRazon(razonE);
+                resultAction ressultC = ServiceA.cancel(can);
+                urlRedirect = "/locate-estudiante?result=" +
+                        ressultC.isResult() + "&message=" +
+                        URLEncoder.encode(ressultC.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + ressultC.getStatus();
                 break;
             default:
                 urlRedirect = "/";
@@ -93,11 +122,29 @@ public class servletAsesoria extends HttpServlet {
                     urlRedirect = "/index.jsp";
                 }
                 break;
+            case "/new-docentes":
+                try {
+                    List<Asesorias> asesorias = ServiceA.getND();
+                    request.setAttribute("asesorias", asesorias);
+                    urlRedirect = "/admin/newDoc.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
             case "/get-rechazo":
                 String id = request.getParameter("id");
                 try {
                     request.setAttribute("id", id);
                     urlRedirect = "/docente/rechazar.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-cancel":
+                String idA = request.getParameter("id");
+                try {
+                    request.setAttribute("id", idA);
+                    urlRedirect = "/docente/rechazarA.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }
@@ -110,6 +157,17 @@ public class servletAsesoria extends HttpServlet {
                 try {
                     resultAction ressultt = ServiceA.delP(id1);
                     urlRedirect = "/historial-docente?result=" +
+                            ressultt.isResult() + "&message=" +
+                            URLEncoder.encode(ressultt.getMessage(), StandardCharsets.UTF_8.name())
+                            + "&status=" + ressultt.getStatus();
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/deleteA":
+                try {
+                    resultAction ressultt = ServiceA.delA();
+                    urlRedirect = "/get-all?result=" +
                             ressultt.isResult() + "&message=" +
                             URLEncoder.encode(ressultt.getMessage(), StandardCharsets.UTF_8.name())
                             + "&status=" + ressultt.getStatus();
