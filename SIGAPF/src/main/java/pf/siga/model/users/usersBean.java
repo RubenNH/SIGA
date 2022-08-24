@@ -17,7 +17,9 @@ public class usersBean {
     private String Nombres;
     private String Apellidos;
     private String Id_Matricula;
-    private int Telefono;
+    private String Carrara;
+    private String Cuatrimestre;
+    private long Telefono;
     private int Genero;
     private int Fk_Usuario;
     private int Fk_Carrera;
@@ -26,7 +28,7 @@ public class usersBean {
     public usersBean() {
     }
 
-    public usersBean(int id, String username, String password, int status, int logT, int logM, int logH, int logO, int impT, int impM, int impH, int impO, int permiso, String nombres, String apellidos, String id_Matricula, int telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
+    public usersBean(int id, String username, String password, int status, int logT, int logM, int logH, int logO, int impT, int impM, int impH, int impO, int permiso, String nombres, String apellidos, String id_Matricula, String carrara, String cuatrimestre, long telefono, int genero, int fk_Usuario, int fk_Carrera, int fk_Cuatri) {
         Id = id;
         Username = username;
         Password = password;
@@ -43,11 +45,29 @@ public class usersBean {
         Nombres = nombres;
         Apellidos = apellidos;
         Id_Matricula = id_Matricula;
+        Carrara = carrara;
+        Cuatrimestre = cuatrimestre;
         Telefono = telefono;
         Genero = genero;
         Fk_Usuario = fk_Usuario;
         Fk_Carrera = fk_Carrera;
         Fk_Cuatri = fk_Cuatri;
+    }
+
+    public String getCuatrimestre() {
+        return Cuatrimestre;
+    }
+
+    public void setCuatrimestre(String cuatrimestre) {
+        Cuatrimestre = cuatrimestre;
+    }
+
+    public String getCarrara() {
+        return Carrara;
+    }
+
+    public void setCarrara(String carrara) {
+        Carrara = carrara;
     }
 
     public int getId() {
@@ -114,11 +134,11 @@ public class usersBean {
         Id_Matricula = id_Matricula;
     }
 
-    public int getTelefono() {
+    public long getTelefono() {
         return Telefono;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(long telefono) {
         Telefono = telefono;
     }
 

@@ -54,7 +54,7 @@
                 <div class="card-body bg-primary" >
                     <h5 class="card-title ">ATENDIDOS</h5>
                     <img src="Templates/img/kissclipart-black-and-white-bulls-eye-clipart-bullseye-clip-ar-fb22a100a2ed1d84.png" width="80">
-                    <p class="card-text">Hombres:<c:out value="${asesorias.impH}"></c:out></p>
+                    <p class="card-text">Hombres: <c:out value="${asesorias.impH}"></c:out></p>
                     <p class="card-text">Mujeres: <c:out value="${asesorias.impM}"></c:out></p>
                     <p class="card-text">Otros: <c:out value="${asesorias.impO}"></c:out></p>
                 </div>

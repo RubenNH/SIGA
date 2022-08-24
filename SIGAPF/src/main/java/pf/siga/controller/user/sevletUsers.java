@@ -25,13 +25,14 @@ import java.util.logging.Logger;
                 "/login",
                 "/locate-estudiante",
                 "/locate-docente",
+                "/locate-admin",
                 "/historial-docente",
                 "/cuenta-docente",
                 "/control-profesor",
                 "/send-email",
                 "/add-doc",
                 "/add-est",
-                "/cuenta-est",
+                "/get-cuentaEst",
         })
 
 public class sevletUsers extends HttpServlet {
@@ -67,7 +68,7 @@ public class sevletUsers extends HttpServlet {
                         urlRedirect = "/locate-docente";
                     }
                     if(user.getStatus() == 3){
-                        urlRedirect = "/cuenta-docente";
+                        urlRedirect = "/locate-admin";
                     }
                 } else {
                     urlRedirect = "/?message=" + URLEncoder.encode(
@@ -95,7 +96,7 @@ public class sevletUsers extends HttpServlet {
                     String passwordAdd = req.getParameter("password");
                     String NomreAdd = req.getParameter("nombres");
                     String ApellidoAdd = req.getParameter("apellidos");
-                    int EstatusAdd = 1;
+                    int EstatusAdd = 2;
                     usersBean AddUsar = new usersBean();
                     AddUsar.setUsername(usernameAdd);
                     AddUsar.setPassword(passwordAdd);
@@ -129,7 +130,7 @@ public class sevletUsers extends HttpServlet {
                     String GenAdd = req.getParameter("genero");
                     String XarAdd = req.getParameter("carrera");
                     String CuaAdd = req.getParameter("cuatri");
-                    int EstatusAdd = 2;
+                    int EstatusAdd = 1;
                     usersBean AddUsar = new usersBean();
                     AddUsar.setUsername(usernameAdd);
                     AddUsar.setPassword(passwordAdd);
@@ -139,7 +140,7 @@ public class sevletUsers extends HttpServlet {
                     asesorias.setNombres(NomreAdd);
                     asesorias.setApellidos(ApellidoAdd);
                     asesorias.setId_Matricula(MatAdd);
-                    asesorias.setTelefono(Integer.parseInt(TlAdd));
+                    asesorias.setTelefono(Long.parseLong(TlAdd));
                     asesorias.setGenero(Integer.parseInt(GenAdd));
                     asesorias.setFk_Carrera(Integer.parseInt(XarAdd));
                     asesorias.setFk_Cuatri(Integer.parseInt(CuaAdd));
@@ -216,7 +217,7 @@ public class sevletUsers extends HttpServlet {
                     urlRedirect = "/index.jsp";
                 }
                 break;
-            case "/cuenta-docente":
+            case "/locate-admin":
                 try {
                     usersBean asesorias = authService.AdminControl();
                     request.getSession().setAttribute("asesorias", asesorias);
@@ -225,13 +226,24 @@ public class sevletUsers extends HttpServlet {
                     urlRedirect = "/index.jsp";
                 }
                 break;
-            case "/cuenta-est":
+            case "/cuenta-docente":
                 try {
                     usersBean iser = authService.localizateE();
                     String username = iser.getUsername();
-                    List<Asesorias> asesorias = ServiceA.getAllE(username);
+                    usersBean asesorias = authService.findDoc(username);
                     request.getSession().setAttribute("asesorias", asesorias);
-                    urlRedirect = "/admin/index.jsp";
+                    urlRedirect = "/docente/cuenta.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-cuentaEst":
+                try {
+                    usersBean iser = authService.localizateE();
+                    String username = iser.getUsername();
+                    usersBean asesorias = authService.findEst(username);
+                    request.getSession().setAttribute("asesorias", asesorias);
+                    urlRedirect = "/docente/miCuenta.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }

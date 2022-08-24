@@ -1,4 +1,4 @@
-<%--
+<%@ page import="pf.siga.model.users.usersBean" %><%--
   Created by IntelliJ IDEA.
   User: Usuario
   Date: 19/08/2022
@@ -27,9 +27,9 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-estudiante">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.jsp">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -47,19 +47,39 @@
                 </div>
             </div>
             <div class="card-body">
+                <% usersBean msg = (usersBean) session.getAttribute("asesorias"); %>
                 <table class="table table-sm table-hover datatable">
                     <thead>
                     <th>Cuenta</th>
                     <th>Contraseña</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><c:out value="${asesorias.username}"></c:out></td>
+                        <td><c:out value="${asesorias.password}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-hover datatable">
+                    <thead>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     </thead>
                     <tbody>
                     <tr>
-                        <td><c:out value="${asesoria.username}"></c:out></td>
-                        <td><c:out value="${asesoria.pass}"/></td>
-                        <td><c:out value="${asesoria.profesor}"/></td>
-                        <td><c:out value="${asesoria.alumno}"/></td>
+                        <td><c:out value="${asesorias.nombres}"/></td>
+                        <td><c:out value="${asesorias.apellidos}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-hover datatable">
+                    <thead>
+                    <th>Cuatrimestre</th>
+                    <th>Carreras</th>
+                    </thead>
+                    <tbody>
+                        <td><c:out value="${asesorias.cuatrimestre}"/></td>
+                        <td><c:out value="${asesorias.carrara}"/></td>
                     </tr>
                     </tbody>
                 </table>

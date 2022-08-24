@@ -16,19 +16,23 @@
 <body>
 <form class="form-registered needs-validation" novalidate action="add-est" method="post">
     <h4 id="pete">Hola!</h4>
-    <input class="controls" type="username" name="username" id="username" placeholder="Ingrese su Correo" required>
+    <label class="fw-bold" for="username"l>Ingrese su Correo</label>
+    <input class="controls" type="username" name="username" id="username" placeholder="20213tn078@utez.edu.mx" required>
     <div class="invalid-feedback">
         Campo obligatorio
     </div>
-    <input class="controls" type="password" name="password" id="password" placeholder="Ingrese su Contraseña" required>
+    <label class="fw-bold" for="password"l>Ingrese su Contraseña</label>
+    <input class="controls" type="password" name="password" id="password" placeholder="123456789" required>
     <div class="invalid-feedback">
         Campo obligatorio
     </div>
-    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Ingrese su Nombre" required>
+    <label class="fw-bold" for="nombres"l>Ingrese su Nombre</label>
+    <input class="controls" type="text" name="nombres" id="nombres" placeholder="Angel Renata" required>
     <div class="invalid-feedback">
         Campo obligatorio
     </div>
-    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Apellido" required>
+    <label class="fw-bold" for="apellidos"l>Ingrese su Apellido</label>
+    <input class="controls" type="text" name="apellidos" id="apellidos" placeholder="Castro Salgado" required>
     <div class="invalid-feedback">
         Campo obligatorio
     </div>
@@ -40,7 +44,7 @@
     <label class="fw-bold" for="telefono"l>Ingrese su telefono</label>
     <input class="controls" type="number" name="telefono" id="telefono" placeholder="77742584454" required>
 
-    <label class="fw-bold" for="genero"l>Ingrese su Genero</label>
+    <label class="fw-bold" for="genero"l>Ingrese su Sexo</label>
     <select class="controls" type="text" name="genero" id="genero" placeholder="Genero" required>
         <option value="1">Hombre</option>
         <option value="2">Mujer</option>

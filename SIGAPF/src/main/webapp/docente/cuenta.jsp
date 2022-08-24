@@ -1,4 +1,4 @@
-<%--
+<%@ page import="pf.siga.model.users.usersBean" %><%--
   Created by IntelliJ IDEA.
   User: Usuario
   Date: 19/08/2022
@@ -29,7 +29,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-docente">Asesorias pendientes</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="historial-docente">Historial</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="cuenta-docente">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
@@ -43,31 +43,39 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ASESORIAS PENDIENTES</div>
+                    <div class="col-6">MI CUENTA</div>
                 </div>
             </div>
             <div class="card-body">
+                <% usersBean msg = (usersBean) session.getAttribute("asesorias"); %>
                 <table class="table table-sm table-hover datatable">
                     <thead>
                     <th>Cuenta</th>
                     <th>Contraseña</th>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td><c:out value="${asesorias.username}"></c:out></td>
+                        <td><c:out value="${asesorias.password}"/></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <table class="table table-sm table-hover datatable">
+                    <thead>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td><c:out value="${asesoria.username}"></c:out></td>
-                            <td><c:out value="${asesoria.pass}"/></td>
-                            <td><c:out value="${asesoria.profesor}"/></td>
-                            <td><c:out value="${asesoria.alumno}"/></td>
-                        </tr>
+                    <tr>
+                        <td><c:out value="${asesorias.nombres}"/></td>
+                        <td><c:out value="${asesorias.apellidos}"/></td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
 </div>
-
 <jsp:include page="/Templates/footer.jsp"/>
 </body>
 </html>

@@ -27,14 +27,16 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-estudiante">Mis asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="miCuenta.jsp">Mi cuenta</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
 </nav>
+<form class="form-registered needs-validation" novalidate action="add-doc" method="post">
+
 <div class="row">
     <div class="col-12">
         <c:if test="${param['result']}">
@@ -43,36 +45,37 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ASESORIAS PENDIENTES</div>
+                    <div class="col-6">ASESORIAS</div>
                 </div>
             </div>
             <div class="card-body">
-                <table class="table table-sm table-hover datatable">
-                    <thead>
-                    <th>#</th>
-                    <th>Tema</th>
-                    <th>Duda</th>
-                    <th>Materia</th>
-                    <th>Profesor</th>
-                    <th>Acciones</th>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
-                        <tr>
+                    <input class="form-text" type="text" name="tema" id="tema" placeholder="Ingrese su tema" required>
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                    <input class="form-text" type="text" name="duda" id="duda" placeholder="duda" required>
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                    <label class="fw-bold" for="matricula"l>Ingrese su Matricula</label>
+                    <input class="controls" type="text" name="matricula" id="matricula" placeholder="20248tn047" required>
+                    <div class="invalid-feedback">
+                        Campo obligatorio
+                    </div>
+                    <label class="fw-bold" for="profe"l>Ingrese su profe</label>
+                    <input class="controls" type="text" name="profe" id="profe" placeholder="profe" required>
 
-                            <td><c:out value="${status.count}"></c:out></td>
-                            <td><c:out value="${asesoria.tema}"></c:out></td>
-                            <td><c:out value="${asesoria.duda}"/></td>
-                            <td><c:out value="${asesoria.materias}"/></td>
-                            <td><c:out value="${asesoria.profesor}"/></td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
+                    <label class="fw-bold" for="genero"l>Ingrese su Genero</label>
+                    <select class="controls" type="text" name="genero" id="genero" placeholder="Genero" required>
+                        <c:forEach var="asesoria" items="${asesoris}" varStatus="status">
+                        <option value="${asesoria.materias}">${asesoria.materias}</option>
+                        </c:forEach>
+                    </select>
             </div>
         </div>
     </div>
 </div>
+</form>
 
 <jsp:include page="/Templates/footer.jsp"/>
 </body>

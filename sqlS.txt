@@ -558,17 +558,17 @@ insert into materias_imparte values(2,4);
 insert into materias_imparte values(1,5);
 
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds1','no se hacer cruds :(',1,20193142,1);
+value ('Derivadas','Implicitas',1,20193142,1);
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds2','no se hacer cruds :(',2,20193142,1);
+value ('Cruds','Ayuda con las consultas',2,20193142,1);
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds3','no se hacer cruds :(',1,20193142,1);
+value ('Toma de desciciones','ciclo',1,20193142,1);
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds4','no se hacer cruds :(',1,20193142,1);
+value ('Html5','Etiquetas de diseño',1,20193142,1);
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds5','no se hacer cruds :(',1,20193142,1);
+value ('Linux','Como instalar ubuntu',1,20193142,1);
 insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
-value ('Cruds6','no se hacer cruds :(',1,20193142,1);
+value ('Will','Como usar los verbos en futuro continuo',1,20193142,1);
 
 
 select * from users;
@@ -586,23 +586,28 @@ select * from locateUser;
 create or replace view asesoriastotalesP as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join materias on Asesorias.FkMateria = materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN users on users.id_Users = Profesores.Fk_User;
 select * from asesoriastotalesP;
 
+create or replace view UserEstudiante as SELECT * from Estudiante JOIN users on users.id_Users = Estudiante.Fk_Usuario join Cuatrimestre on Estudiante.Fk_Cuatri = Cuatrimestre.idCuatri join Carreras on Estudiante.Fk_Carrera = Carreras.idCarrera;
+select * from UserEstudiante;
+
+create or replace view UserDocente as SELECT * from Profesores JOIN users on users.id_Users = Profesores.Fk_User;
+select * from UserDocente;
+
 
 -- update Asesorias set FkEstados = 2, tiempo = 14 where  not idAsesorias = 1 ;e--
-update Asesorias set visibilidadP = 2 where FkProfesores = 2 and not(FkEstados = 1);
 
 create or replace view borrarHistD as select * from locateUser join users on locateUser.FkUser = users.username join Profesores on users.id_Users = Profesores.Fk_User;
 select * from borrarHistD;
 
-create or replace view conteo as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where 21 = extract(day from current_timestamp) ;
+create or replace view conteo as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date);
 select * from conteo;
 
-create or replace view conteoH as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where 21 = extract(day from current_timestamp) and genero = 1;
+create or replace view conteoH as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 1;
 select * from conteoH;
 
-create or replace view conteoM as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where 21 = extract(day from current_timestamp) and genero = 2;
+create or replace view conteoM as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 2;
 select * from conteoM;
 
-create or replace view conteoO as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where 21 = extract(day from current_timestamp) and genero = 3;
+create or replace view conteoO as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 3;
 select * from conteoO;
 
 create or replace view asesConteo as select count(*) from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula where FkEstados = 2;

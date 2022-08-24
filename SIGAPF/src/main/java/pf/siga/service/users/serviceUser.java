@@ -18,6 +18,9 @@ public class serviceUser {
     }
     public usersBean localizateU(String username) {return auth.locateU(username);}
     public usersBean localizateD() {return auth.locateD();}
+
+    public usersBean findEst(String username) {return auth.getEst(username);}
+    public usersBean findDoc(String username) {return auth.getDoc(username);}
     public usersBean AdminControl() {return auth.controlA();}
 
     public resultAction saveU(usersBean add){

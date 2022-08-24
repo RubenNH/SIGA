@@ -5,6 +5,7 @@ import pf.siga.model.users.usersDao;
 import pf.siga.model.users.usersBean;
 import pf.siga.utils.conectionSQL;
 import java.sql.*;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -111,7 +112,7 @@ public class usersDao {
         usersBean user = null;
         try {
             conn = new conectionSQL().getConnection();
-            String query = "SELECT * FROM conteo ;";
+            String query = "SELECT * FROM conteo;";
             pstm = conn.prepareStatement(query);
             rs = pstm.executeQuery();
             if (rs.next()){
@@ -242,7 +243,7 @@ public class usersDao {
             pstm.setString(2, AddD.getApellidos());
             pstm.setInt(3, AddD.getId());
             pstm.setString(4, AddD.getId_Matricula());
-            pstm.setInt(5, AddD.getTelefono());
+            pstm.setLong(5, AddD.getTelefono());
             pstm.setInt(6, AddD.getGenero());
             pstm.setInt(7, AddD.getFk_Carrera());
             pstm.setInt(8, AddD.getFk_Cuatri());
@@ -254,6 +255,62 @@ public class usersDao {
         } finally {
             closeConnections();
         }
+    }
+
+    public usersBean getEst(String username) {
+        usersBean user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM UserEstudiante where username = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new usersBean();
+                user.setId(rs.getInt("id_Users"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setId_Matricula(rs.getString("id_Matricula"));
+                user.setTelefono(rs.getLong("telefono"));
+                user.setGenero(rs.getInt("genero"));
+                user.setNombres(rs.getString("alumno"));
+                user.setApellidos(rs.getString("apeAlumno"));
+                user.setCarrara(rs.getString("carreras"));
+                user.setCuatrimestre(rs.getString("cuatrimestre"));
+                user.setFk_Cuatri(rs.getInt("Fk_Cuatri"));
+                user.setFk_Carrera(rs.getInt("Fk_Carrera"));}
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
+    }
+
+    public usersBean getDoc(String username) {
+        usersBean user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM UserDocente where username = ?;";
+            pstm = conn.prepareStatement(query);
+            pstm.setString(1, username);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new usersBean();
+                user.setId(rs.getInt("id_Users"));
+                user.setUsername(rs.getString("username"));
+                user.setPassword(rs.getString("password"));
+                user.setId_Matricula(rs.getString("idProfesores"));
+                user.setNombres(rs.getString("docente"));
+                user.setApellidos(rs.getString("apeDocente"));}
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
     }
 
     public void closeConnections() {
