@@ -341,6 +341,24 @@ public class asesoriasDao {
         }
     }
 
+    public Boolean addMAt(Asesorias newA) {
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "insert into materias_imparte (Fk_Profesores, Fk_Materias)" +
+                    " VALUES (?,?)";
+            pstm = conn.prepareStatement(query);
+            pstm.setInt(1, newA.getFkProfesores());
+            pstm.setInt(2, newA.getFkMaterias());
+            return pstm.executeUpdate() == 1;
+        } catch (SQLException e) {
+            Logger.getLogger(usersDao.class.getName())
+                    .log(Level.SEVERE, " Error validate method" + e);
+            return null;
+        } finally {
+            closeConnections();
+        }
+    }
+
     public Boolean addProfe(Asesorias asesoria) {
         try {
             conn = new conectionSQL().getConnection();
@@ -405,6 +423,26 @@ public class asesoriasDao {
                 user.setFkMatricula(rs.getString("id_Matricula"));
                 user.setFkCarrera(rs.getInt("Fk_Carrera"));
                 user.setFkCuatri(rs.getInt("Fk_Cuatri"));}
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return user;
+    }
+
+    public Asesorias locateDoc() {
+        Asesorias user = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM borrarHistD;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            if (rs.next()){
+                user = new Asesorias();
+                user.setFkProfesores(rs.getInt("idProfesores"));
+            }
         } catch (SQLException e) {
             Logger.getLogger(asesoriasDao.class.getName())
                     .log(Level.SEVERE, "Error findAll", e);
@@ -494,14 +532,38 @@ public class asesoriasDao {
             conn = new conectionSQL().getConnection();
             String query = "SELECT * FROM materiasProfe where Fk_Profesores = ?;";
             pstm = conn.prepareStatement(query);
+            System.out.println(id);
             pstm.setInt(1, id);
             rs = pstm.executeQuery();
             while (rs.next()) {
                 Asesoria = new Asesorias();
                 Asesoria.setProfesor(rs.getString("docente"));
-                Asesoria.setFkProfesores(rs.getInt("FkProfesores"));
+                Asesoria.setFkProfesores(rs.getInt("Fk_Profesores"));
                 Asesoria.setMaterias(rs.getString("nombre"));
                 Asesoria.setFkMaterias(rs.getInt("Fk_Materias"));;
+                Asesorias.add(Asesoria);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(asesoriasDao.class.getName())
+                    .log(Level.SEVERE, "Error findAll", e);
+        } finally {
+            closeConnections();
+        }
+        return Asesorias;
+    }
+
+    public List<Asesorias> findAllM() {
+        List<Asesorias> Asesorias = new LinkedList<>();
+        Asesorias Asesoria = null;
+        try {
+            conn = new conectionSQL().getConnection();
+            String query = "SELECT * FROM Materias;";
+            pstm = conn.prepareStatement(query);
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                Asesoria = new Asesorias();
+                Asesoria.setMaterias(rs.getString("nombre"));
+                Asesoria.setFkMaterias(rs.getInt("idMaterias"));;
                 Asesorias.add(Asesoria);
             }
         } catch (SQLException e) {

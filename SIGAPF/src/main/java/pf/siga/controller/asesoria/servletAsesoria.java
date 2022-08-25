@@ -33,11 +33,13 @@ import java.util.logging.Logger;
                 "/new-docentes",
                 "/new-asesoria",
                 "/add-materia",
+                "/add-impartir",
                 "/add-profe",
                 "/add-asesorias",
                 "/get-doc",
                 "/get-asesorias",
                 "/get-myMat",
+                "/get-newM",
         })
 
 public class servletAsesoria extends HttpServlet {
@@ -79,6 +81,16 @@ public class servletAsesoria extends HttpServlet {
                         reresult.isResult() + "&message=" +
                         URLEncoder.encode(reresult.getMessage(), StandardCharsets.UTF_8.name())
                         + "&status=" + reresult.getStatus();
+                break;
+            case "/add-impartir":
+                Asesorias idProfe2 = ServiceA.localizateDoc();
+                String idNM = req.getParameter("id");
+                idProfe2.setFkMaterias(Integer.parseInt(idNM));
+                resultAction rere = ServiceA.addMatI(idProfe2);
+                urlRedirect = "/get-myMat?result=" +
+                        rere.isResult() + "&message=" +
+                        URLEncoder.encode(rere.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + rere.getStatus();
                 break;
             case "/add-profe":
                 Asesorias newA = ServiceA.getAs();
@@ -200,6 +212,26 @@ public class servletAsesoria extends HttpServlet {
                     List<Asesorias> asesorias = ServiceA.getP(idMateria);
                     request.setAttribute("asesorias", asesorias);
                     urlRedirect = "/admin/addProfe.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-myMat":
+                try {
+                    Asesorias newA = ServiceA.localizateDoc();
+                    int idProfe = newA.getFkProfesores();
+                    List<Asesorias> asesorias = ServiceA.getMaI(idProfe);
+                    request.setAttribute("asesoris", asesorias);
+                    urlRedirect = "/docente/misMat.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-newM":
+                try {
+                    List<Asesorias> asesorias = ServiceA.getSMaI();
+                    request.setAttribute("asesoris", asesorias);
+                    urlRedirect = "/docente/newMat.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }

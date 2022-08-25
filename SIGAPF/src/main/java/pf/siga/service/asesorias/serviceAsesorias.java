@@ -10,6 +10,7 @@ public class serviceAsesorias {
     asesoriasDao daoAsesorias = new asesoriasDao();
 
     public Asesorias localizateEst() {return daoAsesorias.locateEst();}
+    public Asesorias localizateDoc() {return daoAsesorias.locateDoc();}
     public List<Asesorias> getAll(){
         return daoAsesorias.findAll();
     }
@@ -18,6 +19,8 @@ public class serviceAsesorias {
     public List<Asesorias> getAllE(String username){
         return daoAsesorias.findAllE(username);
     }
+    public List<Asesorias> getMaI(int id){return daoAsesorias.findMatIm(id);}
+    public List<Asesorias> getSMaI(){return daoAsesorias.findAllM();}
     public List<Asesorias> getAllD(String username){return daoAsesorias.findAllD(username);}
     public List<Asesorias> getHisD(String username){return daoAsesorias.histoD(username);}
     public List<Asesorias> getMat(Asesorias newA){return daoAsesorias.getMaterias(newA);}
@@ -140,6 +143,20 @@ public class serviceAsesorias {
     public resultAction addTema(Asesorias asesoria){
         resultAction result = new resultAction();
         if (daoAsesorias.addTemaDuda(asesoria)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
+
+    public resultAction addMatI(Asesorias asesoria){
+        resultAction result = new resultAction();
+        if (daoAsesorias.addMAt(asesoria)){
             result.setResult(true);
             result.setMessage(" registrado correctamente");
             result.setStatus(200);
