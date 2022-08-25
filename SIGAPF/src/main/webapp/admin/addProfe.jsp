@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Usuario
-  Date: 18/08/2022
-  Time: 05:50 PM
+  Date: 19/08/2022
+  Time: 01:09 AM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-estudiante">Mis asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page">Solicitar asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-cuentaEst">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
@@ -43,22 +43,22 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ESCOGE LA MATERIA</div>
+                    <div class="col-6">ESCOGE AL PROFESOR</div>
                 </div>
             </div>
             <div class="card-body">
                 <table class="align-content-center table table-sm table-hover datatable">
                     <thead>
-                    <th>Materia</th>
+                    <th>Nombre</th>
                     </thead>
                     <tbody>
                     <c:forEach var="asesoria" items="${asesorias}" varStatus="status">
                         <tr>
-                            <form action="add-materia" method="post">
-                                <input type="hidden" value="${asesoria.fkMaterias}" name="id"/>
+                            <form action="add-profe" method="post">
+                                <input type="hidden" value="${asesoria.fkProfesores}" name="id"/>
                                 <td>
                                     <button type="submit" class="btn btn-outline-success btn-sm">
-                                        <i data-feather="trash-2">"${asesoria.materias}</i>
+                                        <i data-feather="trash-2">"${asesoria.profesor}</i>
                                     </button>
                                 </td>
                             </form>
@@ -70,7 +70,6 @@
         </div>
     </div>
 </div>
-
 <jsp:include page="/Templates/footer.jsp"/>
 </body>
 </html>

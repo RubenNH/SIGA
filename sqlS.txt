@@ -152,10 +152,10 @@ CREATE TABLE datosM (
 -- -----------------------------------------------------
 CREATE TABLE  Asesorias (
   idAsesorias bigint not null auto_increment,
-  tema VARCHAR(80) not NULL,
-  duda VARCHAR(180)  not NULL,
+  tema VARCHAR(80),
+  duda VARCHAR(180),
   tiempo bigint null,
-  razonCan VARCHAR(80) NULL,
+  razonCan VARCHAR(80),
   visibilidadP bigint default 1,
   visibilidadE bigint default 1,
   FkEstados bigint default 1,
@@ -163,7 +163,7 @@ CREATE TABLE  Asesorias (
   FkMatricula varchar(15),
   FkMateria bigint,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (idAsesorias, FkProfesores, FkMatricula),
+  PRIMARY KEY (idAsesorias),
   CONSTRAINT fk_Asesorias_Profesores
     FOREIGN KEY (FkProfesores)
     REFERENCES Profesores (idProfesores),
@@ -578,8 +578,10 @@ create or replace view asesoriastotales as SELECT * from Asesorias join Estudian
 select * from asesoriastotales;
 
 create or replace view locateUser as SELECT * from logincount order by id desc limit 1;
+create or replace view locateEst as SELECT * from locateUser join users on locateUser.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario;
 select * from logincount;
 select * from locateUser;
+select * from locateEst;
 
 create or replace view asesoriastotalesP as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join materias on Asesorias.FkMateria = materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN users on users.id_Users = Profesores.Fk_User;
 select * from asesoriastotalesP;
@@ -624,3 +626,8 @@ create or replace view TodasMaterias as select * from datosM join Materias on da
 select * from TodasMaterias;
 
 create or replace view NewDoc as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join carreras on datosM.Fk_Carrera = carreras.idCarrera join cuatrimestre on datosM.Fk_Cuatri = cuatrimestre.idCuatri;
+create or replace view materiasProfe as select * from materias_imparte join Materias on materias_imparte.Fk_Materias = Materias.idMaterias join Profesores on materias_imparte.Fk_Profesores = Profesores.idProfesores;
+select * from materiasProfe;
+
+create or replace view locateAsesoria as select * from Asesorias order by idAsesorias desc limit 1;
+select * from locateAsesoria;

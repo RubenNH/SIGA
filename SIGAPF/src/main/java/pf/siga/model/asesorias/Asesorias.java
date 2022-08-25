@@ -15,6 +15,11 @@ public class Asesorias {
     private String Estados;
     private int FkMaterias;
     private String FkMatricula;
+
+    private int FkCarrera;
+    private String Carrera;
+    private int FkCuatri;
+    private String Cuatrimestre;
     private String Materias;
     private String Matricula;
     private String Profesor;
@@ -23,7 +28,7 @@ public class Asesorias {
     public Asesorias() {
     }
 
-    public Asesorias(int idAsesorias, int idUsers, String username, String pass, String tema, String duda, String razon, int tiempo, int permiso, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, String materias, String matricula, String profesor, String alumno) {
+    public Asesorias(int idAsesorias, int idUsers, String username, String pass, String tema, String duda, String razon, int tiempo, int permiso, int fkProfesores, int fkEstados, String estados, int fkMaterias, String fkMatricula, int fkCarrera, String carrera, int fkCuatri, String cuatrimestre, String materias, String matricula, String profesor, String alumno) {
         IdAsesorias = idAsesorias;
         IdUsers = idUsers;
         Username = username;
@@ -38,6 +43,10 @@ public class Asesorias {
         Estados = estados;
         FkMaterias = fkMaterias;
         FkMatricula = fkMatricula;
+        FkCarrera = fkCarrera;
+        Carrera = carrera;
+        FkCuatri = fkCuatri;
+        Cuatrimestre = cuatrimestre;
         Materias = materias;
         Matricula = matricula;
         Profesor = profesor;
@@ -186,5 +195,37 @@ public class Asesorias {
 
     public void setPermiso(int permiso) {
         Permiso = permiso;
+    }
+
+    public int getFkCarrera() {
+        return FkCarrera;
+    }
+
+    public void setFkCarrera(int fkCarrera) {
+        FkCarrera = fkCarrera;
+    }
+
+    public String getCarrera() {
+        return Carrera;
+    }
+
+    public void setCarrera(String carrera) {
+        Carrera = carrera;
+    }
+
+    public int getFkCuatri() {
+        return FkCuatri;
+    }
+
+    public void setFkCuatri(int fkCuatri) {
+        FkCuatri = fkCuatri;
+    }
+
+    public String getCuatrimestre() {
+        return Cuatrimestre;
+    }
+
+    public void setCuatrimestre(String cuatrimestre) {
+        Cuatrimestre = cuatrimestre;
     }
 }

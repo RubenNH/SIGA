@@ -9,6 +9,7 @@ import java.util.List;
 public class serviceAsesorias {
     asesoriasDao daoAsesorias = new asesoriasDao();
 
+    public Asesorias localizateEst() {return daoAsesorias.locateEst();}
     public List<Asesorias> getAll(){
         return daoAsesorias.findAll();
     }
@@ -17,10 +18,13 @@ public class serviceAsesorias {
     public List<Asesorias> getAllE(String username){
         return daoAsesorias.findAllE(username);
     }
-
     public List<Asesorias> getAllD(String username){return daoAsesorias.findAllD(username);}
     public List<Asesorias> getHisD(String username){return daoAsesorias.histoD(username);}
+    public List<Asesorias> getMat(Asesorias newA){return daoAsesorias.getMaterias(newA);}
+    public List<Asesorias> getP(int newA){return daoAsesorias.getprofes(newA);}
     public Asesorias getCu(String username){return daoAsesorias.findD(username);}
+    public Asesorias getAseo(int id){return daoAsesorias.find(id);}
+    public Asesorias getAs(){return daoAsesorias.findA();}
 
     public resultAction termAse(Asesorias add){
         resultAction result = new resultAction();
@@ -94,6 +98,48 @@ public class serviceAsesorias {
     public resultAction delA(){
         resultAction result = new resultAction();
         if (daoAsesorias.delA()){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
+
+    public resultAction addMateria(Asesorias newA){
+        resultAction result = new resultAction();
+        if (daoAsesorias.matAse(newA)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
+
+    public resultAction addDoc(Asesorias asesoria){
+        resultAction result = new resultAction();
+        if (daoAsesorias.addProfe(asesoria)){
+            result.setResult(true);
+            result.setMessage(" registrado correctamente");
+            result.setStatus(200);
+        }else {
+            result.setResult(false);
+            result.setMessage(" Ocurrió un error al registrar");
+            result.setStatus(400);
+        }
+        return result;
+    }
+
+    public resultAction addTema(Asesorias asesoria){
+        resultAction result = new resultAction();
+        if (daoAsesorias.addTemaDuda(asesoria)){
             result.setResult(true);
             result.setMessage(" registrado correctamente");
             result.setStatus(200);

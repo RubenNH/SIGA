@@ -1,21 +1,19 @@
-<%--
+<%@ page import="pf.siga.model.users.usersBean" %><%--
   Created by IntelliJ IDEA.
   User: Usuario
   Date: 18/08/2022
-  Time: 05:50 PM
+  Time: 04:11 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@page pageEncoding="UTF-8" %>
-<!DOCTYPE html>
 <html>
 <head>
-    <title>SIGA</title>
+    <title>Title</title>
     <jsp:include page="/Templates/head.jsp"/>
 </head>
-<body>
 <nav class="navbar navbar-expand-sm navbar-dark" id="navbar" style="background-color:  #002E60;">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">
@@ -28,14 +26,14 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="locate-estudiante">Mis asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page">Solicitar asesorias</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="new-asesoria">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-cuentaEst">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>
         </div>
     </div>
 </nav>
-<div class="container-fluid row">
+<div class="row">
     <div class="col-12">
         <c:if test="${param['result']}">
             <p><c:out value="${param['message']}"></c:out></p>
@@ -43,27 +41,39 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-6">ESCOGE LA MATERIA</div>
+                    <div class="col-6">PASOS FINALES</div>
                 </div>
             </div>
             <div class="card-body">
-                <table class="align-content-center table table-sm table-hover datatable">
+                <table class="table table-sm table-hover datatable">
                     <thead>
-                    <th>Materia</th>
+                    <th>Tema</th>
+                    <th>Duda</th>
+                    <th>Confirmar</th>
                     </thead>
                     <tbody>
-                    <c:forEach var="asesoria" items="${asesorias}" varStatus="status">
-                        <tr>
-                            <form action="add-materia" method="post">
-                                <input type="hidden" value="${asesoria.fkMaterias}" name="id"/>
-                                <td>
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        <i data-feather="trash-2">"${asesoria.materias}</i>
-                                    </button>
-                                </td>
-                            </form>
-                        </tr>
-                    </c:forEach>
+                    <tr>
+                        <form action="add-asesorias" method="post">
+                            <input type="hidden" value="${id}" name="id"/>
+                            <td>
+                                <input class="form-control" type="text" name="tema" id="tema" placeholder="Escriba el tema" required>
+                                <div class="invalid-feedback">
+                                    Campo obligatorio
+                                </div>
+                            </td>
+                            <td>
+                                <input class="form-control" type="text" name="duda" id="duda" placeholder="Escriba su duda" required>
+                                <div class="invalid-feedback">
+                                    Campo obligatorio
+                                </div>
+                            </td>
+                            <td>
+                                <button type="submit" class="btn btn-outline-success btn-sm">
+                                    <i data-feather="trash-2">Listo</i>
+                                </button>
+                            </td>
+                        </form>
+                    </tr>
                     </tbody>
                 </table>
             </div>

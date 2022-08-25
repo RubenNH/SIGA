@@ -28,7 +28,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link active" aria-current="page" href="#">Mis asesorias</a></li>
-                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="solicitrAsesoria.jsp">Solicitar asesorias (Still working)</a></li>
+                <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="new-asesoria">Solicitar asesorias</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="get-cuentaEst">Mi cuenta</a></li>
                 <li class="nav-item" style="margin: 10px;"><a class="nav-link" href="index.jsp">Salir</a></li>
             </ul>

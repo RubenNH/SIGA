@@ -13,9 +13,7 @@ public class serviceUser {
         return auth.validate(username, password);
     }
 
-    public usersBean localizateE() {
-        return auth.locateE();
-    }
+    public usersBean localizateE() {return auth.locateE();}
     public usersBean localizateU(String username) {return auth.locateU(username);}
     public usersBean localizateD() {return auth.locateD();}
 

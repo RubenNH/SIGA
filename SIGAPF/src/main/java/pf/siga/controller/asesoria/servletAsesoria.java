@@ -31,6 +31,13 @@ import java.util.logging.Logger;
                 "/dar-permiso",
                 "/cancel",
                 "/new-docentes",
+                "/new-asesoria",
+                "/add-materia",
+                "/add-profe",
+                "/add-asesorias",
+                "/get-doc",
+                "/get-asesorias",
+                "/get-myMat",
         })
 
 public class servletAsesoria extends HttpServlet {
@@ -62,6 +69,43 @@ public class servletAsesoria extends HttpServlet {
                         reressult.isResult() + "&message=" +
                         URLEncoder.encode(reressult.getMessage(), StandardCharsets.UTF_8.name())
                         + "&status=" + reressult.getStatus();
+                break;
+            case "/add-materia":
+                Asesorias newAseso = ServiceA.localizateEst();
+                String idMa = req.getParameter("id");
+                newAseso.setFkMaterias(Integer.parseInt(idMa));
+                resultAction reresult = ServiceA.addMateria(newAseso);
+                urlRedirect = "/get-doc?result=" +
+                        reresult.isResult() + "&message=" +
+                        URLEncoder.encode(reresult.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + reresult.getStatus();
+                break;
+            case "/add-profe":
+                Asesorias newA = ServiceA.getAs();
+                int idAssoria = newA.getIdAsesorias();
+                String idDo = req.getParameter("id");
+                Asesorias dek = new Asesorias();
+                dek.setIdAsesorias(idAssoria);
+                dek.setFkProfesores(Integer.parseInt(idDo));
+                resultAction wresult = ServiceA.addDoc(dek);
+                urlRedirect = "/get-asesorias?result=" +
+                        wresult.isResult() + "&message=" +
+                        URLEncoder.encode(wresult.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + wresult.getStatus();
+                break;
+            case "/add-asesorias":
+                String idAsesoeia = req.getParameter("id");
+                String tema = req.getParameter("tema");
+                String duda = req.getParameter("duda");
+                Asesorias SaveAesoria = new Asesorias();
+                SaveAesoria.setIdAsesorias(Integer.parseInt(idAsesoeia));
+                SaveAesoria.setTema(tema);
+                SaveAesoria.setDuda(duda);
+                resultAction resuy = ServiceA.addTema(SaveAesoria);
+                urlRedirect = "/locate-estudiante?result=" +
+                        resuy.isResult() + "&message=" +
+                        URLEncoder.encode(resuy.getMessage(), StandardCharsets.UTF_8.name())
+                        + "&status=" + resuy.getStatus();
                 break;
             case "/dar-permiso":
                 String idPp = req.getParameter("id");
@@ -149,6 +193,27 @@ public class servletAsesoria extends HttpServlet {
                     urlRedirect = "/index.jsp";
                 }
                 break;
+            case "/get-doc":
+                try {
+                    Asesorias newA = ServiceA.getAs();
+                    int idMateria = newA.getFkMaterias();
+                    List<Asesorias> asesorias = ServiceA.getP(idMateria);
+                    request.setAttribute("asesorias", asesorias);
+                    urlRedirect = "/admin/addProfe.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/get-asesorias":
+                try {
+                    Asesorias newA = ServiceA.getAs();
+                    int idAsesoria = newA.getIdAsesorias();
+                    request.setAttribute("id", idAsesoria);
+                    urlRedirect = "/admin/addAsesoria.jsp";
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
             case "/deleteP":
                 usersBean iser = authService.localizateD();
                 int id1 = iser.getId();
@@ -171,6 +236,16 @@ public class servletAsesoria extends HttpServlet {
                             ressultt.isResult() + "&message=" +
                             URLEncoder.encode(ressultt.getMessage(), StandardCharsets.UTF_8.name())
                             + "&status=" + ressultt.getStatus();
+                } catch (Exception e) {
+                    urlRedirect = "/index.jsp";
+                }
+                break;
+            case "/new-asesoria":
+                try {
+                    Asesorias newA = ServiceA.localizateEst();
+                    List<Asesorias> asesorias = ServiceA.getMat(newA);
+                    request.setAttribute("asesorias", asesorias);
+                    urlRedirect = "/solicitrAsesoria.jsp";
                 } catch (Exception e) {
                     urlRedirect = "/index.jsp";
                 }
