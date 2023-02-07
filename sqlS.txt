@@ -51,7 +51,7 @@ username varchar (50)  not null unique,
 password varchar(50) not null,
 estatus bigint,
 permiso bigint default 1
-);  
+);
 -- estatus --
 -- 1- estudiante--
 -- 2- Profesor--
@@ -194,7 +194,7 @@ dia timestamp default current_timestamp,
 FkUser varchar(40),
 CONSTRAINT fk_logincount_User
     FOREIGN KEY (FkUser)
-    REFERENCES users (username)
+    REFERENCES Users (username)
 );
 
 
@@ -210,125 +210,125 @@ CREATE TABLE  Control_estadistico (
 -- -----------------------------------------------------
 -- Inserts de datos
 -- -----------------------------------------------------
-insert into carreras values(1,'DSM');
-insert into carreras values(2,'DM');
-insert into carreras values(3,'IRD');
-insert into carreras values(4,'DD');
+insert into Carreras values(1,'DSM');
+insert into Carreras values(2,'DM');
+insert into Carreras values(3,'IRD');
+insert into Carreras values(4,'DD');
 
-insert into cuatrimestre values(1,'Primero');
-insert into cuatrimestre values(2,'Segundo');
-insert into cuatrimestre values(3,'Tercero');
-insert into cuatrimestre values(4,'Cuarto');
-insert into cuatrimestre values(5,'Quinto');
+insert into Cuatrimestre values(1,'Primero');
+insert into Cuatrimestre values(2,'Segundo');
+insert into Cuatrimestre values(3,'Tercero');
+insert into Cuatrimestre values(4,'Cuarto');
+insert into Cuatrimestre values(5,'Quinto');
 
-insert into materias values(1,'Calculo diferencial');
-insert into materias values(2,'Base de Datos para Aplicaciones');
-insert into materias values(3,'Aplicaciones Web');
-insert into materias values(4,'Sistemas Operativos');
-insert into materias values(5,'Ingles I');
-insert into materias values(6,'Álgebra lineal');
-insert into materias values(7,'Desarrollo de habilidades de pensamiento lógico');
-insert into materias values(8,'Fundamentos de TI');
-insert into materias values(9,'Fundamentos de redes');
-insert into materias values(10,'Metodología de la programación');
-insert into materias values(11,'Expresion oral y escrita I');
-insert into materias values(12,'Formación sociocultural I');
-insert into materias values(13,'Funciones matemáticas');
-insert into materias values(14,'Metodologías y modelado de desarrollo de software');
-insert into materias values(15,'Interconexión de redes');
-insert into materias values(16,'Programación orientada a objetos');
-insert into materias values(17,'Base de Datos para Aplicaciones');
-insert into materias values(18,'Introducción al diseño digital');
-insert into materias values(19,'Base de datos');
-insert into materias values(20,'Probabilidad y estadística');
-insert into materias values(21,'Estándares y métricas para el desarrollo de software');
-insert into materias values(22,'Principios para IoT');
-insert into materias values(23,'Diseño de apps');
-insert into materias values(24,'Estructura de datos aplicadas');
-insert into materias values(25,'Aplicaciones web orientadas a servicios');
-insert into materias values(26,'Evaluación y mejora para el desarrollo de software');
-insert into materias values(27,'Aplicaciones de IoT');
-insert into materias values(28,'Desarrollo móvil multiplataforma');
-insert into materias values(29,'Aplicaciones web para 14.0');
-insert into materias values(30,'Introducción a Big Data');
-insert into materias values(31,'Administración de redes de datos');
-insert into materias values(32,'Base de Datos para Aplicaciones');
-insert into materias values(33,'Programación de redes');
-insert into materias values(34,'Bases de datos para cómputo en la nube');
-insert into materias values(35,'Infraestructura de redes de datos');
-insert into materias values(36,'Electrónica para IdC');
-insert into materias values(37,'Conexiones de redes WAN');
-insert into materias values(38,'Administración de servidores I');
-insert into materias values(39,'Administración de servidores II');
-insert into materias values(40,'Infomática para diseño de moda');
-insert into materias values(41,'Creatividad del diseño');
-insert into materias values(42,'Técnicas de ilustración');
-insert into materias values(43,'Patronaje industrial para dama');
-insert into materias values(44,'Métodos de confección I');
-insert into materias values(45,'Historia del arte y la moda');
-insert into materias values(46,'Fundamentos textiles I');
-insert into materias values(47,'Teoría del color');
-insert into materias values(48,'Ilustración de modas por computadora I');
-insert into materias values(49,'Patronaje industrial para caballero y niño');
-insert into materias values(50,'Matemáticas');
-insert into materias values(51,'Ilustración de modas por computadora II');
-insert into materias values(52,'Métodos de confección II');
-insert into materias values(53,'Sistemas de graduación industrial');
-insert into materias values(54,'Fundamentos textiles II');
-insert into materias values(55,'Metodología de la investigación');
-insert into materias values(56,'Estadística');
-insert into materias values(57,'Costos de manufactura');
-insert into materias values(58,'Planeación de la producción');
-insert into materias values(59,'Mercadotecnia de la moda');
-insert into materias values(60,'Patronaje por computadora');
-insert into materias values(61,'Calidad en la industria del vestido');
-insert into materias values(62,'Sistemas de confección industrial');
-insert into materias values(63,'Procesos de manufactura');
-insert into materias values(64,'Graduación por computadora');
-insert into materias values(65,'Fundamentos del diseño');
-insert into materias values(66,'Representación visual');
-insert into materias values(67,'Fundamentos de la comunicación gráfica');
-insert into materias values(68,'Informática aplicada al diseño');
-insert into materias values(69,'Geometría');
-insert into materias values(70,'Elementos del lenguaje visual');
-insert into materias values(71,'Ilustración I');
-insert into materias values(72,'Modelado manual');
-insert into materias values(73,'Representación geométrica');
-insert into materias values(74,'Levantamiento de objetos y espacios');
-insert into materias values(75,'Proceso administrativo');
-insert into materias values(76,'Costos');
-insert into materias values(77,'Ilustración II');
-insert into materias values(78,'Fotografía digital');
-insert into materias values(79,'Mercadotecnia');
-insert into materias values(80,'Software CAD');
-insert into materias values(81,'Física');
-insert into materias values(82,'Animación 2D');
-insert into materias values(83,'Guionismo y storyboard');
-insert into materias values(84,'Prototipos');
-insert into materias values(85,'Proceso de diseño');
-insert into materias values(86,'Diseño editorial digital');
-insert into materias values(87,'Animación en 3D');
-insert into materias values(88,'Edición de audio y video');
-insert into materias values(89,'Imagen digital animada');
-insert into materias values(90,'Expresión Oral y Escrita II');
-insert into materias values(91,'Inglés V');
-insert into materias values(92,'Formación sociocultural IV');
-insert into materias values(93,'Formación sociocultural III');
-insert into materias values(94,'Inglés III');
-insert into materias values(95,'Inglés II');
-insert into materias values(96,'Formación sociocultural II');
-insert into materias values(97,'Integradora I');
-insert into materias values(98,'Inglés IV');
-insert into materias values(99,'Integradora II');
-insert into materias values(100,'Comunicacion en redes de datos');
-insert into materias values(101,'Ciberseguridad');
+insert into Materias values(1,'Calculo diferencial');
+insert into Materias values(2,'Base de Datos para Aplicaciones');
+insert into Materias values(3,'Aplicaciones Web');
+insert into Materias values(4,'Sistemas Operativos');
+insert into Materias values(5,'Ingles I');
+insert into Materias values(6,'Álgebra lineal');
+insert into Materias values(7,'Desarrollo de habilidades de pensamiento lógico');
+insert into Materias values(8,'Fundamentos de TI');
+insert into Materias values(9,'Fundamentos de redes');
+insert into Materias values(10,'Metodología de la programación');
+insert into Materias values(11,'Expresion oral y escrita I');
+insert into Materias values(12,'Formación sociocultural I');
+insert into Materias values(13,'Funciones matemáticas');
+insert into Materias values(14,'Metodologías y modelado de desarrollo de software');
+insert into Materias values(15,'Interconexión de redes');
+insert into Materias values(16,'Programación orientada a objetos');
+insert into Materias values(17,'Base de Datos para Aplicaciones');
+insert into Materias values(18,'Introducción al diseño digital');
+insert into Materias values(19,'Base de datos');
+insert into Materias values(20,'Probabilidad y estadística');
+insert into Materias values(21,'Estándares y métricas para el desarrollo de software');
+insert into Materias values(22,'Principios para IoT');
+insert into Materias values(23,'Diseño de apps');
+insert into Materias values(24,'Estructura de datos aplicadas');
+insert into Materias values(25,'Aplicaciones web orientadas a servicios');
+insert into Materias values(26,'Evaluación y mejora para el desarrollo de software');
+insert into Materias values(27,'Aplicaciones de IoT');
+insert into Materias values(28,'Desarrollo móvil multiplataforma');
+insert into Materias values(29,'Aplicaciones web para 14.0');
+insert into Materias values(30,'Introducción a Big Data');
+insert into Materias values(31,'Administración de redes de datos');
+insert into Materias values(32,'Base de Datos para Aplicaciones');
+insert into Materias values(33,'Programación de redes');
+insert into Materias values(34,'Bases de datos para cómputo en la nube');
+insert into Materias values(35,'Infraestructura de redes de datos');
+insert into Materias values(36,'Electrónica para IdC');
+insert into Materias values(37,'Conexiones de redes WAN');
+insert into Materias values(38,'Administración de servidores I');
+insert into Materias values(39,'Administración de servidores II');
+insert into Materias values(40,'Infomática para diseño de moda');
+insert into Materias values(41,'Creatividad del diseño');
+insert into Materias values(42,'Técnicas de ilustración');
+insert into Materias values(43,'Patronaje industrial para dama');
+insert into Materias values(44,'Métodos de confección I');
+insert into Materias values(45,'Historia del arte y la moda');
+insert into Materias values(46,'Fundamentos textiles I');
+insert into Materias values(47,'Teoría del color');
+insert into Materias values(48,'Ilustración de modas por computadora I');
+insert into Materias values(49,'Patronaje industrial para caballero y niño');
+insert into Materias values(50,'Matemáticas');
+insert into Materias values(51,'Ilustración de modas por computadora II');
+insert into Materias values(52,'Métodos de confección II');
+insert into Materias values(53,'Sistemas de graduación industrial');
+insert into Materias values(54,'Fundamentos textiles II');
+insert into Materias values(55,'Metodología de la investigación');
+insert into Materias values(56,'Estadística');
+insert into Materias values(57,'Costos de manufactura');
+insert into Materias values(58,'Planeación de la producción');
+insert into Materias values(59,'Mercadotecnia de la moda');
+insert into Materias values(60,'Patronaje por computadora');
+insert into Materias values(61,'Calidad en la industria del vestido');
+insert into Materias values(62,'Sistemas de confección industrial');
+insert into Materias values(63,'Procesos de manufactura');
+insert into Materias values(64,'Graduación por computadora');
+insert into Materias values(65,'Fundamentos del diseño');
+insert into Materias values(66,'Representación visual');
+insert into Materias values(67,'Fundamentos de la comunicación gráfica');
+insert into Materias values(68,'Informática aplicada al diseño');
+insert into Materias values(69,'Geometría');
+insert into Materias values(70,'Elementos del lenguaje visual');
+insert into Materias values(71,'Ilustración I');
+insert into Materias values(72,'Modelado manual');
+insert into Materias values(73,'Representación geométrica');
+insert into Materias values(74,'Levantamiento de objetos y espacios');
+insert into Materias values(75,'Proceso administrativo');
+insert into Materias values(76,'Costos');
+insert into Materias values(77,'Ilustración II');
+insert into Materias values(78,'Fotografía digital');
+insert into Materias values(79,'Mercadotecnia');
+insert into Materias values(80,'Software CAD');
+insert into Materias values(81,'Física');
+insert into Materias values(82,'Animación 2D');
+insert into Materias values(83,'Guionismo y storyboard');
+insert into Materias values(84,'Prototipos');
+insert into Materias values(85,'Proceso de diseño');
+insert into Materias values(86,'Diseño editorial digital');
+insert into Materias values(87,'Animación en 3D');
+insert into Materias values(88,'Edición de audio y video');
+insert into Materias values(89,'Imagen digital animada');
+insert into Materias values(90,'Expresión Oral y Escrita II');
+insert into Materias values(91,'Inglés V');
+insert into Materias values(92,'Formación sociocultural IV');
+insert into Materias values(93,'Formación sociocultural III');
+insert into Materias values(94,'Inglés III');
+insert into Materias values(95,'Inglés II');
+insert into Materias values(96,'Formación sociocultural II');
+insert into Materias values(97,'Integradora I');
+insert into Materias values(98,'Inglés IV');
+insert into Materias values(99,'Integradora II');
+insert into Materias values(100,'Comunicacion en redes de datos');
+insert into Materias values(101,'Ciberseguridad');
 
-insert into estados values(1,'Pendiente');
-insert into estados values(2,'Impartida');
-insert into estados values(3,'Falta');
-insert into estados values(4,'Cancelada');
-insert into estados values(5,'Rechazada');
-insert into estados values(6,'Retardo');
+insert into Estados values(1,'Pendiente');
+insert into Estados values(2,'Impartida');
+insert into Estados values(3,'Falta');
+insert into Estados values(4,'Cancelada');
+insert into Estados values(5,'Rechazada');
+insert into Estados values(6,'Retardo');
 
 
 -- DSM C1--
@@ -525,28 +525,28 @@ insert into datosM values(4,5,90);
 insert into datosM values(4,5,91);
 insert into datosM values(4,5,99);
 
-insert into Users (username, password, estatus) 
+insert into Users (username, password, estatus)
 values('20193tn142@utez.edu.mx','123',1);
-insert into Users (username, password, estatus) 
+insert into Users (username, password, estatus)
 values('20213tn070@utez.edu.mx','234',1);
-insert into Users (username, password, estatus) 
+insert into Users (username, password, estatus)
 values('20213tn071@utez.edu.mx','345',2);
-insert into Users (username, password, estatus) 
+insert into Users (username, password, estatus)
 values('20213tn068@utez.edu.mx','456',2);
-insert into Users (username, password, estatus) 
+insert into Users (username, password, estatus)
 values('20213tn134@utez.edu.mx','567',3);
 
-insert into Estudiante (id_Matricula, alumno, apeAlumno, telefono, genero, Fk_Usuario, Fk_Carrera, Fk_Cuatri) 
+insert into Estudiante (id_Matricula, alumno, apeAlumno, telefono, genero, Fk_Usuario, Fk_Carrera, Fk_Cuatri)
 values(20193142,'Luis Darien', 'Fragoso Valencia','7772135593',1,1,3,1);
-insert into Estudiante (id_Matricula, alumno, apeAlumno, telefono, genero, Fk_Usuario, Fk_Carrera, Fk_Cuatri) 
+insert into Estudiante (id_Matricula, alumno, apeAlumno, telefono, genero, Fk_Usuario, Fk_Carrera, Fk_Cuatri)
 values(20213070,'Carlos', 'Lopez Piña','7771029575',1,2,2,3);
 
-insert into Profesores (Fk_User, docente, apeDocente) 
+insert into Profesores (Fk_User, docente, apeDocente)
 values(3,'Diego Antonio', 'Luna Ortiz');
-insert into Profesores (Fk_User, docente, apeDocente) 
+insert into Profesores (Fk_User, docente, apeDocente)
 values(4,'Yocelin', 'Reyes López');
 
-insert into Administrador (Fk_User) 
+insert into Administrador (Fk_User)
 values(5);
 
 insert into materias_imparte values(1,1);
@@ -555,60 +555,60 @@ insert into materias_imparte values(1,3);
 insert into materias_imparte values(2,4);
 insert into materias_imparte values(1,5);
 
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Derivadas','Implicitas',1,20193142,1);
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Cruds','Ayuda con las consultas',2,20193142,1);
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Toma de desciciones','ciclo',1,20193142,1);
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Html5','Etiquetas de diseño',1,20193142,1);
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Linux','Como instalar ubuntu',1,20193142,1);
-insert into asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria) 
+insert into Asesorias (tema, duda, FkProfesores, FkMatricula, FkMateria)
 value ('Will','Como usar los verbos en futuro continuo',1,20193142,1);
 
 
-select * from users;
+select * from Users;
 select * from Asesorias;
 select * from Profesores;
 select * from Estudiante;
 select * from logincount;
-create or replace view asesoriastotales as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join materias on Asesorias.FkMateria = materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN users on users.id_Users = Estudiante.Fk_Usuario;
+create or replace view asesoriastotales as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join Materias on Asesorias.FkMateria = Materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN Users on Users.id_Users = Estudiante.Fk_Usuario;
 select * from asesoriastotales;
 
 create or replace view locateUser as SELECT * from logincount order by id desc limit 1;
-create or replace view locateEst as SELECT * from locateUser join users on locateUser.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario;
-create or replace view locateEst as SELECT * from locateUser join users on locateUser.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario;
+create or replace view locateEst as SELECT * from locateUser join Users on locateUser.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario;
+create or replace view locateEst as SELECT * from locateUser join Users on locateUser.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario;
 select * from logincount;
 select * from locateUser;
 select * from locateEst;
 
-create or replace view asesoriastotalesP as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join materias on Asesorias.FkMateria = materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN users on users.id_Users = Profesores.Fk_User;
+create or replace view asesoriastotalesP as SELECT * from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula join Profesores on Asesorias.FkProfesores = Profesores.idProfesores join Materias on Asesorias.FkMateria = Materias.idMaterias join Estados on Asesorias.FkEstados = Estados.idEstados JOIN Users on Users.id_Users = Profesores.Fk_User;
 select * from asesoriastotalesP;
 
-create or replace view UserEstudiante as SELECT * from Estudiante JOIN users on users.id_Users = Estudiante.Fk_Usuario join Cuatrimestre on Estudiante.Fk_Cuatri = Cuatrimestre.idCuatri join Carreras on Estudiante.Fk_Carrera = Carreras.idCarrera;
+create or replace view UserEstudiante as SELECT * from Estudiante JOIN Users on Users.id_Users = Estudiante.Fk_Usuario join Cuatrimestre on Estudiante.Fk_Cuatri = Cuatrimestre.idCuatri join Carreras on Estudiante.Fk_Carrera = Carreras.idCarrera;
 select * from UserEstudiante;
 
-create or replace view UserDocente as SELECT * from Profesores JOIN users on users.id_Users = Profesores.Fk_User;
+create or replace view UserDocente as SELECT * from Profesores JOIN Users on Users.id_Users = Profesores.Fk_User;
 select * from UserDocente;
 
 
 -- update Asesorias set FkEstados = 2, tiempo = 14 where  not idAsesorias = 1 ;e--
 
-create or replace view borrarHistD as select * from locateUser join users on locateUser.FkUser = users.username join Profesores on users.id_Users = Profesores.Fk_User;
+create or replace view borrarHistD as select * from locateUser join Users on locateUser.FkUser = Users.username join Profesores on Users.id_Users = Profesores.Fk_User;
 select * from borrarHistD;
 
-create or replace view conteo as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date);
+create or replace view conteo as select count(*) from logincount join Users on logincount.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date);
 select * from conteo;
 
-create or replace view conteoH as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 1;
+create or replace view conteoH as select count(*) from logincount join Users on logincount.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 1;
 select * from conteoH;
 
-create or replace view conteoM as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 2;
+create or replace view conteoM as select count(*) from logincount join Users on logincount.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 2;
 select * from conteoM;
 
-create or replace view conteoO as select count(*) from logincount join users on logincount.FkUser = users.username join Estudiante on users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 3;
+create or replace view conteoO as select count(*) from logincount join Users on logincount.FkUser = Users.username join Estudiante on Users.id_Users = Estudiante.Fk_Usuario where curdate() = cast(dia as date) and genero = 3;
 select * from conteoO;
 
 create or replace view asesConteo as select count(*) from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula where FkEstados = 2;
@@ -623,10 +623,10 @@ select * from asesConteoM;
 create or replace view asesConteoO as select count(*) from Asesorias join Estudiante on Asesorias.FkMatricula = Estudiante.id_Matricula where FkEstados = 2 and genero = 3;
 select * from asesConteoO;
 
-create or replace view TodasMaterias as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join carreras on datosM.Fk_Carrera = carreras.idCarrera join cuatrimestre on datosM.Fk_Cuatri = cuatrimestre.idCuatri;
+create or replace view TodasMaterias as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join Carreras on datosM.Fk_Carrera = Carreras.idCarrera join Cuatrimestre on datosM.Fk_Cuatri = Cuatrimestre.idCuatri;
 select * from TodasMaterias;
 
-create or replace view NewDoc as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join carreras on datosM.Fk_Carrera = carreras.idCarrera join cuatrimestre on datosM.Fk_Cuatri = cuatrimestre.idCuatri;
+create or replace view NewDoc as select * from datosM join Materias on datosM.Fk_Materia = Materias.idMaterias join Carreras on datosM.Fk_Carrera = Carreras.idCarrera join Cuatrimestre on datosM.Fk_Cuatri = Cuatrimestre.idCuatri;
 create or replace view materiasProfe as select * from materias_imparte join Materias on materias_imparte.Fk_Materias = Materias.idMaterias join Profesores on materias_imparte.Fk_Profesores = Profesores.idProfesores;
 select * from materiasProfe;
 
